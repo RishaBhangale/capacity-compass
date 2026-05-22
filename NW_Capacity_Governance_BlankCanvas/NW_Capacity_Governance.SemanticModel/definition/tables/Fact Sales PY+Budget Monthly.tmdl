@@ -1,0 +1,139 @@
+table 'Fact Sales PY+Budget Monthly'
+	lineageTag: b61a875d-29a8-4666-a28b-9de9148d771c
+
+	measure 'Gross Profit PY Monthly' = SUM('Fact Sales PY+Budget Monthly'[GPDeadNetPY])
+		lineageTag: 83d9cc86-4dbe-4a02-a2f5-2452c6a44ed1
+
+	measure 'Revenure Ref Monthly' = BLANK()
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 2cfd5e1c-d195-46a6-957d-7a27916496e7
+
+	measure 'Revenue PY Monthly' = SUM('Fact Sales PY+Budget Monthly'[RevenueDeadNetPY])
+		lineageTag: 86a4c811-aada-4264-bb9f-4c3ac78f23a1
+
+	measure 'Revenue Target Monthly' = SUM('Fact Sales PY+Budget Monthly'[RevenueDeadNetBudget])
+		lineageTag: 157aef1d-9937-4d50-9584-1d67381dfc41
+
+	measure 'Gross Profit % Monthly' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 13f45677-2171-4eea-8f96-097cdb5a136a
+
+	measure 'Revenue % PY Monthly' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 6cf39cfc-8831-4a9d-96b3-83911cd061b3
+
+	measure 'Revenue % Att. Ref Monthly' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: a67dfc4f-d2a7-469a-9853-d9665727f53f
+
+	measure 'Sales Cases Volumne PY Monthly' = SUM('Fact Sales PY+Budget Monthly'[SalesCasesPY])
+		lineageTag: 4f81fdf6-c978-42cd-98fb-374395254a7c
+
+	measure 'Sales Cases % PY Monthly' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 5f2261e2-4a5b-4024-904e-b50384c39fd9
+
+	measure 'Volume % Att. Ref Monthly' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: eba15a23-421d-40ad-b3e5-e562c13a1069
+
+	measure 'Volume Ref Monthly' = BLANK()
+		lineageTag: c4acba69-7cce-4153-91c0-dc479e035d22
+
+	measure 'Gross Profit % Att. Monthly' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: ebdfda76-890a-45f4-b5db-14b9e9866925
+
+	column PlantID
+		dataType: string
+		lineageTag: 80bd202b-6403-49c7-80c9-b05f9345550d
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: ea141aba-7ec9-49d7-91ef-345c0a9994b1
+		sourceColumn: MaterialID
+
+	column MonthID
+		dataType: string
+		lineageTag: 9fea3344-5ce1-438f-a9f3-c268d3348159
+		summarizeBy: none
+		sourceColumn: MonthID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesCasesPY
+		dataType: string
+		lineageTag: 2c0cc631-e9c7-49c9-bcf9-ceb418b6e89f
+		summarizeBy: none
+		sourceColumn: SalesCasesPY
+
+		annotation SummarizationSetBy = Automatic
+
+	column RevenueDeadNetPY
+		dataType: string
+		lineageTag: 150960be-5158-4667-a7b8-bb027af2d015
+		summarizeBy: none
+		sourceColumn: RevenueDeadNetPY
+
+		annotation SummarizationSetBy = Automatic
+
+	column GPDeadNetPY
+		dataType: string
+		lineageTag: c25e243e-e686-4b55-aa43-bd8d80ed55c2
+		summarizeBy: none
+		sourceColumn: GPDeadNetPY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesCasesBudget
+		dataType: string
+		lineageTag: d4d785d7-3f0c-4ea5-84b7-7d3f3dae45fb
+		summarizeBy: none
+		sourceColumn: SalesCasesBudget
+
+		annotation SummarizationSetBy = Automatic
+
+	column RevenueDeadNetBudget
+		dataType: string
+		lineageTag: 69ab5bdc-f197-43b9-b7f9-1d6ea1b1df46
+		summarizeBy: none
+		sourceColumn: RevenueDeadNetBudget
+
+		annotation SummarizationSetBy = Automatic
+
+	column GPDeadNetBudget
+		dataType: string
+		lineageTag: 84f8bcbb-f0b4-4c2d-a716-2bdf69a68db0
+		summarizeBy: none
+		sourceColumn: GPDeadNetBudget
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesPalletsXPY
+		dataType: string
+		lineageTag: 86f0bb8f-4458-4d72-be20-81de84e35830
+		summarizeBy: none
+		sourceColumn: SalesPalletsXPY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesPalletsBudgetX
+		dataType: string
+		lineageTag: 703ef803-85fa-4aec-a9b3-d0d6412d947d
+		summarizeBy: none
+		sourceColumn: SalesPalletsBudgetX
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Sales PY+Budget Monthly' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PlantID", "MaterialID", "MonthID", "SalesCasesPY", "RevenueDeadNetPY", "GPDeadNetPY", "SalesCasesBudget", "RevenueDeadNetBudget", "GPDeadNetBudget", "SalesPalletsXPY", "SalesPalletsBudgetX"}, {})
+				in
+				    Source
+

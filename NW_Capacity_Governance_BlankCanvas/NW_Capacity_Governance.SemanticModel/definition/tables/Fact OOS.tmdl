@@ -1,0 +1,143 @@
+table 'Fact OOS'
+	lineageTag: e154f87b-8fe8-43d2-b39c-fdfaf00381a3
+
+	measure 'OOS Cases' = BLANK()
+		formatString: #,0
+		lineageTag: 55db1bd8-32aa-4adc-9138-f96c597f71f7
+
+	measure 'In-Stock Cases' = BLANK()
+		formatString: #,0.00
+		lineageTag: d9bbed13-ea0f-46ee-89cc-9f64c9ac0376
+
+	measure 'In-Stock Pallets' = BLANK()
+		formatString: #,0.00
+		lineageTag: 5b1fd3f4-4849-40f0-b7d0-d4194645eba8
+
+	measure 'OOS Pallets' = BLANK()
+		formatString: #,0.00
+		lineageTag: 47b78b69-0e8b-4d7c-889c-94097a802fd2
+
+	measure 'Top 5 SKU' = BLANK()
+		lineageTag: b97b18a1-4b26-4567-9ba1-44b6b6c4e547
+
+	measure 'Requested Cases' = BLANK()
+		lineageTag: d5e20048-444d-42d2-a0fe-086402e31b52
+
+	measure '% of WH Cuts' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 64ae4014-0417-423a-b472-d6b11970c554
+
+	measure 'OOS Cases KPI' = BLANK()
+		lineageTag: 1db0c4fe-e67a-425b-b448-da491afc3615
+
+	column OutOfStockPallets
+		dataType: string
+		lineageTag: 58a3e4b7-d0ad-48c6-82a2-f6c6234160f3
+		summarizeBy: none
+		sourceColumn: OutOfStockPallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column OutOfStockCases
+		dataType: string
+		lineageTag: 7d9f2c9c-4568-47d2-b58f-1e7d041845be
+		summarizeBy: none
+		sourceColumn: OutOfStockCases
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReqestedPallets
+		dataType: string
+		lineageTag: d13e4178-f344-445c-9a70-96370e660934
+		summarizeBy: none
+		sourceColumn: ReqestedPallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'In Stock Pallets C' = 'Fact OOS'[ReqestedPallets] - 'Fact OOS'[OutOfStockPallets]
+		dataType: string
+		formatString: #,0.00
+		lineageTag: 55b35516-04ec-4a34-9e0f-c78032ac7657
+
+	column 'In Stock cases C' = 'Fact OOS'[RequestedCases] - 'Fact OOS'[OutOfStockCases]
+		dataType: string
+		formatString: #,0.00
+		lineageTag: edeee469-1fce-4b18-9118-a7dd332b0b3e
+
+	column PeriodID
+		dataType: string
+		lineageTag: 50d25d77-a2c3-4fc5-9d31-2f6ae0c51e13
+		summarizeBy: none
+		sourceColumn: PeriodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: 8e6ff1cd-3118-47b7-b731-f23403e473f6
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: e7ee4ccf-386e-458d-bd75-489947cccb6b
+		sourceColumn: MaterialID
+
+	column RequestedCases
+		dataType: string
+		lineageTag: 228ed1d9-6f50-4391-8ada-f896b87bb799
+		summarizeBy: none
+		sourceColumn: RequestedCases
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShortOrder
+		dataType: string
+		lineageTag: 60ca56a6-c20c-4600-92bc-163093d0bd5d
+		summarizeBy: none
+		sourceColumn: ShortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountID
+		dataType: string
+		lineageTag: 9a74c495-3b4b-41f9-9a07-b2f70c490d05
+		summarizeBy: none
+		sourceColumn: AccountID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourcePlantID
+		dataType: string
+		lineageTag: 6559064d-8b9b-40bd-ba90-ebb431d98d56
+		summarizeBy: none
+		sourceColumn: SourcePlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ExcessLot
+		dataType: string
+		lineageTag: 583463ed-6450-4bab-842e-f162fa5c1f6e
+		summarizeBy: none
+		sourceColumn: ExcessLot
+
+		annotation SummarizationSetBy = Automatic
+
+	column ExcessOfLotSize
+		dataType: string
+		lineageTag: bdb51f30-6c24-4586-9b41-ec86b36f68a0
+		summarizeBy: none
+		sourceColumn: ExcessOfLotSize
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact OOS' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"OutOfStockPallets", "OutOfStockCases", "ReqestedPallets", "PeriodID", "PlantID", "MaterialID", "RequestedCases", "ShortOrder", "AccountID", "SourcePlantID", "ExcessLot", "ExcessOfLotSize"}, {})
+				in
+				    Source
+

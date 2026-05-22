@@ -1,0 +1,92 @@
+table 'Fact CFR Period PY'
+	lineageTag: 7b39af2b-017e-4377-b84e-ea609a8df479
+
+	measure 'CFR % M PY' = BLANK()
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 17cb13c2-10b6-452d-b465-22ab48cc7357
+
+	column PeriodID
+		dataType: string
+		lineageTag: c0fae971-e7b8-4195-b7b1-dd768da57b44
+		summarizeBy: none
+		sourceColumn: PeriodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: f45bb69c-7b0d-4733-b2cf-6711ad8544ef
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: 80e96754-371a-49d2-9fae-c0973b33e35a
+		sourceColumn: MaterialID
+
+	column CustomerNumber
+		dataType: string
+		lineageTag: 55323bd4-0726-4357-bd19-5f58e90e3161
+		summarizeBy: none
+		sourceColumn: CustomerNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column OriginalOrderRDD
+		dataType: string
+		lineageTag: 24687d37-6b0f-4dfa-8369-9989856f11a6
+		summarizeBy: none
+		sourceColumn: OriginalOrderRDD
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order#
+		dataType: string
+		lineageTag: 906888bf-2b35-4e92-baaf-196367d0ef8a
+		summarizeBy: none
+		sourceColumn: Order#
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderedCases
+		dataType: string
+		lineageTag: 13bbf4ff-bd85-40b7-9fca-1f406fa05352
+		summarizeBy: none
+		sourceColumn: OrderedCases
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveredCases
+		dataType: string
+		lineageTag: 2e8a2203-f816-4e46-986c-dd08406966f1
+		summarizeBy: none
+		sourceColumn: DeliveredCases
+
+		annotation SummarizationSetBy = Automatic
+
+	column OntimeDeliveries
+		dataType: string
+		lineageTag: 8e4179d1-1625-4817-b21e-37301611dc4d
+		summarizeBy: none
+		sourceColumn: OntimeDeliveries
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deliveries
+		dataType: string
+		lineageTag: 5fa8e756-4173-4563-a57b-45d2798a88dd
+		summarizeBy: none
+		sourceColumn: Deliveries
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact CFR Period PY' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PeriodID", "PlantID", "MaterialID", "CustomerNumber", "OriginalOrderRDD", "Order#", "OrderedCases", "DeliveredCases", "OntimeDeliveries", "Deliveries"}, {})
+				in
+				    Source
+

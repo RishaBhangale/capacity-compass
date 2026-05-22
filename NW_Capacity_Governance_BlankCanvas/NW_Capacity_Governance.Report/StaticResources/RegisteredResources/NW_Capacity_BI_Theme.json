@@ -1,0 +1,261 @@
+{
+  "name": "NW Capacity BI Governance Theme",
+  "dataColors": [
+    "#2E5FA3",
+    "#4472C4",
+    "#00B0A0",
+    "#E8701A",
+    "#217346",
+    "#C00000",
+    "#7030A0",
+    "#1F3864",
+    "#D6E4F7",
+    "#595959"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#1F3864",
+  "tableAccent": "#2E5FA3",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "fontFamily": [
+          {
+            "value": "Arial"
+          }
+        ],
+        "fontSize": [
+          {
+            "value": 11
+          }
+        ],
+        "fontColor": [
+          {
+            "value": "#1F3864"
+          }
+        ],
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            }
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#D9D9D9"
+              }
+            },
+            "radius": 4
+          }
+        ]
+      }
+    },
+    "card": {
+      "calloutValue": {
+        "fontSize": [
+          {
+            "value": 28
+          }
+        ],
+        "fontBold": [
+          {
+            "value": true
+          }
+        ],
+        "fontColor": [
+          {
+            "value": "#1F3864"
+          }
+        ]
+      },
+      "label": {
+        "fontSize": [
+          {
+            "value": 11
+          }
+        ],
+        "fontColor": [
+          {
+            "value": "#595959"
+          }
+        ]
+      }
+    },
+    "columnChart": {
+      "dataPoint": {
+        "defaultColor": [
+          {
+            "color": {
+              "solid": {
+                "color": "#2E5FA3"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "barChart": {
+      "dataPoint": {
+        "defaultColor": [
+          {
+            "color": {
+              "solid": {
+                "color": "#4472C4"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "donutChart": {
+      "dataPoint": {
+        "defaultColor": [
+          {
+            "color": {
+              "solid": {
+                "color": "#2E5FA3"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "gauge": {
+      "dataPoint": {
+        "defaultColor": [
+          {
+            "color": {
+              "solid": {
+                "color": "#00B0A0"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "slicer": {
+      "header": {
+        "fontColor": [
+          {
+            "value": "#FFFFFF"
+          }
+        ],
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#1F3864"
+              }
+            }
+          }
+        ],
+        "fontBold": [
+          {
+            "value": true
+          }
+        ]
+      },
+      "items": {
+        "fontColor": [
+          {
+            "value": "#1F3864"
+          }
+        ]
+      }
+    },
+    "tableEx": {
+      "header": {
+        "fontColor": [
+          {
+            "value": "#FFFFFF"
+          }
+        ],
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#1F3864"
+              }
+            }
+          }
+        ],
+        "fontBold": [
+          {
+            "value": true
+          }
+        ]
+      },
+      "rows": {
+        "alternatingBackground": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F2F7FF"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "pivotTable": {
+      "rowHeaders": {
+        "fontBold": [
+          {
+            "value": true
+          }
+        ],
+        "fontColor": [
+          {
+            "value": "#1F3864"
+          }
+        ]
+      },
+      "columnHeaders": {
+        "fontColor": [
+          {
+            "value": "#FFFFFF"
+          }
+        ],
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#2E5FA3"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "textClasses": {
+    "title": {
+      "fontSize": 16,
+      "fontFace": "Arial",
+      "color": "#1F3864",
+      "fontBold": true
+    },
+    "header": {
+      "fontSize": 12,
+      "fontFace": "Arial",
+      "color": "#2E5FA3",
+      "fontBold": true
+    },
+    "label": {
+      "fontSize": 10,
+      "fontFace": "Arial",
+      "color": "#595959"
+    },
+    "callout": {
+      "fontSize": 28,
+      "fontFace": "Arial",
+      "color": "#1F3864",
+      "fontBold": true
+    }
+  }
+}

@@ -1,0 +1,59 @@
+table _Gov_ReportUsage
+	lineageTag: 1e13811d-9d70-44cc-935e-1d793c4806da
+
+	column Report
+		dataType: string
+		lineageTag: ef45ee29-3c30-4575-92a9-bc26ec469148
+		sourceColumn: Report
+
+	column Page
+		dataType: string
+		lineageTag: 20033862-b3ea-4468-a14a-abaeafbcb5d7
+		sourceColumn: Page
+
+	column Visual
+		dataType: string
+		lineageTag: 12ef02e1-6d71-4332-8d72-2b5280977123
+		sourceColumn: Visual
+
+	column VisualType
+		dataType: string
+		lineageTag: f7331a72-76e2-4043-afe2-5dbc636a0c72
+		sourceColumn: VisualType
+
+	column Field
+		dataType: string
+		lineageTag: b2e6e4ae-0bce-4982-bf15-2c7fb5775701
+		sourceColumn: Field
+
+	column FullName
+		dataType: string
+		lineageTag: c1ac49df-e540-44de-a199-c46d60aa8706
+		sourceColumn: FullName
+
+	column UsageContext
+		dataType: string
+		lineageTag: 11e83411-7355-4496-a525-dbb76e533d1f
+		sourceColumn: UsageContext
+
+	column IsHiddenVisual
+		dataType: string
+		lineageTag: ad7d7c69-552f-4191-98ca-9f910f4a7ff9
+		sourceColumn: IsHiddenVisual
+
+	column Table
+		dataType: string
+		lineageTag: 030c0f53-5115-4120-bdac-372783bb97dc
+		summarizeBy: none
+		sourceColumn: Table
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Gov_ReportUsage = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadSheet("Report_Usage")
+				in
+				    Source
+

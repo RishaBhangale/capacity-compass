@@ -1,0 +1,70 @@
+table _Gov_PQSources
+	lineageTag: f9d04e76-f71a-4b3e-8382-ebcc1d7a2859
+
+	column TableName
+		dataType: string
+		lineageTag: e0c9c480-725e-4310-9a21-ba7d63464e77
+		sourceColumn: TableName
+
+	column Connector
+		dataType: string
+		lineageTag: 38ccfebd-e185-408c-aa5f-f88a1545e7b6
+		sourceColumn: Connector
+
+	column Server
+		dataType: string
+		lineageTag: a3d1897b-ec10-421d-a398-f4a51d94fbab
+		sourceColumn: Server
+
+	column Database
+		dataType: string
+		lineageTag: 6c136171-143f-4edb-b46f-a03b98db2b56
+		sourceColumn: Database
+
+	column HasTransformations
+		dataType: string
+		lineageTag: ea71fa54-a7f5-41d9-89bb-1d0926ddf9c4
+		sourceColumn: HasTransformations
+
+	column StepCount
+		dataType: int64
+		lineageTag: 20dc4a7e-959d-40de-ad4a-8f1a85441dc9
+		sourceColumn: StepCount
+
+	column SemanticModel
+		dataType: string
+		lineageTag: fb563062-994e-4be8-aeda-554f5dbd734c
+		summarizeBy: none
+		sourceColumn: SemanticModel
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceSchema
+		dataType: string
+		lineageTag: f1666da5-9c16-40af-9d74-471a2b5e4d04
+		summarizeBy: none
+		sourceColumn: SourceSchema
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceTable
+		dataType: string
+		lineageTag: 313a842c-41c7-4bf2-a48d-fa0237c61c0f
+		summarizeBy: none
+		sourceColumn: SourceTable
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Gov_PQSources = m
+		mode: import
+		source =
+				let
+				    Raw        = fnLoadSheet("PQ_Sources"),
+				    Filtered   = Table.SelectRows(Raw, each [TableName] <> null and Text.From([TableName]) <> ""),
+				    Dropped    = Table.RemoveColumns(Filtered, {"RawExpression"}),
+				    Typed      = Table.TransformColumns(Dropped, {
+				                     {"StepCount", each try Int64.From(_) otherwise 0, Int64.Type}
+				                 })
+				in
+				    Typed
+

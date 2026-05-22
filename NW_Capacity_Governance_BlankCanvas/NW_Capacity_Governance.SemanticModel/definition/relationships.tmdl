@@ -1,0 +1,398 @@
+relationship Relationship
+	fromColumn: 'Fact Lead Time'.DateID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 1'
+	fromColumn: 'Fact Transport'.PlantID
+	toColumn: 'Dim Source Branch'.'Source Plant ID'
+
+relationship 'Relationship 2'
+	fromColumn: 'Fact Inbound Missing Cases'.'Source Plant ID'
+	toColumn: 'Dim Source Branch'.'Source Plant ID'
+
+relationship 'Relationship 3'
+	fromColumn: 'Dim Material Hist @Branch'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 4'
+	fromColumn: 'Fact Utilization Daily CY'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 5'
+	fromColumn: 'Fact Sales Budget'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 6'
+	fromColumn: 'Fact Transport'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 7'
+	fromColumn: 'Fact Labor Hours'.DateID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 8'
+	fromColumn: 'Fact Labor Hours'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 9'
+	fromColumn: 'Fact Rolled Stops'.CustomerNumber
+	toColumn: 'Dim Customer'.AccountID
+
+relationship 'Relationship 10'
+	fromColumn: 'Fact Cases Processed'.DateID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 11'
+	fromColumn: 'Fact Cases Processed'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 12'
+	fromColumn: 'Fact Lead Time'.SourcePlantID
+	toColumn: 'Dim Source Branch'.'Source Plant ID'
+
+relationship 'Relationship 13'
+	fromColumn: 'Fact OOS'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 14'
+	fromColumn: 'Dim Date'.BP_PREV_DATE_ID
+	toColumn: 'Base Periods'.PrevDateID
+
+relationship 'Relationship 15'
+	fromColumn: 'Fact Sales'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 16'
+	fromColumn: 'Fact OOS'.PeriodID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 17'
+	fromColumn: 'Fact CFR Period CY'.CustomerNumber
+	toColumn: 'Dim Customer'.AccountID
+
+relationship 'Relationship 18'
+	fromColumn: 'Fact Sales'.PeriodID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 19'
+	fromColumn: 'Fact Sales Budget'.PeriodID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 20'
+	fromColumn: 'Fact Pick Accuracy'.PlantID
+	toColumn: 'Dim Source Branch'.'Source Plant ID'
+
+relationship 'Relationship 21'
+	fromColumn: 'Fact Pick Accuracy'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 22'
+	fromColumn: 'Fact Pick Accuracy'.CustomerNumber
+	toColumn: 'Dim Customer'.AccountID
+
+relationship 'Relationship 23'
+	fromColumn: 'Fact CFR Customer Buckted'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 24'
+	fromColumn: 'Fact Utilization Bucketed'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 25'
+	fromColumn: 'Fact CFR Buckted'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 26'
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Fact SKU Rationalization'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 27'
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Dim Received Material'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 28'
+	fromColumn: 'Fact Sales'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 29'
+	fromColumn: 'Fact Pick Accuracy'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 30'
+	fromColumn: 'Fact OOS'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 31'
+	fromColumn: 'Fact Sales Budget'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 32'
+	fromColumn: 'Fact Inbound Missing Cases'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 33'
+	fromColumn: 'Dim Material Hist @Branch'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 34'
+	fromColumn: 'Fact Inbound Missing Cases'.PeriodID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 35'
+	fromColumn: 'Fact CFR Period CY'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 36'
+	fromColumn: 'Fact CFR Period CY'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 37'
+	fromColumn: 'Fact CFR Buckted'.Period
+	toColumn: 'Dim Period'.Ordinal
+
+relationship 'Relationship 38'
+	fromColumn: 'Fact CFR Customer Buckted'.Period
+	toColumn: 'Dim Period'.Ordinal
+
+relationship 'Relationship 39'
+	fromColumn: 'Fact Utilization Bucketed'.Period
+	toColumn: 'Dim Period'.Ordinal
+
+relationship 'Relationship 40'
+	fromColumn: 'Fact CFR Period CY'.PeriodID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 41'
+	fromColumn: 'Fact Utilization Bucketed'.Bucket
+	toColumn: 'Dim Congestion Level'.'Congestion Level'
+
+relationship 'Relationship 42'
+	fromColumn: 'Fact CFR Buckted'.Bucket
+	toColumn: 'Dim CFR Levels'.'CFR Level'
+
+relationship 'Relationship 43'
+	fromColumn: 'Fact CFR Customer Buckted'.Bucket
+	toColumn: 'Dim CFR Levels'.'CFR Level'
+
+relationship 'Relationship 44'
+	fromColumn: 'Fact Inventory Period'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 45'
+	fromColumn: 'Fact Sales Monthly'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 46'
+	fromColumn: 'Fact Inventory Period'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 47'
+	fromColumn: 'Fact Sales Monthly'.MonthID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 48'
+	fromColumn: 'Fact Sales Budget Monthly'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 49'
+	fromColumn: 'Fact Sales Budget Monthly'.MonthID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 50'
+	fromColumn: 'Fact Sales Budget Monthly'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 51'
+	fromColumn: 'Fact CFR Monthly CY'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 52'
+	fromColumn: 'Fact CFR Monthly CY'.MonthID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 53'
+	fromColumn: 'Fact Inventory Period'.PeriodID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 54'
+	fromColumn: 'Dim Customer'.NationalChainName
+	toColumn: 'Dim National Chain'.NationalChainName
+
+relationship 'Relationship 55'
+	fromColumn: 'Fact Daily Demand'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 56'
+	fromColumn: 'Fact Daily Demand'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 57'
+	fromColumn: 'Fact Inventory'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 58'
+	fromColumn: 'Fact Lead Time'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 59'
+	fromColumn: 'Fact Limit Breach Aging'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 60'
+	fromColumn: 'Fact Inventory'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 61'
+	fromColumn: 'Fact Limit Breach Aging'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 62'
+	fromColumn: 'Fact Inbound Missing Cases'.POMaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 63'
+	fromColumn: 'Fact Delivery Metrics Daily'.DateID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 64'
+	fromColumn: 'Fact Delivery Metrics Daily'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 65'
+	fromColumn: 'Fact CFR Customer Buckted'.CustomerNumber
+	toColumn: 'Dim Customer'.AccountID
+
+relationship 'Relationship 66'
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Fact CFR Buckted'.PlantID
+	toColumn: 'Fact CFR Customer Buckted'.PlantID
+
+relationship 'Relationship 67'
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Fact CFR Buckted'.PlantID
+	toColumn: 'Fact Utilization Bucketed'.PlantID
+
+relationship 'Relationship 68'
+	fromColumn: 'Fact Lead Time'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 69'
+	fromColumn: 'Fact Sales'.CustomerNumber
+	toColumn: 'Dim Customer'.AccountID
+
+relationship 'Relationship 70'
+	fromColumn: 'Fact CFR Monthly CY'.CustomerNumber
+	toColumn: 'Dim Customer'.AccountID
+
+relationship 'Relationship 71'
+	fromColumn: 'Fact Sales Monthly'.CustomerNumber
+	toColumn: 'Dim Customer'.AccountID
+
+relationship 'Relationship 72'
+	fromColumn: 'Fact Pick Accuracy'.PeriodID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 73'
+	fromColumn: 'Fact Sales PY+Budget Monthly'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 74'
+	fromColumn: 'Fact Sales PY+Budget Monthly'.MaterialID
+	toColumn: 'Dim Received Material'.MaterialID
+
+relationship 'Relationship 75'
+	fromColumn: 'Fact Sales PY+Budget Monthly'.MonthID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 76'
+	fromColumn: 'Fact Sales PY+Budget Daily'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 77'
+	fromColumn: 'Fact Sales PY+Budget Daily'.MaterialID
+	toColumn: 'Dim Received Material'.MaterialID
+
+relationship 'Relationship 78'
+	fromColumn: 'Fact Utilization CY Monthly'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 79'
+	fromColumn: 'Fact Utilization CY Monthly'.MonthID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 80'
+	fromColumn: 'Fact Utilization PY Monthly'.MonthID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 81'
+	fromColumn: 'Fact Utilization Daily PY'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 82'
+	fromColumn: 'Fact Utilization Daily CY'.DateID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 83'
+	fromColumn: 'Fact Utilization Daily PY'.DateID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 84'
+	fromColumn: 'Fact CFR Period PY'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 85'
+	fromColumn: 'Fact CFR Monthly PY'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 86'
+	fromColumn: 'Fact CFR Period PY'.MaterialID
+	toColumn: 'Dim Received Material'.MaterialID
+
+relationship 'Relationship 87'
+	fromColumn: 'Fact CFR Monthly PY'.MonthID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 88'
+	fromColumn: 'Fact CFR Period PY'.PeriodID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 89'
+	fromColumn: 'Fact Sales PY+Budget Daily'.PeriodID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 90'
+	fromColumn: 'Fact OOS'.SourcePlantID
+	toColumn: 'Dim Source Branch'.'Source Plant ID'
+
+relationship 'Relationship 91'
+	fromColumn: 'Fact OOS'.AccountID
+	toColumn: 'Dim Customer'.AccountID
+
+relationship 'Relationship 92'
+	fromColumn: 'Fact Utilization PY Monthly'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 93'
+	fromColumn: 'Fact Transport'.DateID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 94'
+	fromColumn: 'Fact Rolled Stops'.DateID
+	toColumn: 'Dim Date'.DateID
+
+relationship 'Relationship 95'
+	fromColumn: 'Dim SKU Curr Status'.MaterialID
+	toColumn: 'Dim Material'.MaterialID
+
+relationship 'Relationship 96'
+	fromColumn: 'Fact Rolled Stops'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+
+relationship 'Relationship 97'
+	fromColumn: 'Dim SKU Curr Status'.PlantID
+	toColumn: 'Dim Branch'.PlantID
+

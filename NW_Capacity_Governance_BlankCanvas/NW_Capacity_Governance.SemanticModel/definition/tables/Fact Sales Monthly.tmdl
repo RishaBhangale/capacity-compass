@@ -1,0 +1,107 @@
+table 'Fact Sales Monthly'
+	lineageTag: 4ef38345-e334-429d-a170-11267b5e8b9a
+
+	measure 'Sales Cases Volume Monthly CY' = BLANK()
+		formatString: 0
+		lineageTag: b8fa62f6-9612-420d-8ff7-d390bee9de2a
+
+	measure 'GP Per Pallet Monthly CY' = BLANK()
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 45c151c9-f63d-43a4-a5b5-3ef45729d34c
+
+	measure 'Revenue Monthly CY' = BLANK()
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 732f62f6-8f94-4ac6-b8e3-a788b9f548f0
+
+	measure 'Sales Cases Volume Monthly PY' = BLANK()
+		formatString: 0
+		lineageTag: 64151653-41ea-42ac-bb99-44790ae5a5c6
+
+	measure 'Revenue Monthly PY' = BLANK()
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 2d572daf-ffe0-4d05-9430-97f72bced531
+
+	measure 'GP Per Pallet Monthly PY' = BLANK()
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: de7c571a-837f-4542-af66-2d557ad0a0cc
+
+	column MonthID
+		dataType: string
+		lineageTag: 952f3825-7b08-417c-9f3e-8e87cdde9914
+		summarizeBy: none
+		sourceColumn: MonthID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: a18a475a-b460-48e5-9e8c-207168c4a53e
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Cases'
+		dataType: string
+		lineageTag: a2533bc7-abf8-4170-8aa6-58c816241ff0
+		summarizeBy: none
+		sourceColumn: Sales Cases
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesPalletsX
+		dataType: string
+		lineageTag: 4ab0dddf-f7ca-4950-b127-4ea2ad348f49
+		summarizeBy: none
+		sourceColumn: SalesPalletsX
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Pallets'
+		dataType: string
+		lineageTag: b6193ae5-32c3-4aa3-b8b2-35b456483f48
+		summarizeBy: none
+		sourceColumn: Sales Pallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Revenue Dead Net'
+		dataType: string
+		lineageTag: 8434fbbe-42aa-4a6f-b44a-a7262d827b18
+		summarizeBy: none
+		sourceColumn: Revenue Dead Net
+
+		annotation SummarizationSetBy = Automatic
+
+	column COGS
+		dataType: string
+		lineageTag: 675f673a-56d8-484d-9f85-7b6a63bf9bb2
+		summarizeBy: none
+		sourceColumn: COGS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GP Dead Net'
+		dataType: string
+		lineageTag: f9748dbb-1222-4803-a26d-c183fb0dd0c9
+		summarizeBy: none
+		sourceColumn: GP Dead Net
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerNumber
+		dataType: string
+		lineageTag: 15c9c8d8-672e-48a1-9cf3-a2a52166c0ac
+		summarizeBy: none
+		sourceColumn: CustomerNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Sales Monthly' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"MonthID", "PlantID", "Sales Cases", "SalesPalletsX", "Sales Pallets", "Revenue Dead Net", "COGS", "GP Dead Net", "CustomerNumber"}, {})
+				in
+				    Source
+

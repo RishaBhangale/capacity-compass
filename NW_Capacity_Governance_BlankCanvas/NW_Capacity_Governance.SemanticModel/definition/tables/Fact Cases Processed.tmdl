@@ -1,0 +1,98 @@
+table 'Fact Cases Processed'
+	lineageTag: 3ca3aaa8-539b-45c8-93e4-98d2c7b81acd
+
+	measure 'WH Cases per Hour' = BLANK()
+		lineageTag: 53924d1e-7d7a-4132-a6db-36466fd21332
+
+	measure 'WH Cases per Hour KPI' = BLANK()
+		lineageTag: a75da66a-7a19-42fe-ab3e-b3a26fdec2ad
+
+	measure 'Color WH Cases/Hour Monthly Abs' = BLANK()
+		lineageTag: 5822b39b-fa63-433a-af57-a4882030dfcf
+
+	measure 'WH Cases per Hour Target' = BLANK()
+		lineageTag: ac953ce6-d825-46cd-9810-7278025fa245
+
+	measure 'WH Cases per Hour Target KPI' = BLANK()
+		lineageTag: 4bb670dc-b513-43dd-b47e-59f0f08e6ed7
+
+	measure 'Color WH cases per Hour KPI' = BLANK()
+		lineageTag: 853f6f34-7989-423d-b04b-b233cab03723
+
+	measure 'Color WH Cases/Hour Icon' = BLANK()
+		lineageTag: 70ea1a5b-9bbd-4cb5-b4f4-8aa5169d4bf5
+
+	column DateID
+		dataType: string
+		lineageTag: 7e93b02d-8caa-4cc7-8c9b-e996b1413c26
+		summarizeBy: none
+		sourceColumn: DateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: b64b59db-4c05-4a82-b355-14ad55ce35a7
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchIDFromSrc
+		dataType: string
+		lineageTag: 25fa8406-1bed-4606-b2f3-0828e403775e
+		summarizeBy: none
+		sourceColumn: BranchIDFromSrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOfficeName
+		dataType: string
+		lineageTag: 1dab3991-de41-4b03-a3e6-276d7e50facd
+		sourceColumn: SalesOfficeName
+
+	column ReportingBranch
+		dataType: string
+		lineageTag: a0bc784e-461d-4bc6-8938-e990be246186
+		sourceColumn: ReportingBranch
+
+	column CasesPicked
+		dataType: string
+		lineageTag: f5d52d7e-4569-473a-9f83-b20c3142c9cf
+		summarizeBy: none
+		sourceColumn: CasesPicked
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalHours
+		dataType: string
+		lineageTag: b978fc16-f3c1-462b-8bad-ec0ee6d54385
+		summarizeBy: none
+		sourceColumn: TotalHours
+
+		annotation SummarizationSetBy = Automatic
+
+	column TargetCasesPicked
+		dataType: string
+		lineageTag: a5026c88-b91a-40fc-a177-01a380d6a8ff
+		summarizeBy: none
+		sourceColumn: TargetCasesPicked
+
+		annotation SummarizationSetBy = Automatic
+
+	column TargetHours
+		dataType: string
+		lineageTag: e82e235a-e037-44a7-86c6-c5bbb4567ef8
+		summarizeBy: none
+		sourceColumn: TargetHours
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Cases Processed' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"DateID", "PlantID", "BranchIDFromSrc", "SalesOfficeName", "ReportingBranch", "CasesPicked", "TotalHours", "TargetCasesPicked", "TargetHours"}, {})
+				in
+				    Source
+

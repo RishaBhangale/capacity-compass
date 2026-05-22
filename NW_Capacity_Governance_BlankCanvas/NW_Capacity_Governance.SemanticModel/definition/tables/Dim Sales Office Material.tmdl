@@ -1,0 +1,80 @@
+table 'Dim Sales Office Material'
+	lineageTag: 889bc9b9-dd96-4720-9cd8-4ccf44b5faf2
+
+	column BranchMaterialSK
+		dataType: string
+		lineageTag: bbafa92e-6096-4afe-b872-f5bb2a0072d7
+		summarizeBy: none
+		sourceColumn: BranchMaterialSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchID
+		dataType: string
+		lineageTag: a93fa7c2-fbef-4d02-b8ee-f2f326a2b2e4
+		summarizeBy: none
+		sourceColumn: BranchID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: 921f2ee7-acca-4513-9173-e2430e77fe64
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: ba93a4b8-1baf-435f-abab-e4258c4eff6d
+		sourceColumn: MaterialID
+
+	column IsPlantActive
+		dataType: string
+		lineageTag: f323c06f-7caf-487f-883f-5ae6d4ce8c65
+		summarizeBy: none
+		sourceColumn: IsPlantActive
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsBranchActive
+		dataType: string
+		lineageTag: a64ecd47-9b0d-4f98-9698-1994fedef47c
+		summarizeBy: none
+		sourceColumn: IsBranchActive
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsDSDBranch
+		dataType: string
+		lineageTag: c792a67f-89a3-4c71-b661-e0873495b5c9
+		summarizeBy: none
+		sourceColumn: IsDSDBranch
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWDPlant
+		dataType: string
+		lineageTag: f34215bd-8bcb-4a31-b5da-e9fba016fab6
+		summarizeBy: none
+		sourceColumn: IsWDPlant
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsMaterialActive
+		dataType: string
+		lineageTag: 239fee19-f1ab-4f36-b29d-91d70fe627cd
+		summarizeBy: none
+		sourceColumn: IsMaterialActive
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Sales Office Material' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"BranchMaterialSK", "BranchID", "PlantID", "MaterialID", "IsPlantActive", "IsBranchActive", "IsDSDBranch", "IsWDPlant", "IsMaterialActive"}, {})
+				in
+				    Source
+

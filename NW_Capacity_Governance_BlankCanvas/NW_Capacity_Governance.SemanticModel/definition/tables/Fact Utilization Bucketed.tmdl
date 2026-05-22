@@ -1,0 +1,59 @@
+table 'Fact Utilization Bucketed'
+	lineageTag: 479c8632-9bd0-47ca-afe3-0b20782d1897
+
+	measure 'Period Bucket' = BLANK()
+		lineageTag: 6a839c56-1b1e-4c44-9345-eba75c1a022e
+
+	measure 'Time Filter' = BLANK()
+		formatString: """""""TRUE"""";""""TRUE"""";""""FALSE"""""""
+		lineageTag: f3ea609d-71fd-4b0e-9905-33c1815ae5af
+
+	measure '# Branches Utilization Bucket' = BLANK()
+		formatString: #,0
+		lineageTag: 75dcfd42-0f8d-4922-926d-3ae67cbf7334
+
+	column PlantID
+		dataType: string
+		lineageTag: 2b0b9867-86ca-40dd-b6b0-fa581fd3e59f
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bucket
+		dataType: string
+		lineageTag: dd8d9827-aa43-4906-a941-ea459d652eec
+		sourceColumn: Bucket
+
+	column Period
+		dataType: string
+		lineageTag: 751be98d-49ef-4a1c-bd96-b462d63af963
+		summarizeBy: none
+		sourceColumn: Period
+
+		annotation SummarizationSetBy = Automatic
+
+	column CntDays
+		dataType: string
+		lineageTag: 5a0fb097-0088-40ef-a308-a7ddd4f9620d
+		summarizeBy: none
+		sourceColumn: CntDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column PctBad
+		dataType: string
+		lineageTag: c7d06162-d785-4d4d-b498-528a36516e5e
+		summarizeBy: none
+		sourceColumn: PctBad
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Utilization Bucketed' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PlantID", "Bucket", "Period", "CntDays", "PctBad"}, {})
+				in
+				    Source
+

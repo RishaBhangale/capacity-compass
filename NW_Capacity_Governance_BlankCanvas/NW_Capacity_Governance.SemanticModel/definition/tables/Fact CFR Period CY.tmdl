@@ -1,0 +1,194 @@
+table 'Fact CFR Period CY'
+	lineageTag: 50d02d95-8a16-4d9f-ba96-51a1d5e99728
+
+	measure 'CFR % M' = BLANK()
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 98985968-7398-4518-a6b4-6ee9ab42067a
+
+	measure 'Cases per Order' = BLANK()
+		formatString: 0
+		lineageTag: b2e05f97-6d04-4cf4-bf20-7bc111abc226
+
+	measure '# of Orders' = BLANK()
+		formatString: #,0
+		lineageTag: 43d0585d-f160-49b6-9aac-31637e3677ac
+
+	measure 'Order Cases' = BLANK()
+		formatString: #,0
+		lineageTag: c356092a-58b1-4f12-ab96-48eadf418abe
+
+	measure 'Top 5 Branch CFR Level' = BLANK()
+		lineageTag: ca8e3359-e8d3-43e0-984d-dcfea6e11d32
+
+	measure 'Top 5 Branches CFR Region Level' = BLANK()
+		lineageTag: 75f7a2f9-e8d5-4ca9-86d7-79b48bc24993
+
+	measure 'Top 5 CFR' = BLANK()
+		lineageTag: ebb2e462-10d2-4f6c-9918-fc3b5602c50f
+
+	measure 'Bottom 5 Branch CFR Level' = BLANK()
+		lineageTag: a17770e6-3151-49a1-acc6-61be6bdbed75
+
+	measure 'Bottom 5 Branches Region CFR Level' = BLANK()
+		lineageTag: 74797588-6ab0-4d0b-a51c-75288cca37e5
+
+	measure 'Bottom 5 CFR' = BLANK()
+		lineageTag: c10cbd7e-9e55-40e2-8f19-a2ba4006e7ba
+
+	measure '# Branches' = BLANK()
+		formatString: #,0
+		lineageTag: 857d6f33-d076-46d3-83fc-b3db8af8fe94
+
+	measure 'On Time Delivery %' = BLANK()
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d5b352b3-b733-412c-afe2-ffedfb4bf756
+
+	measure 'Delivered Cases' = BLANK()
+		lineageTag: f7c2c954-cee2-4b75-8c98-c126a9b46b1b
+
+	measure 'Color CFR Measure' = BLANK()
+		lineageTag: a11ec9ed-46ed-4d63-b1e0-f75c89236317
+
+	measure 'Short Orders Count' = BLANK()
+		formatString: #,0
+		lineageTag: 3b0e1b99-88b1-46f0-8a2a-7140e4dddb89
+
+	measure 'Unique Orders Count' = BLANK()
+		formatString: 0
+		lineageTag: e9b34316-d00b-4e9a-b780-e0b366bbea88
+
+	measure 'Short_Order_SKU =' = BLANK()
+		formatString: 0
+		lineageTag: bc5835f4-a17d-4904-a101-c61c670c91d4
+
+	measure '% Short Orders' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 99ca471e-98b5-4508-93e5-cb01cbc21bc6
+
+	measure 'Cases per Order KPI' = BLANK()
+		formatString: 0
+		lineageTag: 1968132b-4950-4416-9e89-a858300531f8
+
+	measure 'CFR % M KPI' = BLANK()
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: ae12bdc2-6627-4f6d-802f-f39d1b642d92
+
+	measure 'CFR Target' = 0.950
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 6059b96a-2021-4b6e-9bcc-619c0883fabe
+
+	measure 'On Time Delivery % KPI' = BLANK()
+		lineageTag: bf3f6374-8e70-4075-b5e3-31db73efdd08
+
+	measure 'Color Cases per Order Monthly Abs' = BLANK()
+		lineageTag: feff6a1c-f7a5-4305-89d0-34d08829c0a7
+
+	measure 'Short Orders Abs.' = IF([Short Orders Count] = BLANK(), 0 , [Short Orders Count])
+		lineageTag: 06b94a7a-f3ce-4e0b-ad70-5daeeca88332
+
+	measure 'On time deliveries' = SUM('Fact CFR Period CY'[OntimeDeliveries])
+		lineageTag: dbc48c2a-6964-4cea-b9d6-99ff48e57b9f
+
+	measure 'Total Planned Deliveries' = SUM('Fact CFR Period CY'[Deliveries])
+		lineageTag: 206140f0-2100-4f86-8c19-dee8da0dbe8c
+
+	measure 'Gap to CFR Target' = BLANK()
+		lineageTag: 06abf337-0d21-4b62-a3bf-fcb0bbe383b9
+
+	column CustomerNumber
+		dataType: string
+		lineageTag: 3847a5c6-24b6-4cc3-8b83-5e236274634c
+		summarizeBy: none
+		sourceColumn: CustomerNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderedCases
+		dataType: string
+		lineageTag: 5a6efb75-e353-4baa-a59a-0178cd674d3f
+		summarizeBy: none
+		sourceColumn: OrderedCases
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveredCases
+		dataType: string
+		lineageTag: 8196ebde-00ce-4089-b22d-783e8cc451f5
+		summarizeBy: none
+		sourceColumn: DeliveredCases
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CFR % C'
+		dataType: string
+		formatString: 0%;-0%;0%
+		lineageTag: 31d9ee9e-bca5-4350-9b5b-6843b65cbe87
+		sourceColumn: CFR % C
+
+	column PeriodID
+		dataType: string
+		lineageTag: d05f461b-c67d-41d2-aa98-74047a67e97c
+		summarizeBy: none
+		sourceColumn: PeriodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: fd681976-4d7b-488c-9c7f-8ba83357a199
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: d98c16c0-aa77-4596-81bc-5c0343435a05
+		sourceColumn: MaterialID
+
+	column OntimeDeliveries
+		dataType: string
+		lineageTag: fdabd932-83b6-43be-b433-19af73c51e39
+		summarizeBy: none
+		sourceColumn: OntimeDeliveries
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deliveries
+		dataType: string
+		lineageTag: 7e7710ee-e218-40d8-abfb-87109a4f645a
+		summarizeBy: none
+		sourceColumn: Deliveries
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Short Orders'
+		dataType: string
+		formatString: 0
+		lineageTag: 75fca9cd-2639-4f03-b92a-5869eb8343b1
+		sourceColumn: Short Orders
+
+	column OriginalOrderRDD
+		dataType: string
+		lineageTag: a470d7d3-0458-4803-975d-652ddfcb3b01
+		summarizeBy: none
+		sourceColumn: OriginalOrderRDD
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order#
+		dataType: string
+		lineageTag: 4faced78-2461-4c80-b691-165cb28887fd
+		summarizeBy: none
+		sourceColumn: Order#
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact CFR Period CY' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"CustomerNumber", "OrderedCases", "DeliveredCases", "CFR % C", "PeriodID", "PlantID", "MaterialID", "OntimeDeliveries", "Deliveries", "Short Orders", "OriginalOrderRDD", "Order#"}, {})
+				in
+				    Source
+

@@ -1,0 +1,46 @@
+table 'Dim Received Material'
+	lineageTag: 1515c6f6-0ce9-44ee-b5bf-9cf0b4c38b58
+
+	column MaterialID
+		dataType: string
+		lineageTag: bd3f6038-b5ff-4859-9103-fc11e03647b8
+		sourceColumn: MaterialID
+
+	column MaterialGroup
+		dataType: string
+		lineageTag: c373a76b-55f4-4000-8964-793eebdd1453
+		sourceColumn: MaterialGroup
+
+	column OwnershipType
+		dataType: string
+		lineageTag: 0e13cbab-5576-4023-bb4e-86913851cc80
+		sourceColumn: OwnershipType
+
+	column PackageType
+		dataType: string
+		lineageTag: 4942d866-2ae9-4366-aa06-38180afe0a9f
+		sourceColumn: PackageType
+
+	column MarkForDeletion
+		dataType: string
+		lineageTag: 903c3248-18c5-41e9-891e-aea6267d5239
+		sourceColumn: MarkForDeletion
+
+	column BevType
+		dataType: string
+		lineageTag: e0f8b54c-df6b-473c-9657-f4f08b7551da
+		sourceColumn: BevType
+
+	column 'Material Name'
+		dataType: string
+		lineageTag: f4db528f-d313-4484-ad27-11b5ebe6b038
+		sourceColumn: Material Name
+
+	partition 'Dim Received Material' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"MaterialID", "MaterialGroup", "OwnershipType", "PackageType", "MarkForDeletion", "BevType", "Material Name"}, {})
+				in
+				    Source
+

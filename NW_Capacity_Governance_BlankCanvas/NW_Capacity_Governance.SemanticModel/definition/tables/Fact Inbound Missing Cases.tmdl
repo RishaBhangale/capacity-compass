@@ -1,0 +1,189 @@
+table 'Fact Inbound Missing Cases'
+	lineageTag: 0fa0027b-aca9-452b-be75-c8b811829cfe
+
+	measure 'Planned cases delivered' = BLANK()
+		formatString: #,0
+		lineageTag: c37ec428-35c2-4c16-9237-37e279f63888
+
+	measure 'Cases Requested' = BLANK()
+		formatString: #,0
+		lineageTag: 3e3eb1b6-cae8-4638-90d1-fc54fcf04710
+
+	measure 'Mismatch Cases' = BLANK()
+		formatString: #,0
+		lineageTag: 4d50446d-7c4a-41c5-93d7-7cb95337b533
+
+	measure '% Unplanned Cases Delivered KPI' = BLANK()
+		lineageTag: 65e299ad-dd30-4458-ac79-881ad2df27bb
+
+	measure 'Planned Cases' = SUM('Fact Inbound Missing Cases'[PlannedReplenishment])
+		lineageTag: 59209899-da0c-4cfc-a7ea-236b42a1876e
+
+	measure 'Unplanned Replenishment' = SUM('Fact Inbound Missing Cases'[UnplannedReplenishment])
+		lineageTag: 28440447-8493-405d-944b-3222543c3421
+
+	measure 'Planned cases OOS' = BLANK()
+		lineageTag: 2717cf9e-4c27-4863-891b-579e7bb217a1
+
+	measure 'Unplanned cases delivered' = BLANK()
+		lineageTag: 64f377bc-7f79-45be-b357-ab5fc43fb140
+
+	measure '% Planned Cases Delivered KPI' = BLANK()
+		lineageTag: ae9382da-5bcb-42bb-b17a-68df85393dbe
+
+	measure '% Planned Cases Delivered' = BLANK()
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 20470b62-3afa-410f-b9ed-de0659c14719
+
+	measure '% Unplanned Cases Delivered' = BLANK()
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: b11a799b-6795-4168-b6f2-5133b0af4275
+
+	column 'Source Plant ID'
+		dataType: string
+		lineageTag: 7d76ee8f-95cc-43ec-a689-0bd0b7253b3e
+		summarizeBy: none
+		sourceColumn: Source Plant ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column POMaterialID
+		dataType: string
+		lineageTag: 2a0cefd8-5e1c-42b4-8f50-3dfcd909d8fa
+		sourceColumn: POMaterialID
+
+	column CasesDelivered
+		dataType: string
+		lineageTag: 1d694e52-848a-42cc-952b-39123f62451c
+		summarizeBy: none
+		sourceColumn: CasesDelivered
+
+		annotation SummarizationSetBy = Automatic
+
+	column CasesRequested
+		dataType: string
+		lineageTag: f741e68a-d1c5-4b8a-8944-231a35d6b4a9
+		summarizeBy: none
+		sourceColumn: CasesRequested
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mismatch
+		dataType: string
+		lineageTag: cab346e1-abae-4e99-8e3a-6b90b394bf93
+		summarizeBy: none
+		sourceColumn: Mismatch
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActualDeliveryAsPerReq
+		dataType: string
+		lineageTag: 6331a657-a81d-4554-b8b7-9437b71b3458
+		summarizeBy: none
+		sourceColumn: ActualDeliveryAsPerReq
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supplier
+		dataType: string
+		lineageTag: ff727288-dc2d-4e98-968b-c34dd8fbd10e
+		sourceColumn: Supplier
+
+	column PeriodID
+		dataType: string
+		lineageTag: 764aa0f9-b12f-4b37-b6ab-483e363c5b5b
+		summarizeBy: none
+		sourceColumn: PeriodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: 70e94140-f8b9-4803-b91d-bf7c165bdba0
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRMaterialID
+		dataType: string
+		lineageTag: 8f2e32b4-b846-42dc-8f82-2b50764f6e99
+		sourceColumn: PRMaterialID
+
+	column MismatchType
+		dataType: string
+		lineageTag: b8059bbb-c6f6-4c84-8644-3a4e80e225a1
+		sourceColumn: MismatchType
+
+	column UnplannedReplenishment
+		dataType: string
+		lineageTag: 77970023-e7f9-4e49-a6d6-8fa3303525f7
+		summarizeBy: none
+		sourceColumn: UnplannedReplenishment
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlannedReplenishment
+		dataType: string
+		lineageTag: ff21a3b7-3b67-4f20-ae18-1cb536bd7ad7
+		summarizeBy: none
+		sourceColumn: PlannedReplenishment
+
+		annotation SummarizationSetBy = Automatic
+
+	column CasesDeliveredWithPR
+		dataType: string
+		lineageTag: 82a6b08a-5e3f-4406-8f71-d9464e64bb8f
+		summarizeBy: none
+		sourceColumn: CasesDeliveredWithPR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CasesRequestedWithPR
+		dataType: string
+		lineageTag: f49379f1-d2a7-4cd9-a612-e2afd9c414d0
+		summarizeBy: none
+		sourceColumn: CasesRequestedWithPR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CasesDeliveredWithoutPR
+		dataType: string
+		lineageTag: f3429df2-2a2e-4a8b-aaed-1186d8d81541
+		summarizeBy: none
+		sourceColumn: CasesDeliveredWithoutPR
+
+		annotation SummarizationSetBy = Automatic
+
+	column MismatchWithPR
+		dataType: string
+		lineageTag: 1e799254-eb70-4f8b-a327-d15d800abb1b
+		summarizeBy: none
+		sourceColumn: MismatchWithPR
+
+		annotation SummarizationSetBy = Automatic
+
+	column MismatchExcess
+		dataType: string
+		lineageTag: 57a513ae-e53c-4565-8967-a51dbe561e9a
+		summarizeBy: none
+		sourceColumn: MismatchExcess
+
+		annotation SummarizationSetBy = Automatic
+
+	column MismatchOOS
+		dataType: string
+		lineageTag: d43cc965-d670-45b4-b7ae-de4bbee4a07f
+		summarizeBy: none
+		sourceColumn: MismatchOOS
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Inbound Missing Cases' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"Source Plant ID", "POMaterialID", "CasesDelivered", "CasesRequested", "Mismatch", "ActualDeliveryAsPerReq", "Supplier", "PeriodID", "PlantID", "PRMaterialID", "MismatchType", "UnplannedReplenishment", "PlannedReplenishment", "CasesDeliveredWithPR", "CasesRequestedWithPR", "CasesDeliveredWithoutPR", "MismatchWithPR", "MismatchExcess", "MismatchOOS"}, {})
+				in
+				    Source
+

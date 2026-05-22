@@ -1,0 +1,234 @@
+table 'Fact Lead Time'
+	lineageTag: 2237d6f1-f327-41ed-8048-12b611cb7a40
+
+	measure 'Actual Planning LT' = BLANK()
+		lineageTag: 11b6c3cc-2aef-43c2-9166-ceebeb6af098
+
+	measure 'Actual Transport LT' = BLANK()
+		lineageTag: dc86da78-a468-49a6-ba75-f9580e92f840
+
+	measure 'Total Actual LT Abs.' = BLANK()
+		lineageTag: f71d38b8-77b8-4e2b-b849-f125ea6b54b9
+
+	measure 'Stated Planning LT' = BLANK()
+		lineageTag: ba107592-2279-4be8-a10b-60559d5608c8
+
+	measure 'Stated Transport LT' = BLANK()
+		lineageTag: b3b2d02e-37d8-45d1-879f-cc5620f8f404
+
+	measure '% Above Stated Lead Time' = BLANK()
+		lineageTag: 47c8a859-d838-4a80-95c0-346f06c79197
+
+	measure 'Total Planned LT abs.' = BLANK()
+		lineageTag: 3b15a4b6-810d-454b-85ef-d7bbeea2a9b9
+
+	measure 'Top 5 Branches by % Delta V/S Stated LT' = BLANK()
+		lineageTag: e2f0af2c-46f6-4653-8f76-8f06e5946569
+
+	measure 'Top 5 Branches Transport LT' = BLANK()
+		lineageTag: c0cd5836-82a4-4a4c-94d3-1b7292aedf7d
+
+	measure 'Color Above stated LT' = BLANK()
+		lineageTag: aad0c729-04d8-4755-a6a4-6ac76d962a2a
+
+	measure '% Above Stated Lead Time Planning' = BLANK()
+		lineageTag: c340fced-d40b-49c0-a59d-d2c8b3ab7184
+
+	measure 'Color Above stated LT Planning' = BLANK()
+		lineageTag: d08c4322-5927-4e87-854a-3043b23cb452
+
+	measure 'Stated Planning LT KPI' = BLANK()
+		lineageTag: 4757b2ed-8b57-4d67-a837-e2dbbea102ad
+
+	measure 'Stated Transport LT KPI' = BLANK()
+		lineageTag: ceecda1b-4af1-4de0-9e88-013920ed6c01
+
+	measure 'Actual Transport LT KPI' = BLANK()
+		lineageTag: 59b6a559-833b-4592-91f4-1a2e33b4785c
+
+	measure 'Actual Planning LT KPI' = BLANK()
+		lineageTag: 9549fc67-8231-4bcd-9067-f67671f9e306
+
+	measure 'Total Actual LT' = BLANK()
+		lineageTag: a808371b-ccc6-4657-b62f-f3c13a68706f
+
+	measure 'Total Planned LT' = BLANK()
+		lineageTag: 055ab03c-4182-4b63-9c19-5d91cd777ff8
+
+	measure '% Delta Actual V/S Planned LT' = BLANK()
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 413df728-930d-49f8-81c6-9c9adfa08e4e
+
+	measure 'Color Planning LT Icon' = BLANK()
+		lineageTag: 4acde7d6-24ba-412c-90c5-519d60b64dfd
+
+	measure 'Color Transport LT Icon' = BLANK()
+		lineageTag: 9522230b-ab24-4d4b-ab3b-71525f32c54d
+
+	measure '% Delta Actual V/S Planned LT KPI' = BLANK()
+		lineageTag: 1e3e1a1f-9ca7-4851-a6b2-7df46447bcfe
+
+	measure 'Top 5 Branches by % Planned Cases Delivered' = BLANK()
+		lineageTag: d7a24741-105b-49c1-9d6d-f527cf3cd39a
+
+	measure 'Top 5 Branches Planning LT' = BLANK()
+		lineageTag: 076ff11c-cf95-4f1c-b3ef-e209d064d94e
+
+	measure 'Color Total LT Icon' = BLANK()
+		lineageTag: b9732f1b-9b60-4115-963f-cc86fdcbeae8
+
+	measure '% Delta Actual V/S Planned LT On-Time Insights' = BLANK()
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 53d9db67-c8b0-42fe-b34f-d6634e668641
+
+	column DateID
+		dataType: string
+		lineageTag: ced6d69b-83f9-4441-888a-02c129fc5e6d
+		summarizeBy: none
+		sourceColumn: DateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryNote
+		dataType: string
+		lineageTag: 8deacddb-df15-4f8e-896e-7abef9309fb1
+		summarizeBy: none
+		sourceColumn: DeliveryNote
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderRDD
+		dataType: string
+		lineageTag: b40e4f2a-f456-4180-ad1d-2956b468327a
+		summarizeBy: none
+		sourceColumn: OrderRDD
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanDeliveryTime
+		dataType: string
+		lineageTag: 17f3e3a2-4f96-4b63-8139-f16f846cdf69
+		summarizeBy: none
+		sourceColumn: PlanDeliveryTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActualPlanningLeadTime
+		dataType: string
+		lineageTag: f5dcd57d-a876-4187-879b-c3b451845f1f
+		summarizeBy: none
+		sourceColumn: ActualPlanningLeadTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActualTransitLeadTime
+		dataType: string
+		lineageTag: 592c4674-29a1-4837-bafb-25da0001a141
+		summarizeBy: none
+		sourceColumn: ActualTransitLeadTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActualLeadTime
+		dataType: string
+		lineageTag: 90d274e0-5a3c-442f-8854-676abfc816a3
+		summarizeBy: none
+		sourceColumn: ActualLeadTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stated PlanningLT'
+		dataType: string
+		lineageTag: 7880dc46-2053-40cf-b4c0-9334604d51a1
+		sourceColumn: Stated PlanningLT
+
+	column PO#
+		dataType: string
+		lineageTag: f1fa3ba2-3bfb-4577-9f4a-7e04df00facd
+		summarizeBy: none
+		sourceColumn: PO#
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourcePlantID
+		dataType: string
+		lineageTag: 21746374-8e67-4dd9-8981-2e450b960d02
+		summarizeBy: none
+		sourceColumn: SourcePlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: 41b9483a-f72d-4b4f-a109-3bade38a78fa
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: 74adc149-d6a1-4c3a-915e-e36c2175477e
+		sourceColumn: MaterialID
+
+	column PlanningTimeFence
+		dataType: string
+		lineageTag: 246ba46b-5fd5-404b-8b88-7f7afc35441a
+		summarizeBy: none
+		sourceColumn: PlanningTimeFence
+
+		annotation SummarizationSetBy = Automatic
+
+	column POLine
+		dataType: string
+		lineageTag: 8941a928-7670-4b75-8f08-3198e36f2ae8
+		summarizeBy: none
+		sourceColumn: POLine
+
+		annotation SummarizationSetBy = Automatic
+
+	column POCreatedOn
+		dataType: string
+		lineageTag: 14feb8aa-2a6c-40c5-8919-a7288e348a92
+		summarizeBy: none
+		sourceColumn: POCreatedOn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supplier
+		dataType: string
+		lineageTag: 111e3260-12c7-44ea-a74e-3eef0841bf54
+		sourceColumn: Supplier
+
+	column PlanGIDate
+		dataType: string
+		lineageTag: db1af819-acb5-40d3-ae5b-3aeab3a08337
+		summarizeBy: none
+		sourceColumn: PlanGIDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActualGIDate
+		dataType: string
+		lineageTag: 5c061da8-8a93-45af-8212-26981e47c82d
+		summarizeBy: none
+		sourceColumn: ActualGIDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActualLatestGRDate
+		dataType: string
+		lineageTag: 7a3aacca-73ae-4442-9c85-56680b35a0b2
+		summarizeBy: none
+		sourceColumn: ActualLatestGRDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Lead Time' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"DateID", "DeliveryNote", "OrderRDD", "PlanDeliveryTime", "ActualPlanningLeadTime", "ActualTransitLeadTime", "ActualLeadTime", "Stated PlanningLT", "PO#", "SourcePlantID", "PlantID", "MaterialID", "PlanningTimeFence", "POLine", "POCreatedOn", "Supplier", "PlanGIDate", "ActualGIDate", "ActualLatestGRDate"}, {})
+				in
+				    Source
+

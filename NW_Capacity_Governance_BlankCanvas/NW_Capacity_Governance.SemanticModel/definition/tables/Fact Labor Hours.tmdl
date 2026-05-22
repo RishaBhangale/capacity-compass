@@ -1,0 +1,51 @@
+table 'Fact Labor Hours'
+	lineageTag: efad87a8-08a2-47ec-8a20-ecae5e5d6113
+
+	column DateID
+		dataType: string
+		lineageTag: b75a02e6-fa79-45b6-a02a-700ee4357149
+		summarizeBy: none
+		sourceColumn: DateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: 791ca8d0-247f-4651-a72e-98da6edf735f
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchIDFromSrc
+		dataType: string
+		lineageTag: fe527185-52d0-4a21-a300-fe0fe617c0b2
+		summarizeBy: none
+		sourceColumn: BranchIDFromSrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column WorkingHours
+		dataType: string
+		lineageTag: 19c25ea7-67db-419a-9291-67da492df229
+		summarizeBy: none
+		sourceColumn: WorkingHours
+
+		annotation SummarizationSetBy = Automatic
+
+	column Entries
+		dataType: string
+		lineageTag: 7f6c13d9-ae5b-4ba2-9606-16263d3bd283
+		summarizeBy: none
+		sourceColumn: Entries
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Labor Hours' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"DateID", "PlantID", "BranchIDFromSrc", "WorkingHours", "Entries"}, {})
+				in
+				    Source
+

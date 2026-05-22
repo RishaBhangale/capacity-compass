@@ -1,0 +1,16 @@
+table 'Dim National Chain'
+	lineageTag: f7365f5a-6f8c-49c6-bb73-6ff6b0c7dfa5
+
+	column NationalChainName
+		dataType: string
+		lineageTag: f2d5df9b-97e6-425e-9100-0a9d06320ac9
+		sourceColumn: NationalChainName
+
+	partition 'Dim National Chain' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"NationalChainName"}, {})
+				in
+				    Source
+

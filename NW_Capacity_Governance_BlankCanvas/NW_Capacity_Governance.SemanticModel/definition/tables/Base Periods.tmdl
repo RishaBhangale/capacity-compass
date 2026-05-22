@@ -1,0 +1,131 @@
+table 'Base Periods'
+	lineageTag: d85e832a-bbfa-44a6-ae61-4eaa573bcef3
+
+	column PrevDateID
+		dataType: string
+		lineageTag: 1cae3356-5caf-417a-8a69-aa038cab4812
+		summarizeBy: none
+		sourceColumn: PrevDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrevDate
+		dataType: string
+		lineageTag: 707bff34-692b-41a9-b638-d7db4f38740c
+		summarizeBy: none
+		sourceColumn: PrevDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column RwDate
+		dataType: string
+		lineageTag: 2c016be8-d315-4954-b5af-5486f528fc38
+		summarizeBy: none
+		sourceColumn: RwDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column RyDate
+		dataType: string
+		lineageTag: 77bcf200-3a09-4cf0-ab72-6f3c0661f99a
+		summarizeBy: none
+		sourceColumn: RyDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column MtdDate
+		dataType: string
+		lineageTag: 88d0b3a6-fcae-4ab3-a27c-524bb19a68b6
+		summarizeBy: none
+		sourceColumn: MtdDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column QtdDate
+		dataType: string
+		lineageTag: b93a8cf6-564d-4eda-9d27-a82762215333
+		summarizeBy: none
+		sourceColumn: QtdDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column YtdDate
+		dataType: string
+		lineageTag: 031fc174-cab0-42c3-b283-d4bd4abd2ea4
+		summarizeBy: none
+		sourceColumn: YtdDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column RwDateID
+		dataType: string
+		lineageTag: d0c3177a-7720-4a8e-9a3f-0fda25d3a911
+		summarizeBy: none
+		sourceColumn: RwDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column RyDateID
+		dataType: string
+		lineageTag: fb0fb81e-8589-4ecb-b56b-404420efefef
+		summarizeBy: none
+		sourceColumn: RyDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Metadata = CONCATENATE("Data as of : ", FORMAT('Base Periods'[PrevDate], "mm/dd/yyyy"))
+		dataType: string
+		lineageTag: a8d7bc92-949b-40b5-96de-132f70dc67d3
+
+	column 'Metadata date' = CONCATENATE("Based on data from : ",FORMAT('Base Periods'[RyDate], "mm/dd/yyyy")) & CONCATENATE(" to ",FORMAT( 'Base Periods'[PrevDate], "mm/dd/yyyy"))
+		dataType: string
+		lineageTag: 41c0ed1e-fb23-4711-8777-0fb8dd439dde
+
+	column R2wDate
+		dataType: string
+		lineageTag: 1f8a6eca-27b4-4268-98da-0d066714e3c7
+		summarizeBy: none
+		sourceColumn: R2wDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column RyMonthID
+		dataType: string
+		lineageTag: 58bca4d2-5f5c-49f1-8bc3-2afe180247df
+		summarizeBy: none
+		sourceColumn: RyMonthID
+
+		annotation SummarizationSetBy = Automatic
+
+	column R30dDate
+		dataType: string
+		lineageTag: d31234fe-2815-436a-a3e2-39d885a4d85d
+		summarizeBy: none
+		sourceColumn: R30dDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column R90dDate
+		dataType: string
+		lineageTag: c7f9b0e9-2c4b-41f3-a4b1-d1f6247b3d73
+		summarizeBy: none
+		sourceColumn: R90dDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column PYtdDate
+		dataType: string
+		lineageTag: 755b2af4-129c-4cb5-856d-5a81eb20fa87
+		summarizeBy: none
+		sourceColumn: PYtdDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Base Periods' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PrevDateID", "PrevDate", "RwDate", "RyDate", "MtdDate", "QtdDate", "YtdDate", "RwDateID", "RyDateID", "R2wDate", "RyMonthID", "R30dDate", "R90dDate", "PYtdDate"}, {})
+				in
+				    Source
+

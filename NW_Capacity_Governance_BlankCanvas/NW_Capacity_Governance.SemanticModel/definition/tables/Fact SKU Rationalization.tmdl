@@ -1,0 +1,140 @@
+table 'Fact SKU Rationalization'
+	lineageTag: 696f7be3-4d28-4095-adcb-649d604b5fcb
+
+	measure 'Average Volume R' = BLANK()
+		formatString: #,0.00
+		lineageTag: e650554c-f643-4210-bb88-7e67fc874054
+
+	measure 'Average GP per Pallet R' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d6c64bfb-979a-48bb-b84a-e644cf442c21
+
+	measure 'GP Per Pallet_SKU' = BLANK()
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: d3178962-ca75-4ccd-8881-83b96b85bc98
+
+	measure 'Sales Cases Volume SKU' = BLANK()
+		formatString: #,0
+		lineageTag: 37dd8107-6ae4-49a3-9c31-5ea34644a2fb
+
+	measure 'GP Dead Net' = BLANK()
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 576bde02-22f3-4fc3-9dcb-fa079969e480
+
+	measure 'Sales Pallets Volume SKU' = BLANK()
+		formatString: #,0
+		lineageTag: c5a3df5f-5d9a-479d-bb80-455115fe8425
+
+	measure 'Color GP Per Pallet_SKU' = BLANK()
+		lineageTag: d1462254-52af-4988-b06d-67e742a0b588
+
+	measure 'Bottom 3 Trademark' = BLANK()
+		lineageTag: f07e1bec-dffc-4cbf-b25f-e5fb37437770
+
+	measure 'GP Per Pallet_SKU Inv.' = BLANK()
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 8a347298-538d-4a95-ac66-4d51a69f723b
+
+	measure 'Color GP Per Pallet_SKU Inv' = BLANK()
+		lineageTag: 982b15b8-37a4-4d62-8675-c2767a530cde
+
+	column MaterialID
+		dataType: string
+		lineageTag: b4379e1b-a9a5-4ea1-89ab-adb8319297a8
+		sourceColumn: MaterialID
+
+	column SalesCases
+		dataType: string
+		lineageTag: 8f9e31be-73d1-4d11-813b-e8e145ae2526
+		summarizeBy: none
+		sourceColumn: SalesCases
+
+		annotation SummarizationSetBy = Automatic
+
+	column RevenueDeadNet
+		dataType: string
+		lineageTag: cdd3ed7f-7b9f-4ca4-8876-15f374212d7f
+		summarizeBy: none
+		sourceColumn: RevenueDeadNet
+
+		annotation SummarizationSetBy = Automatic
+
+	column COGS
+		dataType: string
+		lineageTag: ae5bfc25-a861-4064-829d-f443ad9946d4
+		summarizeBy: none
+		sourceColumn: COGS
+
+		annotation SummarizationSetBy = Automatic
+
+	column GPDeadNet
+		dataType: string
+		lineageTag: 4e10b6fa-213f-4576-b0ed-99282052ca26
+		summarizeBy: none
+		sourceColumn: GPDeadNet
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bottom 20th Percentile C'
+		dataType: string
+		lineageTag: ea82b55a-a0d8-4acf-8010-8374529d59cb
+		sourceColumn: Bottom 20th Percentile C
+
+	column 'Top 30th Percentile Column'
+		dataType: string
+		lineageTag: f5492ff7-3ccf-4ae3-8b09-796543efb50d
+		sourceColumn: Top 30th Percentile Column
+
+	column 'SKU Rationalization'
+		dataType: string
+		lineageTag: a9b277f5-5dbc-4a92-bf59-bab6b3da3f2b
+		sourceColumn: SKU Rationalization
+
+	column SalesPallets
+		dataType: string
+		lineageTag: a143cc91-6992-406e-a58f-833e057ba6af
+		summarizeBy: none
+		sourceColumn: SalesPallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GP Per Pallet R'
+		dataType: string
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 906d6818-cf2e-4f6b-9f73-d6fbbba6b8a3
+		sourceColumn: GP Per Pallet R
+
+	column 'Avrg GP Per Pallet_R'
+		dataType: string
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 52ae2aef-8612-42bb-b003-10bb02015dfa
+		sourceColumn: Avrg GP Per Pallet_R
+
+	column 'GP Per Pallet Category_R'
+		dataType: string
+		lineageTag: 26c7e8d5-0dad-4703-9fb0-f491c69d9f86
+		sourceColumn: GP Per Pallet Category_R
+
+	column 'Avrg Volume_R'
+		dataType: string
+		lineageTag: 70c73fff-23d1-4701-93a6-d1efce983f5d
+		sourceColumn: Avrg Volume_R
+
+	column 'Volume Category R'
+		dataType: string
+		lineageTag: fe0b4db7-cc7e-4b90-8d11-4fafddb9f914
+		sourceColumn: Volume Category R
+
+	column MustCarry
+		dataType: string
+		lineageTag: cd3b3976-99d6-4b71-a5a8-11cdc07bcbe6
+		sourceColumn: MustCarry
+
+	partition 'Fact SKU Rationalization' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"MaterialID", "SalesCases", "RevenueDeadNet", "COGS", "GPDeadNet", "Bottom 20th Percentile C", "Top 30th Percentile Column", "SKU Rationalization", "SalesPallets", "GP Per Pallet R", "Avrg GP Per Pallet_R", "GP Per Pallet Category_R", "Avrg Volume_R", "Volume Category R", "MustCarry"}, {})
+				in
+				    Source
+

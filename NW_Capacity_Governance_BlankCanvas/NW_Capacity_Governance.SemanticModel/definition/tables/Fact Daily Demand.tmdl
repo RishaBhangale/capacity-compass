@@ -1,0 +1,71 @@
+table 'Fact Daily Demand'
+	lineageTag: c2d9a6ea-fedb-4245-96c1-2277d8c13500
+
+	measure 'Daily Demand Cases M' = BLANK()
+		formatString: 0
+		lineageTag: cb3af8bc-46e3-40b4-a65c-d65664e2d32a
+
+	measure 'Daily Demand Pallets M' = BLANK()
+		lineageTag: e0803943-7c81-47ec-96a7-3025630ca206
+
+	column 'Daily Demand Cases'
+		dataType: string
+		lineageTag: 354d51fb-aea5-4b6c-ad8a-855b036eebc2
+		summarizeBy: none
+		sourceColumn: Daily Demand Cases
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Daily Demand Pallets'
+		dataType: string
+		lineageTag: a1f19370-c007-44f7-815c-ce2cad4fd0ad
+		summarizeBy: none
+		sourceColumn: Daily Demand Pallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourcePlantID
+		dataType: string
+		lineageTag: 8a4105b6-ae61-42c9-9f3d-4b37308325cf
+		summarizeBy: none
+		sourceColumn: SourcePlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DailyDemandPalletsX
+		dataType: string
+		lineageTag: 5af1c14d-d3bd-4a6e-8683-d4eb9d5c33db
+		summarizeBy: none
+		sourceColumn: DailyDemandPalletsX
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: 12004cbc-901c-4ea5-9d9f-83cc3f9a4239
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: 320cb458-8baf-428b-aec3-0843a9f06643
+		sourceColumn: MaterialID
+
+	column MustCarry
+		dataType: string
+		lineageTag: 222094d8-96a6-4475-928e-fd600c242b62
+		summarizeBy: none
+		sourceColumn: MustCarry
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Daily Demand' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"Daily Demand Cases", "Daily Demand Pallets", "SourcePlantID", "DailyDemandPalletsX", "PlantID", "MaterialID", "MustCarry"}, {})
+				in
+				    Source
+

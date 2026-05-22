@@ -1,0 +1,460 @@
+
+<style>
+  :root{--navy:#0d1b2e;--navy2:#1a3354;--slate7:#374151;--slate5:#6b7280;--slate3:#d1d5db;--bg:#fafbfc;--white:#fff;--blue:#1d4ed8;--indigo:#3730a3;--teal:#0f766e;--amber:#b45309;--green:#15803d;--red:#b91c1c}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font-sans,sans-serif);background:var(--color-background-tertiary,#f5f5f3)}
+  .wrap{padding:1rem 0;display:flex;flex-direction:column;gap:1.25rem}
+  .page-tabs{display:flex;gap:6px;flex-wrap:wrap}
+  .tab{padding:5px 14px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);transition:all .15s}
+  .tab.active{border-color:transparent;color:#fff;background:var(--navy2)}
+  .frame{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:10px;overflow:hidden;width:100%}
+  /* slide */
+  .slide{display:none;flex-direction:row;min-height:420px}
+  .slide.active{display:flex}
+  /* nav panel */
+  .nav{width:148px;flex-shrink:0;background:var(--navy);padding:10px 0;display:flex;flex-direction:column;gap:0}
+  .nav-brand{padding:8px 10px 6px;color:#fff;font-size:11px;font-weight:500;line-height:1.3}
+  .nav-sub{color:#64748b;font-size:8.5px;margin-top:1px}
+  .nav-div{height:0.5px;background:#334155;margin:4px 10px}
+  .nav-item{padding:7px 10px;cursor:pointer;transition:background .15s;border-radius:0}
+  .nav-item.active{background:var(--accColor)}
+  .nav-num{font-size:8px;color:#94a3b8;font-weight:600;margin-bottom:1px}
+  .nav-item.active .nav-num{color:#fff}
+  .nav-label{font-size:8.5px;color:#64748b;line-height:1.3}
+  .nav-item.active .nav-label{color:#fff;font-weight:500}
+  .nav-footer{padding:8px 10px;margin-top:auto}
+  .nav-note{font-size:7px;color:#475569;line-height:1.5}
+  /* content */
+  .content{flex:1;display:flex;flex-direction:column;overflow:hidden}
+  /* header bar */
+  .hdr{height:44px;background:var(--navy);display:flex;align-items:center;gap:0;position:relative}
+  .hdr-accent{width:3px;height:100%;flex-shrink:0}
+  .hdr-text{padding:0 10px;flex:1}
+  .hdr-title{font-size:12px;font-weight:500;color:#fff;line-height:1}
+  .hdr-sub{font-size:7.5px;color:#94a3b8;margin-top:2px}
+  .hdr-badge{font-size:7px;color:#475569;margin-right:10px}
+  /* canvas */
+  .canvas{flex:1;background:var(--bg);padding:8px 8px 6px;display:flex;flex-direction:column;gap:6px;overflow:auto}
+  /* KPI row */
+  .kpi-row{display:grid;gap:5px}
+  .kpi{background:#fff;border:0.5px solid var(--slate3);border-radius:5px;padding:6px 8px;display:flex;flex-direction:column;gap:2px}
+  .kpi-label{font-size:7.5px;color:var(--slate5)}
+  .kpi-value{font-size:15px;font-weight:500}
+  /* chart area */
+  .charts-row{display:grid;gap:5px;flex:1}
+  .chart-box{background:#fff;border:0.5px solid var(--slate3);border-radius:5px;padding:7px 8px;display:flex;flex-direction:column;gap:4px;min-height:0}
+  .chart-title{font-size:8px;font-weight:500;color:var(--slate7)}
+  /* bar chart skeleton */
+  .bar-chart{display:flex;flex-direction:column;gap:3px;flex:1}
+  .bar-row{display:flex;align-items:center;gap:4px}
+  .bar-label{font-size:7px;color:var(--slate5);width:70px;flex-shrink:0;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bar-track{flex:1;background:var(--slate3);border-radius:2px;height:7px;opacity:0.3}
+  .bar-fill{height:100%;border-radius:2px;opacity:0.85}
+  /* donut */
+  .donut-wrap{display:flex;align-items:center;gap:8px;flex:1}
+  .donut-svg{flex-shrink:0}
+  .donut-legend{display:flex;flex-direction:column;gap:3px}
+  .legend-item{display:flex;align-items:center;gap:4px;font-size:7px;color:var(--slate5)}
+  .legend-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+  /* table */
+  .tbl-box{background:#fff;border:0.5px solid var(--slate3);border-radius:5px;overflow:hidden;flex:1}
+  .tbl-title{font-size:8px;font-weight:500;color:var(--slate7);padding:5px 8px;border-bottom:0.5px solid var(--slate3)}
+  table{width:100%;border-collapse:collapse;font-size:7px}
+  thead th{background:var(--navy);color:#fff;padding:3px 6px;text-align:left;font-weight:500;font-size:7px}
+  tbody tr:nth-child(even){background:#f8fafc}
+  tbody td{padding:3px 6px;color:var(--slate7);border-bottom:0.5px solid #f1f5f9}
+  /* matrix */
+  .matrix-box{background:#fff;border:0.5px solid var(--slate3);border-radius:5px;overflow:hidden}
+  .matrix-box .tbl-title{padding:5px 8px}
+  .cell{display:inline-block;width:20px;height:14px;border-radius:2px;margin:1px;font-size:7px;text-align:center;line-height:14px;color:#fff;font-weight:500}
+  /* slicer */
+  .slicer-box{background:#fff;border:0.5px solid var(--slate3);border-radius:5px;overflow:hidden}
+  .slicer-hdr{background:var(--navy2);color:#fff;font-size:7.5px;padding:3px 7px;font-weight:500}
+  .slicer-items{padding:3px 7px;display:flex;flex-direction:column;gap:2px}
+  .slicer-item{font-size:7px;color:var(--slate7);padding:1px 0}
+  .slicer-item.sel{color:var(--navy);font-weight:500}
+  /* annotation */
+  .anno{font-size:7.5px;color:var(--slate5);background:#f1f5f9;border-radius:4px;padding:4px 7px;border-left:2.5px solid var(--slate3)}
+  .anno b{color:var(--slate7)}
+  /* col layout helpers */
+  .col-2{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+  .col-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
+  .col-left-wide{display:grid;grid-template-columns:1.6fr 1fr 0.8fr;gap:5px}
+  .col-left-2{display:grid;grid-template-columns:1.4fr 1fr;gap:5px}
+</style>
+
+<div class="wrap">
+
+<div class="page-tabs" id="tabs">
+  <div class="tab active" onclick="setPage(0,this,'#1d4ed8')">01 Executive Summary</div>
+  <div class="tab" onclick="setPage(1,this,'#3730a3')">02 Lineage & Dependencies</div>
+  <div class="tab" onclick="setPage(2,this,'#0f766e')">03 Usage Analytics</div>
+  <div class="tab" onclick="setPage(3,this,'#b45309')">04 Model–Report Mapping</div>
+</div>
+
+<div class="frame">
+
+<!-- PAGE 1 -->
+<div class="slide active" id="p0">
+  <div class="nav" style="--accColor:#1d4ed8">
+    <div class="nav-brand">NW Capacity<div class="nav-sub">Governance Report</div></div>
+    <div class="nav-div"></div>
+    <div class="nav-item active" style="--accColor:#1d4ed8"><div class="nav-num">01</div><div class="nav-label">Executive Summary</div></div>
+    <div class="nav-item"><div class="nav-num">02</div><div class="nav-label">Lineage & Dependencies</div></div>
+    <div class="nav-item"><div class="nav-num">03</div><div class="nav-label">Usage Analytics</div></div>
+    <div class="nav-item"><div class="nav-num">04</div><div class="nav-label">Model–Report Mapping</div></div>
+    <div class="nav-footer"><div class="nav-note">Source:<br>NW_MetaEx_<br>Report.xlsx<br><br>NW Capacity<br>Semantic Model</div></div>
+  </div>
+  <div class="content">
+    <div class="hdr"><div class="hdr-accent" style="background:#1d4ed8"></div><div class="hdr-text"><div class="hdr-title">Executive Summary</div><div class="hdr-sub">Governance health, model coverage, and adoption overview</div></div><div class="hdr-badge">NW Capacity · Power BI Governance</div></div>
+    <div class="canvas">
+      <!-- KPI row 1 -->
+      <div class="kpi-row" style="grid-template-columns:repeat(6,1fr)">
+        <div class="kpi"><div class="kpi-label">Visible Tables</div><div class="kpi-value" style="color:var(--navy)">47</div></div>
+        <div class="kpi"><div class="kpi-label">Total Measures</div><div class="kpi-value" style="color:#1d4ed8">319</div></div>
+        <div class="kpi"><div class="kpi-label">Relationships</div><div class="kpi-value" style="color:#3730a3">96</div></div>
+        <div class="kpi"><div class="kpi-label">Report Pages</div><div class="kpi-value" style="color:#0f766e">36</div></div>
+        <div class="kpi"><div class="kpi-label">Never Used Fields</div><div class="kpi-value" style="color:var(--red)">1,041</div></div>
+        <div class="kpi"><div class="kpi-label">Orphaned References</div><div class="kpi-value" style="color:var(--red)">198</div></div>
+      </div>
+      <!-- KPI row 2 + donut -->
+      <div class="col-left-2">
+        <div class="kpi-row" style="grid-template-columns:repeat(4,1fr)">
+          <div class="kpi"><div class="kpi-label">Model Health Score</div><div class="kpi-value" style="color:#0f766e">62</div></div>
+          <div class="kpi"><div class="kpi-label">Governance Risk</div><div class="kpi-value" style="color:var(--red)">44</div></div>
+          <div class="kpi"><div class="kpi-label">Active Fields</div><div class="kpi-value" style="color:#15803d">46</div></div>
+          <div class="kpi"><div class="kpi-label">Unique Fields Used</div><div class="kpi-value" style="color:#1d4ed8">216</div></div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">Data Sources by Connector</div>
+          <div class="donut-wrap">
+            <svg class="donut-svg" width="62" height="62" viewBox="0 0 62 62">
+              <circle cx="31" cy="31" r="22" fill="none" stroke="#e5e7eb" stroke-width="10"/>
+              <circle cx="31" cy="31" r="22" fill="none" stroke="#0f766e" stroke-width="10" stroke-dasharray="50 88" stroke-dashoffset="-4" transform="rotate(-90 31 31)"/>
+              <circle cx="31" cy="31" r="22" fill="none" stroke="#1d4ed8" stroke-width="10" stroke-dasharray="22 116" stroke-dashoffset="-54" transform="rotate(-90 31 31)"/>
+              <circle cx="31" cy="31" r="22" fill="none" stroke="#b45309" stroke-width="10" stroke-dasharray="16 122" stroke-dashoffset="-76" transform="rotate(-90 31 31)"/>
+            </svg>
+            <div class="donut-legend">
+              <div class="legend-item"><div class="legend-dot" style="background:#0f766e"></div>CSV File (36)</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#1d4ed8"></div>SharePoint (9)</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#b45309"></div>Unknown (2)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Bar charts row -->
+      <div class="col-2">
+        <div class="chart-box">
+          <div class="chart-title">Top 10 Pages by Field References</div>
+          <div class="bar-chart">
+            <div class="bar-row"><div class="bar-label">Branch Performance</div><div class="bar-track"><div class="bar-fill" style="width:92%;background:#1d4ed8"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Inventory Overview</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:#1d4ed8"></div></div></div>
+            <div class="bar-row"><div class="bar-label">CFR Dashboard</div><div class="bar-track"><div class="bar-fill" style="width:78%;background:#1d4ed8"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Sales Summary</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:#1d4ed8"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Lead Time</div><div class="bar-track"><div class="bar-fill" style="width:62%;background:#1d4ed8"></div></div></div>
+            <div class="bar-row"><div class="bar-label">OOS Analysis</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:#1d4ed8"></div></div></div>
+          </div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">Top 10 Tables Driving Report Visuals</div>
+          <div class="bar-chart">
+            <div class="bar-row"><div class="bar-label">Fact Inventory Period</div><div class="bar-track"><div class="bar-fill" style="width:95%;background:#3730a3"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Dim Date</div><div class="bar-track"><div class="bar-fill" style="width:88%;background:#3730a3"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Fact CFR Period CY</div><div class="bar-track"><div class="bar-fill" style="width:76%;background:#3730a3"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Dim Branch</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:#3730a3"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Fact Sales</div><div class="bar-track"><div class="bar-fill" style="width:62%;background:#3730a3"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Fact OOS</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:#3730a3"></div></div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Bottom row: 2 donuts + bar -->
+      <div class="col-3">
+        <div class="chart-box">
+          <div class="chart-title">Field Adoption — Used vs Unused</div>
+          <div class="donut-wrap" style="justify-content:center">
+            <svg width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="21" fill="none" stroke="#e5e7eb" stroke-width="9"/><circle cx="30" cy="30" r="21" fill="none" stroke="#b91c1c" stroke-width="9" stroke-dasharray="60 72" stroke-dashoffset="-4" transform="rotate(-90 30 30)"/><circle cx="30" cy="30" r="21" fill="none" stroke="#15803d" stroke-width="9" stroke-dasharray="72 60" stroke-dashoffset="-64" transform="rotate(-90 30 30)"/></svg>
+            <div class="donut-legend"><div class="legend-item"><div class="legend-dot" style="background:#b91c1c"></div>Unused 96%</div><div class="legend-item"><div class="legend-dot" style="background:#15803d"></div>Used 20%</div></div>
+          </div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">Field Type Split</div>
+          <div class="donut-wrap" style="justify-content:center">
+            <svg width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="21" fill="none" stroke="#e5e7eb" stroke-width="9"/><circle cx="30" cy="30" r="21" fill="none" stroke="#1d4ed8" stroke-width="9" stroke-dasharray="74 58" stroke-dashoffset="-4" transform="rotate(-90 30 30)"/><circle cx="30" cy="30" r="21" fill="none" stroke="#0f766e" stroke-width="9" stroke-dasharray="58 74" stroke-dashoffset="-78" transform="rotate(-90 30 30)"/></svg>
+            <div class="donut-legend"><div class="legend-item"><div class="legend-dot" style="background:#1d4ed8"></div>Columns 60%</div><div class="legend-item"><div class="legend-dot" style="background:#0f766e"></div>Measures 29%</div></div>
+          </div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">Field Usage by Context</div>
+          <div class="bar-chart">
+            <div class="bar-row"><div class="bar-label">Visual Field</div><div class="bar-track"><div class="bar-fill" style="width:88%;background:#0f766e"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Slicer</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:#0f766e"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Conditional Format</div><div class="bar-track"><div class="bar-fill" style="width:28%;background:#0f766e"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Hidden Visual</div><div class="bar-track"><div class="bar-fill" style="width:18%;background:#0f766e"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Bookmark</div><div class="bar-track"><div class="bar-fill" style="width:10%;background:#0f766e"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="slide" id="p1">
+  <div class="nav" style="--accColor:#3730a3">
+    <div class="nav-brand">NW Capacity<div class="nav-sub">Governance Report</div></div>
+    <div class="nav-div"></div>
+    <div class="nav-item"><div class="nav-num">01</div><div class="nav-label">Executive Summary</div></div>
+    <div class="nav-item active" style="--accColor:#3730a3"><div class="nav-num">02</div><div class="nav-label">Lineage & Dependencies</div></div>
+    <div class="nav-item"><div class="nav-num">03</div><div class="nav-label">Usage Analytics</div></div>
+    <div class="nav-item"><div class="nav-num">04</div><div class="nav-label">Model–Report Mapping</div></div>
+    <div class="nav-footer"><div class="nav-note">Source:<br>NW_MetaEx_<br>Report.xlsx</div></div>
+  </div>
+  <div class="content">
+    <div class="hdr"><div class="hdr-accent" style="background:#3730a3"></div><div class="hdr-text"><div class="hdr-title">Lineage & Dependencies</div><div class="hdr-sub">Relationship topology, orphaned references, cross-filter directions, unused model assets</div></div></div>
+    <div class="canvas">
+      <div class="kpi-row" style="grid-template-columns:repeat(6,1fr)">
+        <div class="kpi"><div class="kpi-label">Active Relationships</div><div class="kpi-value" style="color:#3730a3">96</div></div>
+        <div class="kpi"><div class="kpi-label">One-Direction</div><div class="kpi-value" style="color:var(--navy)">92</div></div>
+        <div class="kpi"><div class="kpi-label">Both-Direction</div><div class="kpi-value" style="color:#0f766e">4</div></div>
+        <div class="kpi"><div class="kpi-label">Inactive Rels</div><div class="kpi-value" style="color:#b45309">2</div></div>
+        <div class="kpi"><div class="kpi-label">Tables With Usage</div><div class="kpi-value" style="color:#15803d">24</div></div>
+        <div class="kpi"><div class="kpi-label">Tables No Usage</div><div class="kpi-value" style="color:var(--red)">23</div></div>
+      </div>
+      <div class="col-left-wide">
+        <!-- Matrix -->
+        <div class="matrix-box">
+          <div class="tbl-title">Relationship Map — From Table × Cross-Filter Direction</div>
+          <div style="padding:5px 8px;overflow-x:auto">
+            <table style="font-size:7px">
+              <thead><tr><th>From Table</th><th>oneDirection</th><th>bothDirections</th><th>Total</th></tr></thead>
+              <tbody>
+                <tr><td>Fact Inventory Period</td><td><span class="cell" style="background:#3730a3">8</span></td><td><span class="cell" style="background:#0f766e">1</span></td><td>9</td></tr>
+                <tr><td>Fact CFR Period CY</td><td><span class="cell" style="background:#3730a3">5</span></td><td>—</td><td>5</td></tr>
+                <tr><td>Fact Sales</td><td><span class="cell" style="background:#3730a3">4</span></td><td><span class="cell" style="background:#0f766e">1</span></td><td>5</td></tr>
+                <tr><td>Fact OOS</td><td><span class="cell" style="background:#3730a3">4</span></td><td>—</td><td>4</td></tr>
+                <tr><td>Fact Lead Time</td><td><span class="cell" style="background:#3730a3">3</span></td><td>—</td><td>3</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Orphan bar -->
+        <div class="chart-box">
+          <div class="chart-title">Orphaned References by Table</div>
+          <div class="bar-chart">
+            <div class="bar-row"><div class="bar-label">Dim Date</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:#b91c1c"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Fact Inventory Period</div><div class="bar-track"><div class="bar-fill" style="width:65%;background:#b91c1c"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Fact CFR Period CY</div><div class="bar-track"><div class="bar-fill" style="width:42%;background:#b91c1c"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Dim Material</div><div class="bar-track"><div class="bar-fill" style="width:30%;background:#b91c1c"></div></div></div>
+          </div>
+        </div>
+        <!-- Risk donut -->
+        <div class="chart-box">
+          <div class="chart-title">Orphan Risk Split</div>
+          <div class="donut-wrap" style="flex-direction:column;align-items:center;justify-content:center">
+            <svg width="58" height="58" viewBox="0 0 58 58"><circle cx="29" cy="29" r="20" fill="none" stroke="#e5e7eb" stroke-width="9"/><circle cx="29" cy="29" r="20" fill="none" stroke="#b91c1c" stroke-width="9" stroke-dasharray="38 88" stroke-dashoffset="-4" transform="rotate(-90 29 29)"/><circle cx="29" cy="29" r="20" fill="none" stroke="#b45309" stroke-width="9" stroke-dasharray="32 94" stroke-dashoffset="-42" transform="rotate(-90 29 29)"/><circle cx="29" cy="29" r="20" fill="none" stroke="#15803d" stroke-width="9" stroke-dasharray="56 70" stroke-dashoffset="-74" transform="rotate(-90 29 29)"/></svg>
+            <div class="donut-legend"><div class="legend-item"><div class="legend-dot" style="background:#b91c1c"></div>High</div><div class="legend-item"><div class="legend-dot" style="background:#b45309"></div>Medium</div><div class="legend-item"><div class="legend-dot" style="background:#15803d"></div>Low</div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Slicers + table -->
+      <div style="display:grid;grid-template-columns:120px 100px 1fr;gap:5px">
+        <div class="slicer-box"><div class="slicer-hdr">CrossFilterDir</div><div class="slicer-items"><div class="slicer-item sel">✓ oneDirection</div><div class="slicer-item">bothDirections</div></div></div>
+        <div class="slicer-box"><div class="slicer-hdr">IsActive</div><div class="slicer-items"><div class="slicer-item sel">✓ Yes</div><div class="slicer-item">No</div></div></div>
+        <div class="tbl-box"><div class="tbl-title">Relationship Inventory</div><table><thead><tr><th>From Table</th><th>From Column</th><th>To Table</th><th>To Column</th><th>Cardinality</th><th>Direction</th><th>Active</th></tr></thead><tbody><tr><td>Fact Lead Time</td><td>DateID</td><td>Dim Date</td><td>DateID</td><td>many→one</td><td>oneDirection</td><td>Yes</td></tr><tr><td>Fact Inventory Period</td><td>PlantID</td><td>Dim Branch</td><td>PlantID</td><td>many→one</td><td>oneDirection</td><td>Yes</td></tr><tr><td>Fact CFR Buckted</td><td>Period</td><td>Dim Period</td><td>Ordinal</td><td>many→one</td><td>oneDirection</td><td>Yes</td></tr></tbody></table></div>
+      </div>
+      <!-- Bottom row -->
+      <div class="col-3">
+        <div class="chart-box" style="grid-column:span 2">
+          <div class="chart-title">Unused Fields per Table (Never-Used Inventory)</div>
+          <div class="bar-chart">
+            <div class="bar-row"><div class="bar-label">Fact Inventory Period</div><div class="bar-track"><div class="bar-fill" style="width:82%;background:#b45309"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Dim Material</div><div class="bar-track"><div class="bar-fill" style="width:68%;background:#b45309"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Fact Sales</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:#b45309"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Dim Customer</div><div class="bar-track"><div class="bar-fill" style="width:42%;background:#b45309"></div></div></div>
+          </div>
+        </div>
+        <div class="tbl-box"><div class="tbl-title">High-Risk Orphans</div><table><thead><tr><th>Table</th><th>Field</th><th>Seen On Page</th></tr></thead><tbody><tr><td>Dim Date</td><td>T_EOD</td><td>CFR Dashboard</td></tr><tr><td>Fact Inventory Period</td><td>KMinBreachAge</td><td>Inventory Overview</td></tr><tr><td>Dim Material</td><td>ProdHier</td><td>Sales Summary</td></tr></tbody></table></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="slide" id="p2">
+  <div class="nav" style="--accColor:#0f766e">
+    <div class="nav-brand">NW Capacity<div class="nav-sub">Governance Report</div></div>
+    <div class="nav-div"></div>
+    <div class="nav-item"><div class="nav-num">01</div><div class="nav-label">Executive Summary</div></div>
+    <div class="nav-item"><div class="nav-num">02</div><div class="nav-label">Lineage & Dependencies</div></div>
+    <div class="nav-item active" style="--accColor:#0f766e"><div class="nav-num">03</div><div class="nav-label">Usage Analytics</div></div>
+    <div class="nav-item"><div class="nav-num">04</div><div class="nav-label">Model–Report Mapping</div></div>
+    <div class="nav-footer"><div class="nav-note">Source:<br>NW_MetaEx_<br>Report.xlsx</div></div>
+  </div>
+  <div class="content">
+    <div class="hdr"><div class="hdr-accent" style="background:#0f766e"></div><div class="hdr-text"><div class="hdr-title">Usage Analytics</div><div class="hdr-sub">Report consumption patterns, page usage, visual type distribution, and field-level interactions</div></div></div>
+    <div class="canvas">
+      <div class="kpi-row" style="grid-template-columns:repeat(6,1fr)">
+        <div class="kpi"><div class="kpi-label">Total Field Refs</div><div class="kpi-value" style="color:var(--navy)">1,308</div></div>
+        <div class="kpi"><div class="kpi-label">Unique Fields Used</div><div class="kpi-value" style="color:#0f766e">216</div></div>
+        <div class="kpi"><div class="kpi-label">Slicer Usage</div><div class="kpi-value" style="color:#3730a3">142</div></div>
+        <div class="kpi"><div class="kpi-label">Visual Field Usage</div><div class="kpi-value" style="color:#15803d">834</div></div>
+        <div class="kpi"><div class="kpi-label">Avg Fields / Page</div><div class="kpi-value" style="color:#b45309">36.3</div></div>
+        <div class="kpi"><div class="kpi-label">Hidden Visual Fields</div><div class="kpi-value" style="color:#6b7280">87</div></div>
+      </div>
+      <div class="col-3">
+        <div class="chart-box">
+          <div class="chart-title">Visual Type Distribution</div>
+          <div class="bar-chart">
+            <div class="bar-row"><div class="bar-label">barChart</div><div class="bar-track"><div class="bar-fill" style="width:88%;background:#0f766e"></div></div></div>
+            <div class="bar-row"><div class="bar-label">card</div><div class="bar-track"><div class="bar-fill" style="width:72%;background:#0f766e"></div></div></div>
+            <div class="bar-row"><div class="bar-label">tableEx</div><div class="bar-track"><div class="bar-fill" style="width:58%;background:#0f766e"></div></div></div>
+            <div class="bar-row"><div class="bar-label">slicer</div><div class="bar-track"><div class="bar-fill" style="width:44%;background:#0f766e"></div></div></div>
+            <div class="bar-row"><div class="bar-label">lineChart</div><div class="bar-track"><div class="bar-fill" style="width:32%;background:#0f766e"></div></div></div>
+            <div class="bar-row"><div class="bar-label">pivotTable</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:#0f766e"></div></div></div>
+          </div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">Top Tables Driving Visuals</div>
+          <div class="bar-chart">
+            <div class="bar-row"><div class="bar-label">Fact Inventory Period</div><div class="bar-track"><div class="bar-fill" style="width:92%;background:#1d4ed8"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Dim Date</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:#1d4ed8"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Fact CFR Period CY</div><div class="bar-track"><div class="bar-fill" style="width:65%;background:#1d4ed8"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Dim Branch</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:#1d4ed8"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Fact Sales</div><div class="bar-track"><div class="bar-fill" style="width:44%;background:#1d4ed8"></div></div></div>
+          </div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">Usage Context Breakdown</div>
+          <div class="donut-wrap" style="flex-direction:column;align-items:center">
+            <svg width="58" height="58" viewBox="0 0 58 58"><circle cx="29" cy="29" r="20" fill="none" stroke="#e5e7eb" stroke-width="9"/><circle cx="29" cy="29" r="20" fill="none" stroke="#0f766e" stroke-width="9" stroke-dasharray="72 54" stroke-dashoffset="-4" transform="rotate(-90 29 29)"/><circle cx="29" cy="29" r="20" fill="none" stroke="#3730a3" stroke-width="9" stroke-dasharray="30 96" stroke-dashoffset="-76" transform="rotate(-90 29 29)"/><circle cx="29" cy="29" r="20" fill="none" stroke="#b45309" stroke-width="9" stroke-dasharray="24 102" stroke-dashoffset="-106" transform="rotate(-90 29 29)"/></svg>
+            <div class="donut-legend"><div class="legend-item"><div class="legend-dot" style="background:#0f766e"></div>Visual Field</div><div class="legend-item"><div class="legend-dot" style="background:#3730a3"></div>Slicer</div><div class="legend-item"><div class="legend-dot" style="background:#b45309"></div>Cond. Format</div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Slicers + column chart -->
+      <div style="display:grid;grid-template-columns:110px 110px 1fr;gap:5px">
+        <div class="slicer-box"><div class="slicer-hdr">Visual Type</div><div class="slicer-items"><div class="slicer-item sel">✓ barChart</div><div class="slicer-item">card</div><div class="slicer-item">tableEx</div></div></div>
+        <div class="slicer-box"><div class="slicer-hdr">Usage Context</div><div class="slicer-items"><div class="slicer-item sel">✓ Visual Field</div><div class="slicer-item">Slicer</div><div class="slicer-item">Cond. Format</div></div></div>
+        <div class="chart-box">
+          <div class="chart-title">Field References Across All 36 Report Pages (column chart)</div>
+          <div style="display:flex;align-items:flex-end;gap:2px;height:60px;padding-top:4px">
+            <div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:center;flex:1;gap:1px">
+              <div style="width:100%;background:#0f766e;opacity:.8;border-radius:1px 1px 0 0;height:54px"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:center;flex:1;gap:1px">
+              <div style="width:100%;background:#0f766e;opacity:.75;border-radius:1px 1px 0 0;height:48px"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:center;flex:1;gap:1px">
+              <div style="width:100%;background:#0f766e;opacity:.7;border-radius:1px 1px 0 0;height:40px"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:center;flex:1;gap:1px">
+              <div style="width:100%;background:#0f766e;opacity:.65;border-radius:1px 1px 0 0;height:34px"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:center;flex:1;gap:1px">
+              <div style="width:100%;background:#0f766e;opacity:.6;border-radius:1px 1px 0 0;height:26px"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:center;flex:1;gap:1px">
+              <div style="width:100%;background:#0f766e;opacity:.55;border-radius:1px 1px 0 0;height:20px"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:center;flex:1;gap:1px">
+              <div style="width:100%;background:#0f766e;opacity:.5;border-radius:1px 1px 0 0;height:16px"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:center;flex:1;gap:1px">
+              <div style="width:100%;background:#0f766e;opacity:.45;border-radius:1px 1px 0 0;height:12px"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:center;flex:1;gap:1px">
+              <div style="width:100%;background:#0f766e;opacity:.4;border-radius:1px 1px 0 0;height:10px"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:flex-end;align-items:center;flex:1;gap:1px">
+              <div style="width:100%;background:#d1d5db;opacity:.6;border-radius:1px 1px 0 0;height:8px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Table -->
+      <div class="tbl-box"><div class="tbl-title">Usage Detail — Page × Table × Field × Visual Type × Context</div><table><thead><tr><th>Page</th><th>GovTable</th><th>Field</th><th>Visual Type</th><th>Usage Context</th><th>Field Refs</th></tr></thead><tbody><tr><td>Branch Performance</td><td>Fact Inventory Period</td><td>InventoryStatusCases</td><td>barChart</td><td>Visual Field</td><td>12</td></tr><tr><td>CFR Dashboard</td><td>Fact CFR Period CY</td><td>DeliveredCases</td><td>card</td><td>Visual Field</td><td>9</td></tr><tr><td>Inventory Overview</td><td>Dim Branch</td><td>Region</td><td>slicer</td><td>Slicer</td><td>8</td></tr><tr><td>Sales Summary</td><td>Fact Sales</td><td>Revenue Dead Net</td><td>card</td><td>Visual Field</td><td>7</td></tr></tbody></table></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="slide" id="p3">
+  <div class="nav" style="--accColor:#b45309">
+    <div class="nav-brand">NW Capacity<div class="nav-sub">Governance Report</div></div>
+    <div class="nav-div"></div>
+    <div class="nav-item"><div class="nav-num">01</div><div class="nav-label">Executive Summary</div></div>
+    <div class="nav-item"><div class="nav-num">02</div><div class="nav-label">Lineage & Dependencies</div></div>
+    <div class="nav-item"><div class="nav-num">03</div><div class="nav-label">Usage Analytics</div></div>
+    <div class="nav-item active" style="--accColor:#b45309"><div class="nav-num">04</div><div class="nav-label">Model–Report Mapping</div></div>
+    <div class="nav-footer"><div class="nav-note">Source:<br>NW_MetaEx_<br>Report.xlsx</div></div>
+  </div>
+  <div class="content">
+    <div class="hdr"><div class="hdr-accent" style="background:#b45309"></div><div class="hdr-text"><div class="hdr-title">Model–Report Mapping</div><div class="hdr-sub">Field inventory, adoption tiers, data source coverage, and measure classification</div></div></div>
+    <div class="canvas">
+      <div class="kpi-row" style="grid-template-columns:repeat(6,1fr)">
+        <div class="kpi"><div class="kpi-label">High Adoption</div><div class="kpi-value" style="color:#15803d">46</div></div>
+        <div class="kpi"><div class="kpi-label">Medium Adoption</div><div class="kpi-value" style="color:#b45309">128</div></div>
+        <div class="kpi"><div class="kpi-label">Low Adoption</div><div class="kpi-value" style="color:#1d4ed8">42</div></div>
+        <div class="kpi"><div class="kpi-label">Unused Fields</div><div class="kpi-value" style="color:var(--red)">1,041</div></div>
+        <div class="kpi"><div class="kpi-label">Measures With Folder</div><div class="kpi-value" style="color:#3730a3">87</div></div>
+        <div class="kpi"><div class="kpi-label">Avg Fields / Table</div><div class="kpi-value" style="color:#0f766e">16.3</div></div>
+      </div>
+      <div class="col-left-wide">
+        <div class="chart-box">
+          <div class="chart-title">Fields by Adoption Tier per Table</div>
+          <div class="bar-chart">
+            <div class="bar-row"><div class="bar-label">Fact Inventory Period</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:#b45309"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Dim Material</div><div class="bar-track"><div class="bar-fill" style="width:78%;background:#b45309"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Fact Sales</div><div class="bar-track"><div class="bar-fill" style="width:64%;background:#b45309"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Dim Date</div><div class="bar-track"><div class="bar-fill" style="width:52%;background:#b45309"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Fact CFR Period CY</div><div class="bar-track"><div class="bar-fill" style="width:40%;background:#b45309"></div></div></div>
+          </div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">Adoption Tier Distribution</div>
+          <div class="donut-wrap" style="justify-content:center;flex-direction:column;align-items:center">
+            <svg width="58" height="58" viewBox="0 0 58 58"><circle cx="29" cy="29" r="20" fill="none" stroke="#e5e7eb" stroke-width="9"/><circle cx="29" cy="29" r="20" fill="none" stroke="#b91c1c" stroke-width="9" stroke-dasharray="80 46" stroke-dashoffset="-4" transform="rotate(-90 29 29)"/><circle cx="29" cy="29" r="20" fill="none" stroke="#b45309" stroke-width="9" stroke-dasharray="26 100" stroke-dashoffset="-84" transform="rotate(-90 29 29)"/><circle cx="29" cy="29" r="20" fill="none" stroke="#1d4ed8" stroke-width="9" stroke-dasharray="8 118" stroke-dashoffset="-110" transform="rotate(-90 29 29)"/></svg>
+            <div class="donut-legend"><div class="legend-item"><div class="legend-dot" style="background:#b91c1c"></div>Unused</div><div class="legend-item"><div class="legend-dot" style="background:#b45309"></div>Medium</div><div class="legend-item"><div class="legend-dot" style="background:#1d4ed8"></div>Low/High</div></div>
+          </div>
+        </div>
+        <div class="tbl-box"><div class="tbl-title">Data Sources</div><table><thead><tr><th>Table</th><th>Connector</th><th>Steps</th></tr></thead><tbody><tr><td>Base Periods</td><td>CSV File</td><td>4</td></tr><tr><td>Dim Branch</td><td>CSV File</td><td>6</td></tr><tr><td>Dim Date</td><td>CSV File</td><td>8</td></tr><tr><td>Fact Sales</td><td>CSV File</td><td>5</td></tr><tr><td>Dim Material</td><td>Unknown</td><td>2</td></tr></tbody></table></div>
+      </div>
+      <!-- Slicers row -->
+      <div style="display:grid;grid-template-columns:130px 120px 110px 1fr;gap:5px">
+        <div class="slicer-box"><div class="slicer-hdr">Table</div><div class="slicer-items"><div class="slicer-item sel">✓ (All)</div><div class="slicer-item">Fact Inventory Period</div><div class="slicer-item">Dim Material</div></div></div>
+        <div class="slicer-box"><div class="slicer-hdr">Adoption Tier</div><div class="slicer-items"><div class="slicer-item sel">✓ (All)</div><div class="slicer-item">High</div><div class="slicer-item">Unused</div></div></div>
+        <div class="slicer-box"><div class="slicer-hdr">Field Type</div><div class="slicer-items"><div class="slicer-item sel">✓ (All)</div><div class="slicer-item">Measure</div><div class="slicer-item">Column (data)</div></div></div>
+        <div class="chart-box">
+          <div class="chart-title">Measure Display Folder Coverage</div>
+          <div class="bar-chart">
+            <div class="bar-row"><div class="bar-label">CFR Measures</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:#3730a3"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Inventory KPIs</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:#3730a3"></div></div></div>
+            <div class="bar-row"><div class="bar-label">Sales Metrics</div><div class="bar-track"><div class="bar-fill" style="width:40%;background:#3730a3"></div></div></div>
+            <div class="bar-row"><div class="bar-label">(no folder)</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:#d1d5db"></div></div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Main inventory table -->
+      <div class="tbl-box"><div class="tbl-title">Complete Field Inventory — Table · Field · Type · Adoption Tier · Usage Counts</div><table><thead><tr><th>Table</th><th>Field</th><th>Field Type</th><th>Adoption Tier</th><th>Display Folder</th><th>Report Refs</th><th>All Refs</th><th>Never Used</th></tr></thead><tbody><tr><td>Fact Inventory Period</td><td>InventoryStatusCases</td><td>Column (data)</td><td>High</td><td>—</td><td>24</td><td>24</td><td>No</td></tr><tr><td>Fact CFR Period CY</td><td>DeliveredCases</td><td>Column (data)</td><td>Medium</td><td>—</td><td>12</td><td>12</td><td>No</td></tr><tr><td>Dim Date</td><td>T_EOD</td><td>Column (data)</td><td>Unused</td><td>—</td><td>0</td><td>0</td><td>Yes</td></tr><tr><td>Fact Inventory Period</td><td>KMinBreachAge</td><td>Column (data)</td><td>Unused</td><td>—</td><td>0</td><td>0</td><td>Yes</td></tr></tbody></table></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /frame -->
+</div>
+
+<script>
+function setPage(idx, el, color) {
+  document.querySelectorAll('.slide').forEach((s,i) => s.classList.toggle('active', i===idx));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  el.style.background = color;
+  el.style.borderColor = 'transparent';
+  el.style.color = '#fff';
+  document.querySelectorAll('.tab:not(.active)').forEach(t => {
+    t.style.background = '';
+    t.style.borderColor = '';
+    t.style.color = '';
+  });
+}
+</script>

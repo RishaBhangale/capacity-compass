@@ -1,0 +1,67 @@
+table _Gov_Relationships
+	lineageTag: f622f452-5ceb-43d9-bd3e-c0f2004b6883
+
+	column FromTable
+		dataType: string
+		lineageTag: 99789185-ae8f-41b7-a7a2-c0c4988cec03
+		sourceColumn: FromTable
+
+	column FromColumn
+		dataType: string
+		lineageTag: 4271a60f-254d-4c07-970b-6ce02612d308
+		sourceColumn: FromColumn
+
+	column ToTable
+		dataType: string
+		lineageTag: de2db5ca-b48d-42c1-bca8-87d8dd4410c4
+		sourceColumn: ToTable
+
+	column ToColumn
+		dataType: string
+		lineageTag: e62dc271-2391-410b-bcdb-b3d322c04d42
+		sourceColumn: ToColumn
+
+	column FromCardinality
+		dataType: string
+		lineageTag: dff6244d-f0eb-4bdb-bd72-88f20f7999de
+		sourceColumn: FromCardinality
+
+	column ToCardinality
+		dataType: string
+		lineageTag: f647637d-dcb0-44a4-bae5-1623383f6be3
+		sourceColumn: ToCardinality
+
+	column CrossFilterDir
+		dataType: string
+		lineageTag: 48d948a9-d11f-4d75-81d8-2a0b749cbb14
+		sourceColumn: CrossFilterDir
+
+	column IsActive
+		dataType: string
+		lineageTag: 9ae33ac4-52a0-4ceb-ae8f-51de6de894db
+		sourceColumn: IsActive
+
+	column Name
+		dataType: string
+		lineageTag: d4441c64-3198-4e2f-8ce6-3e950dea803b
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column SemanticModel
+		dataType: string
+		lineageTag: eda29868-c0c5-4acf-9864-ad499a159f82
+		summarizeBy: none
+		sourceColumn: SemanticModel
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Gov_Relationships = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadSheet("Model_Relationships")
+				in
+				    Source
+

@@ -1,0 +1,317 @@
+table 'Dim Date'
+	lineageTag: d1284c8a-6f76-4c2e-8708-bbcb603e0991
+
+	measure 'Slected Year' = SELECTEDVALUE('Dim Date'[Year])
+		lineageTag: 6f80c7bb-310a-4445-9bb0-fb480272bd21
+
+	column DateID
+		dataType: string
+		lineageTag: e9560e1f-a726-47d8-9bef-a774110249ba
+		summarizeBy: none
+		sourceColumn: DateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: string
+		lineageTag: 04648688-891a-4856-bdd3-0381adedf030
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: string
+		lineageTag: 7ca1269f-36ce-4bb0-acb3-f210a563cffa
+		summarizeBy: none
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column DaySuffix
+		dataType: string
+		lineageTag: 7c207bbc-3533-4b78-9b9a-8025fb2fa7cb
+		sourceColumn: DaySuffix
+
+	column DayOfWeek
+		dataType: string
+		lineageTag: b702a9bc-2600-4286-8418-19165b5b9077
+		sourceColumn: DayOfWeek
+
+	column DOWInMonth
+		dataType: string
+		lineageTag: 86b1fd7b-d123-4b97-816a-7b42ff7bafc7
+		summarizeBy: none
+		sourceColumn: DOWInMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfYear
+		dataType: string
+		lineageTag: 28487035-7ec1-45fb-8518-d5756c0ca1ad
+		summarizeBy: none
+		sourceColumn: DayOfYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekOfYear
+		dataType: string
+		lineageTag: 42cf7123-c51e-48d8-ac13-f1cd1b403ebc
+		summarizeBy: none
+		sourceColumn: WeekOfYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekOfMonth
+		dataType: string
+		lineageTag: 3e971aeb-b090-45d5-b0c2-846fae8784b1
+		summarizeBy: none
+		sourceColumn: WeekOfMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 753a673b-a847-4eca-8308-d86942736ddb
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: bb8ad482-68d4-4da0-88c7-292f766fedba
+		sourceColumn: MonthName
+
+	column Quarter
+		dataType: string
+		lineageTag: 0d319cc9-125e-4e7b-92ca-21a9260dab52
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterName
+		dataType: string
+		lineageTag: 5a00c682-ff1d-42dd-9bb7-ca3886bec6f5
+		sourceColumn: QuarterName
+
+	column Year
+		dataType: string
+		lineageTag: 735c5fe1-87fb-4235-bf37-a1dabc45f8c3
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column StandardDate
+		dataType: string
+		lineageTag: f1de93d8-faf1-4f88-973d-8714d4aa90e4
+		summarizeBy: none
+		sourceColumn: StandardDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column HolidayText
+		dataType: string
+		lineageTag: 4addcb3d-bc73-4d38-8f7d-0a0b8a795f7a
+		sourceColumn: HolidayText
+
+	column WeekBeginingDateID
+		dataType: string
+		lineageTag: dc6f1015-93f0-49c1-aa80-75b5de3bfe90
+		summarizeBy: none
+		sourceColumn: WeekBeginingDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthBeginingDateID
+		dataType: string
+		lineageTag: 3124c7c7-a471-41fd-afeb-0818e5592c7d
+		summarizeBy: none
+		sourceColumn: MonthBeginingDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearBeginingDateID
+		dataType: string
+		lineageTag: 50069812-cff5-4f4f-83d0-317ff94c0980
+		summarizeBy: none
+		sourceColumn: YearBeginingDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last7DaysBeginingDateID
+		dataType: string
+		lineageTag: c974269f-d2aa-495f-be2d-ba112b9d5beb
+		summarizeBy: none
+		sourceColumn: Last7DaysBeginingDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last31DaysBeginingDateID
+		dataType: string
+		lineageTag: e6f9a106-cfbd-47a1-bef1-244e1507a722
+		summarizeBy: none
+		sourceColumn: Last31DaysBeginingDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekNumberDisplay
+		dataType: string
+		lineageTag: c7e9f89b-8bb3-4937-b486-fac945dcb418
+		sourceColumn: WeekNumberDisplay
+
+	column T_EOD
+		dataType: string
+		lineageTag: 423092c0-4343-453d-9948-c53245056404
+		summarizeBy: none
+		sourceColumn: T_EOD
+
+		annotation SummarizationSetBy = Automatic
+
+	column BP_PREV_DATE_ID
+		dataType: string
+		lineageTag: 984cb6b8-6a2e-4cd6-aa73-7f65654fbe1d
+		summarizeBy: none
+		sourceColumn: BP_PREV_DATE_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrevDateID
+		dataType: string
+		lineageTag: da5290d7-92c1-466b-9034-5cf8c2d8281a
+		summarizeBy: none
+		sourceColumn: PrevDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrevDate
+		dataType: string
+		lineageTag: 74e29c0f-42a7-4cc9-ab78-84aed82c293d
+		summarizeBy: none
+		sourceColumn: PrevDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column RwDate
+		dataType: string
+		lineageTag: a09ba182-1c10-499c-b5eb-e7ac9785abc7
+		summarizeBy: none
+		sourceColumn: RwDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column RyDate
+		dataType: string
+		lineageTag: 5c2f4e2b-4f7b-4f2e-a0ac-73953755ca1a
+		summarizeBy: none
+		sourceColumn: RyDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column MtdDate
+		dataType: string
+		lineageTag: 78c8e75e-1190-4389-bcc0-719923e7c453
+		summarizeBy: none
+		sourceColumn: MtdDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column QtdDate
+		dataType: string
+		lineageTag: 963bd544-7980-4a74-a795-93d58e89b7e3
+		summarizeBy: none
+		sourceColumn: QtdDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column YtdDate
+		dataType: string
+		lineageTag: 1ff9ea67-886e-46bd-961e-9e1ad338a606
+		summarizeBy: none
+		sourceColumn: YtdDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column RwDateID
+		dataType: string
+		lineageTag: a39dd2cb-1380-4ff0-b9ee-c893df0ea59d
+		summarizeBy: none
+		sourceColumn: RwDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column RyDateID
+		dataType: string
+		lineageTag: 5c69f239-dc8c-4d49-95cc-e783e152865b
+		summarizeBy: none
+		sourceColumn: RyDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name' = LEFT('Dim Date'[MonthName], 3)
+		dataType: string
+		lineageTag: 1fbed589-10ce-466a-9e3c-286762c193da
+
+	column R2wDate
+		dataType: string
+		lineageTag: fb9b6d6a-c607-44c9-a47a-fba2caf61959
+		summarizeBy: none
+		sourceColumn: R2wDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column PeriodID
+		dataType: string
+		lineageTag: eba8a2b5-32a7-4944-b774-b2f98b5e2aea
+		sourceColumn: PeriodID
+
+	column RyMonthID
+		dataType: string
+		lineageTag: de3f31e6-fec1-492f-b053-bedd5a4375df
+		summarizeBy: none
+		sourceColumn: RyMonthID
+
+		annotation SummarizationSetBy = Automatic
+
+	column R30dDate
+		dataType: string
+		lineageTag: bb2968bc-aecb-4e6e-aa67-4e320f1fd1a1
+		summarizeBy: none
+		sourceColumn: R30dDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column R90dDate
+		dataType: string
+		lineageTag: b0f8f43d-7826-4cca-ad95-3f487efa4ea8
+		summarizeBy: none
+		sourceColumn: R90dDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column PYtdDate
+		dataType: string
+		lineageTag: d51713c7-6df6-4e2b-b406-a1b28db79818
+		summarizeBy: none
+		sourceColumn: PYtdDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column T_BOBD
+		dataType: string
+		lineageTag: 259a514d-1ce1-470b-892a-84702d2723cb
+		summarizeBy: none
+		sourceColumn: T_BOBD
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Date' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"DateID", "Date", "Day", "DaySuffix", "DayOfWeek", "DOWInMonth", "DayOfYear", "WeekOfYear", "WeekOfMonth", "Month", "MonthName", "Quarter", "QuarterName", "Year", "StandardDate", "HolidayText", "WeekBeginingDateID", "MonthBeginingDateID", "YearBeginingDateID", "Last7DaysBeginingDateID", "Last31DaysBeginingDateID", "WeekNumberDisplay", "T_EOD", "BP_PREV_DATE_ID", "PrevDateID", "PrevDate", "RwDate", "RyDate", "MtdDate", "QtdDate", "YtdDate", "RwDateID", "RyDateID", "R2wDate", "PeriodID", "RyMonthID", "R30dDate", "R90dDate", "PYtdDate", "T_BOBD"}, {})
+				in
+				    Source
+

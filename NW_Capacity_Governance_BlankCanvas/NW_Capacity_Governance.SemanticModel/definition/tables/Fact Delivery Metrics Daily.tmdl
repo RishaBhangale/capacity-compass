@@ -1,0 +1,77 @@
+table 'Fact Delivery Metrics Daily'
+	lineageTag: 8cb3564e-4fb8-4d05-aa21-21a8b1c00acf
+
+	column DateID
+		dataType: string
+		lineageTag: 54db5f2e-a55e-4fc2-bfeb-cd00d2e3fbb0
+		summarizeBy: none
+		sourceColumn: DateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: b828675f-9c2e-4ac8-993a-18372e50259f
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchIDFromSrc
+		dataType: string
+		lineageTag: 0d16aa40-9059-490f-a2f2-65fe0aa6c642
+		summarizeBy: none
+		sourceColumn: BranchIDFromSrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOfficeName
+		dataType: string
+		lineageTag: 67880a06-0bdb-4cc7-9774-67198093dfcc
+		sourceColumn: SalesOfficeName
+
+	column ReportingBranch
+		dataType: string
+		lineageTag: 12142a44-95cf-450e-ac70-71d65aabd081
+		sourceColumn: ReportingBranch
+
+	column CasesHandled
+		dataType: string
+		lineageTag: 2620ba88-0d88-46a9-ad41-c832bb8922e1
+		summarizeBy: none
+		sourceColumn: CasesHandled
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalHours
+		dataType: string
+		lineageTag: 5ad1c065-038b-4322-bf71-39f236565397
+		summarizeBy: none
+		sourceColumn: TotalHours
+
+		annotation SummarizationSetBy = Automatic
+
+	column CasesHandledTarget
+		dataType: string
+		lineageTag: 1bf55c3e-5934-4ccc-ad25-c23302c57497
+		summarizeBy: none
+		sourceColumn: CasesHandledTarget
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalHoursTarget
+		dataType: string
+		lineageTag: 84b7b3d7-b56e-4206-a1a5-33b1d8af2e06
+		summarizeBy: none
+		sourceColumn: TotalHoursTarget
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Delivery Metrics Daily' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"DateID", "PlantID", "BranchIDFromSrc", "SalesOfficeName", "ReportingBranch", "CasesHandled", "TotalHours", "CasesHandledTarget", "TotalHoursTarget"}, {})
+				in
+				    Source
+

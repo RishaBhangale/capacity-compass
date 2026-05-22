@@ -1,0 +1,275 @@
+table 'Fact Inventory Period'
+	lineageTag: 7560716d-d38f-4541-9acf-8999e1966d65
+
+	measure 'K-Min Delta Pallets M P' = BLANK()
+		lineageTag: b58d5b38-54b6-4f3d-95c9-05274e8e86b4
+
+	measure '# Active SKU''''s 2' = BLANK()
+		formatString: #,0
+		lineageTag: 0b66716e-5610-4508-aafc-987fe3d8a03a
+
+	measure '# Current Pallets 2' = BLANK()
+		formatString: #,0.00
+		lineageTag: a1881cf6-2f73-4d4c-b3e3-0ed80fdc1301
+
+	measure 'K-Max Delta Pallets M P' = BLANK()
+		lineageTag: 69802c23-deb4-4531-96c6-67cb00e8ba1f
+
+	measure 'Utilization M' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 5c016bc6-33f5-4df3-a266-9d21fb8e3547
+
+	measure '# Days' = BLANK()
+		formatString: #,0
+		lineageTag: 09fdf46f-aec3-4961-9db3-23ce501e70ac
+
+	measure 'DOH Cases P' = BLANK()
+		lineageTag: aa225a7f-2fde-401e-9685-dfe46b5c7582
+
+	measure 'Current Cases P' = BLANK()
+		lineageTag: 6afdef9d-1cea-4261-94ba-571e1ef8bf42
+
+	measure 'Utilization M KPI' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 10bd1e59-5758-4aa4-82df-de3f3558b09e
+
+	measure '# SKUs Inventory Period' = BLANK()
+		formatString: 0
+		lineageTag: a46b4b99-25c9-4c16-a06c-3530fc3d7b50
+
+	measure '# SKU INv Period' = BLANK()
+		formatString: 0
+		lineageTag: 13f3730e-97ab-4004-bfc0-f8357877fd41
+
+	measure 'Current pallets Inv.' = SUM('Fact Inventory Period'[CurrentPallets])
+		lineageTag: c5ffde1d-c9c2-4ff5-a4a6-1523cdae1ca3
+
+	measure 'Excess pallets agn. 85%' = CALCULATE(([Average Current Pallets CY] - [Average Pallet Holding Capacity CY] * 0.85) )
+		lineageTag: 82d9d7d7-ee09-4a1e-9698-de760465e6af
+
+	measure 'Color Inventory Status Icon' = BLANK()
+		lineageTag: 4c955361-d569-4240-99e5-3c869011e797
+
+	measure 'Inventory Status Pallets M' = SELECTEDVALUE('Fact Inventory Period'[InventoryStatusPallets])
+		lineageTag: fae472f6-8889-4371-b501-1641eb7e9c0b
+
+	measure 'Pallet holding Capacity P' = SUM('Fact Inventory Period'[PalletHoldingCapacity])
+		lineageTag: 593b41ee-0e34-4681-bb48-8ab8945f9eab
+
+	measure 'K-Max Holding capacity P' = [K-Max Delta Pallets M P]/[Average Pallet Holding Capacity CY]
+		formatString: 0%;-0%;0%
+		lineageTag: 22291aa5-f17e-485f-884b-9ac5830720ea
+
+	measure 'Pallets within ​Desired Range' = CALCULATE(divide(sum('Fact Inventory Period'[CurrentPallets]),[# Days]), 'Fact Inventory Period'[InventoryStatusPallets]="Within Limits")
+		formatString: 0
+		lineageTag: b819c267-d7ed-4242-a965-ee5b52224874
+
+	measure 'Percentage of K-max pallets' = [K-Max Delta Pallets M P]/[Pallet Holding Capacity M]
+		formatString: 0%;-0%;0%
+		lineageTag: c0cb5d6c-2007-4af9-a597-c1a916878f33
+
+	measure 'K-Min Holding capacity P' = [K-Min Delta Pallets M P]/[Average Pallet Holding Capacity CY]
+		formatString: 0%;-0%;0%
+		lineageTag: 4fad1365-19ac-4692-acb0-047b3c06aa44
+
+	measure 'Percentage of K-min pallets' = [K-Min Delta Pallets M P]/[Average Pallet Holding Capacity CY]
+		formatString: 0%;-0%;0%
+		lineageTag: b259225e-81b0-40df-a86c-d3f669a16b0b
+
+	column PeriodID
+		dataType: string
+		lineageTag: ade0f08a-ce6e-4e84-b6ab-74c81f0aeffe
+		summarizeBy: none
+		sourceColumn: PeriodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: 7027a174-6ede-4edd-a6c9-839750fd47c9
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: fbeee7f8-557f-4dc2-b70f-76dd6ebd7de7
+		sourceColumn: MaterialID
+
+	column InventoryStatusCases
+		dataType: string
+		lineageTag: b18374aa-ea03-4f30-827f-c0eb14a5bcef
+		sourceColumn: InventoryStatusCases
+
+	column InventoryStatusPallets
+		dataType: string
+		lineageTag: 213d719a-1ee6-44b0-96cb-7f32f16ee173
+		sourceColumn: InventoryStatusPallets
+
+	column ValuatedUnrestrictedUseStock
+		dataType: string
+		lineageTag: 7bba3292-26c7-457b-a7ad-b6ebcc4b14ef
+		summarizeBy: none
+		sourceColumn: ValuatedUnrestrictedUseStock
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockInQualityInspection
+		dataType: string
+		lineageTag: 372bf561-f047-4ba9-957c-6ceba63bf351
+		summarizeBy: none
+		sourceColumn: StockInQualityInspection
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalStockOfAllRestrictedBatches
+		dataType: string
+		lineageTag: 2b327dad-2978-4527-a83f-ebcc9a9a5ae7
+		summarizeBy: none
+		sourceColumn: TotalStockOfAllRestrictedBatches
+
+		annotation SummarizationSetBy = Automatic
+
+	column BlockedStock
+		dataType: string
+		lineageTag: e594582a-c067-45c8-9aa6-c8c9a964038d
+		summarizeBy: none
+		sourceColumn: BlockedStock
+
+		annotation SummarizationSetBy = Automatic
+
+	column BlockedStockReturns
+		dataType: string
+		lineageTag: 0bb025f1-e630-4060-ad80-dbdf18bb7fa5
+		summarizeBy: none
+		sourceColumn: BlockedStockReturns
+
+		annotation SummarizationSetBy = Automatic
+
+	column PalletHoldingCapacity
+		dataType: string
+		lineageTag: d2dead9b-f429-4e27-b5ad-0730285926d4
+		summarizeBy: none
+		sourceColumn: PalletHoldingCapacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column PalletConversionFactor
+		dataType: string
+		lineageTag: 29176d86-567b-4ac5-9afc-10f829724b38
+		summarizeBy: none
+		sourceColumn: PalletConversionFactor
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalInventoryCases
+		dataType: string
+		lineageTag: fd4fe0b2-6d7d-4e41-af59-4fea9888a037
+		summarizeBy: none
+		sourceColumn: TotalInventoryCases
+
+		annotation SummarizationSetBy = Automatic
+
+	column KMinCases
+		dataType: string
+		lineageTag: 9ad46b22-00ae-4911-8d4f-1171a77ffd20
+		summarizeBy: none
+		sourceColumn: KMinCases
+
+		annotation SummarizationSetBy = Automatic
+
+	column KMaxCases
+		dataType: string
+		lineageTag: 356d8c83-05a2-41a0-86e2-b61c14ef03d1
+		sourceColumn: KMaxCases
+
+	column CurrentPalletsX
+		dataType: string
+		lineageTag: 7228998e-4279-49b7-a6e7-ca9c02c4e468
+		sourceColumn: CurrentPalletsX
+
+	column CurrentPallets
+		dataType: string
+		lineageTag: 8612bfc5-4af5-472e-a3f9-d8100657f61c
+		sourceColumn: CurrentPallets
+
+	column KMinX
+		dataType: string
+		lineageTag: a1071cdd-958f-4ea9-abe3-9da7f7a1403a
+		sourceColumn: KMinX
+
+	column KMinPallets
+		dataType: string
+		lineageTag: e30bad28-43cf-4b7f-9fc8-9193a5b793d1
+		sourceColumn: KMinPallets
+
+	column KMaxX
+		dataType: string
+		lineageTag: 26a066a0-7d8c-4996-8de5-f815ee4cd482
+		sourceColumn: KMaxX
+
+	column KMaxPallets
+		dataType: string
+		lineageTag: bf881226-1de3-49b6-9dbb-9fe9080bf57e
+		sourceColumn: KMaxPallets
+
+	column KMinDeltaCases
+		dataType: string
+		lineageTag: e7276d9f-79b7-40bf-9cc2-496fb0cf3927
+		sourceColumn: KMinDeltaCases
+
+	column KMaxDeltaCases
+		dataType: string
+		lineageTag: d3e44516-2e73-4c50-a99c-fe4bfbf13ebc
+		sourceColumn: KMaxDeltaCases
+
+	column KMinDeltaPallets
+		dataType: string
+		lineageTag: 0f746e7b-139a-4fa3-9b12-e1ff41b62ec6
+		sourceColumn: KMinDeltaPallets
+
+	column KMaxDeltaPallets
+		dataType: string
+		lineageTag: d930aa80-b934-44ad-97ed-eaef4af0e589
+		sourceColumn: KMaxDeltaPallets
+
+	column MinDate
+		dataType: string
+		lineageTag: 63c1e99d-43e8-4527-b936-379c817c9cd5
+		summarizeBy: none
+		sourceColumn: MinDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CurrentInventory P'
+		dataType: string
+		lineageTag: 6e0cc613-39b2-43c3-b1d2-9f5b1152fdc8
+		sourceColumn: CurrentInventory P
+
+	column MaterialDeleted
+		dataType: string
+		lineageTag: ad5212c7-e925-4928-b7d2-c55c4bb98a2d
+		summarizeBy: none
+		sourceColumn: MaterialDeleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialStatus
+		dataType: string
+		lineageTag: 6b07f894-3e1f-489d-8964-c0eca83341e3
+		sourceColumn: MaterialStatus
+
+	column MustCarry
+		dataType: string
+		lineageTag: 606e956b-7d75-4146-8317-b1f21c11c95d
+		sourceColumn: MustCarry
+
+	partition 'Fact Inventory Period' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PeriodID", "PlantID", "MaterialID", "InventoryStatusCases", "InventoryStatusPallets", "ValuatedUnrestrictedUseStock", "StockInQualityInspection", "TotalStockOfAllRestrictedBatches", "BlockedStock", "BlockedStockReturns", "PalletHoldingCapacity", "PalletConversionFactor", "TotalInventoryCases", "KMinCases", "KMaxCases", "CurrentPalletsX", "CurrentPallets", "KMinX", "KMinPallets", "KMaxX", "KMaxPallets", "KMinDeltaCases", "KMaxDeltaCases", "KMinDeltaPallets", "KMaxDeltaPallets", "MinDate", "CurrentInventory P", "MaterialDeleted", "MaterialStatus", "MustCarry"}, {})
+				in
+				    Source
+

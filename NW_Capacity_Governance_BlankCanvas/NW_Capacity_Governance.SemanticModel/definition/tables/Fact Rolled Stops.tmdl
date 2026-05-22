@@ -1,0 +1,125 @@
+table 'Fact Rolled Stops'
+	lineageTag: 1744b234-b3a8-47dc-bdd7-dd498aec6005
+
+	measure 'Average Days Rolled' = BLANK()
+		formatString: #,0.0
+		lineageTag: c48a0ef1-6db7-4ea1-9c30-db9697fcb17f
+
+	measure '# Order Rolled' = BLANK()
+		formatString: 0
+		lineageTag: efdeab20-678e-4e36-8cd9-1f6c301be65f
+
+	measure 'order Rolled Dist.' = BLANK()
+		formatString: 0
+		lineageTag: 80974f4f-1b9e-4ed8-bde4-dfb35b4274d6
+
+	column CustomerNumber
+		dataType: string
+		lineageTag: 5e6e97b7-7d36-4786-b991-39f585d213a9
+		summarizeBy: none
+		sourceColumn: CustomerNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderNumber
+		dataType: string
+		lineageTag: 3ec25a7b-d73a-4d09-a068-5d3632d2f5dd
+		summarizeBy: none
+		sourceColumn: OrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDate
+		dataType: string
+		lineageTag: ee8128e5-394c-4eb1-b906-9a2c80f4b563
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Orders rolled C'
+		dataType: string
+		formatString: 0
+		lineageTag: 8f37bc1c-ad22-4cc4-8121-1a29e3cc69f6
+		sourceColumn: Orders rolled C
+
+	column DateID
+		dataType: string
+		lineageTag: ac7cbeff-6381-46a6-9998-f160d8817c11
+		summarizeBy: none
+		sourceColumn: DateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthID
+		dataType: string
+		lineageTag: f69d594f-d4e9-4c29-b235-4791d5cea7f4
+		summarizeBy: none
+		sourceColumn: MonthID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PeriodID
+		dataType: string
+		lineageTag: a73cb3ef-b85a-49da-96a7-225ef0896dfc
+		summarizeBy: none
+		sourceColumn: PeriodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: 5e63e89d-6a10-4ecc-885b-1df56f277988
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PreSaleRoute
+		dataType: string
+		lineageTag: 28275fcc-9eee-4278-9c9f-53ead7b4adfe
+		summarizeBy: none
+		sourceColumn: PreSaleRoute
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderStatus
+		dataType: string
+		lineageTag: d9bade5d-cf52-4b1d-a79f-0c3884422f7d
+		summarizeBy: none
+		sourceColumn: OrderStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column OriginalDeliveryDate
+		dataType: string
+		lineageTag: fc9f9815-8b92-442c-9de1-2604e0acd879
+		summarizeBy: none
+		sourceColumn: OriginalDeliveryDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryDate
+		dataType: string
+		lineageTag: 1e4d60fb-5942-4c19-930d-cd175d1f5dcd
+		summarizeBy: none
+		sourceColumn: DeliveryDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column DaysRolled
+		dataType: string
+		lineageTag: e20690d8-0f81-4f1e-84f5-e0667194f167
+		summarizeBy: none
+		sourceColumn: DaysRolled
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Rolled Stops' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"CustomerNumber", "OrderNumber", "OrderDate", "Orders rolled C", "DateID", "MonthID", "PeriodID", "PlantID", "PreSaleRoute", "OrderStatus", "OriginalDeliveryDate", "DeliveryDate", "DaysRolled"}, {})
+				in
+				    Source
+

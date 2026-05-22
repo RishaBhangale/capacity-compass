@@ -1,0 +1,20 @@
+expression FILE_PATH = "D:\\Pranay.Sharma_OneDrive_Data\\OneDrive - Course5 Intelligence Limited\\My Work\\FieldTrace\\C5i-BI-Accelerators\\output\\NW_MetaEx_Report.xlsx" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 4b87ae96-9715-44d6-bd7b-b009d99b3a34
+
+	annotation PBI_ResultType = Text
+
+expression REPORT_NAME = "Network Visibility" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: dc3f49fd-0d9f-4eee-8d16-3de8fd91c42e
+
+expression fnLoadSheet =
+		(SheetName as text) as table =>
+		let
+		    Source       = Excel.Workbook(File.Contents(FILE_PATH), true, true),
+		    Sheet        = Source{[Item = SheetName, Kind = "Sheet"]}[Data],
+		    // Use Sheet directly (first row already promoted by Excel.Workbook with true)
+		    // then clean column names
+		    CleanHeaders = Table.TransformColumnNames(Sheet, each Text.Trim(Text.Clean(_)))
+		in
+		    CleanHeaders
+	lineageTag: f7f62626-eaaf-4b27-819f-4e86f906bd90
+

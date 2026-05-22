@@ -1,0 +1,136 @@
+table 'Dim Customer'
+	lineageTag: 46b0c68c-a248-4080-a53f-f5c29215ea96
+
+	measure Measure = DISTINCTCOUNT('Fact CFR Period CY'[CustomerNumber])
+		formatString: 0
+		lineageTag: a2a5ad07-4b5e-4fa7-b7d9-6020173946fd
+
+	column AccountID
+		dataType: string
+		lineageTag: 10c67b63-e2f9-41c6-89b9-27206d5135c5
+		summarizeBy: none
+		sourceColumn: AccountID
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsAccountActive
+		dataType: string
+		lineageTag: a60f6ca0-976f-40d1-96b4-218b0ca5d66d
+		summarizeBy: none
+		sourceColumn: IsAccountActive
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 2a397a39-63de-4568-b799-31ceaf8bd5cb
+		sourceColumn: City
+
+	column State
+		dataType: string
+		lineageTag: 663d289f-ee1e-4541-9aff-27066d261daa
+		sourceColumn: State
+
+	column Src_ZipCode
+		dataType: string
+		lineageTag: 4967f96a-302e-4e7b-b7dc-3d8af33ab279
+		sourceColumn: Src_ZipCode
+
+	column ZipCode
+		dataType: string
+		lineageTag: ccb791c6-b785-418e-a29f-fbfbf908973a
+		sourceColumn: ZipCode
+
+	column Country
+		dataType: string
+		lineageTag: a72e47d1-4e02-4197-83c0-657a270fa564
+		sourceColumn: Country
+
+	column Latitude
+		dataType: string
+		lineageTag: 6221d152-4dd8-46e2-81a6-265a7ba6b8ab
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: string
+		lineageTag: 991fc707-9626-4853-ba79-acf6b6d20e92
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column SuperChannelDesc
+		dataType: string
+		lineageTag: 40415433-079a-4fa5-892b-b86fdbed909a
+		sourceColumn: SuperChannelDesc
+
+	column NationalChainName
+		dataType: string
+		lineageTag: 10dc064f-61d4-4b16-8cde-30b89e76ade4
+		sourceColumn: NationalChainName
+
+	column BranchID
+		dataType: string
+		lineageTag: e1629f56-83f2-4692-a77b-3df2950bbe63
+		summarizeBy: none
+		sourceColumn: BranchID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Channels ='
+		dataType: string
+		lineageTag: b4aefb3d-fb5b-4495-b533-0512eea180b2
+		sourceColumn: Channels =
+
+	column 'Latitude - 1'
+		dataType: string
+		lineageTag: 977bc810-afa5-47ea-b394-63d737937bec
+		summarizeBy: none
+		sourceColumn: Latitude - 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Longitude - 1'
+		dataType: string
+		lineageTag: 47a7c87f-9efd-432c-98aa-3126a29cabef
+		summarizeBy: none
+		sourceColumn: Longitude - 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'National Chain Name Groups'
+		dataType: string
+		lineageTag: 6bde5d30-60be-4aaf-bd51-41915ab18b0f
+		sourceColumn: National Chain Name Groups
+
+	column CustomerRank
+		dataType: string
+		lineageTag: 880b7e53-1884-4e30-8da1-c9072d9a434b
+		sourceColumn: CustomerRank
+
+	column ChannelDesc
+		dataType: string
+		lineageTag: e3a4b007-a7b7-4491-a7cf-5d2aa9f70fc8
+		sourceColumn: ChannelDesc
+
+	column AccountName
+		dataType: string
+		lineageTag: a407ae64-017a-4f3c-803d-aada814bae9c
+		sourceColumn: AccountName
+
+	column StoreFormatDesc
+		dataType: string
+		lineageTag: 4c70a393-269f-4717-866a-fa8c7f737101
+		sourceColumn: StoreFormatDesc
+
+	partition 'Dim Customer' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"AccountID", "IsAccountActive", "City", "State", "Src_ZipCode", "ZipCode", "Country", "Latitude", "Longitude", "SuperChannelDesc", "NationalChainName", "BranchID", "Channels =", "Latitude - 1", "Longitude - 1", "National Chain Name Groups", "CustomerRank", "ChannelDesc", "AccountName", "StoreFormatDesc"}, {})
+				in
+				    Source
+

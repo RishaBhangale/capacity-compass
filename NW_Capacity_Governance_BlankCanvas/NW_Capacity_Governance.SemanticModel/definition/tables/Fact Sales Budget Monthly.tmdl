@@ -1,0 +1,76 @@
+table 'Fact Sales Budget Monthly'
+	lineageTag: b624fbb1-d4be-43ce-b369-9be018428317
+
+	measure 'Sales Cases Volume Target Monthly CY' = BLANK()
+		formatString: 0
+		lineageTag: d7660854-b7a2-4683-b959-eca7e6809d35
+
+	measure 'Revenue Monthly Target CY' = BLANK()
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: b00e2b59-7a39-4309-9c81-2af40b54302f
+
+	measure 'GP Per Pallet Monthly Target CY' = BLANK()
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 6010b4a9-8139-42d6-90f3-740f46449858
+
+	column MonthID
+		dataType: string
+		lineageTag: f3422d5e-d70d-406a-afd3-d69d408dbc29
+		summarizeBy: none
+		sourceColumn: MonthID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: 36d53626-8861-4cce-b917-25708bd86062
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: 7f375654-c5d7-4230-94ae-f436f61e51ef
+		sourceColumn: MaterialID
+
+	column SalesCasesBudget
+		dataType: string
+		lineageTag: 96f3828e-a232-4cc7-9dce-cd5b2fa5a485
+		summarizeBy: none
+		sourceColumn: SalesCasesBudget
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesPalletsBudget
+		dataType: string
+		lineageTag: 21c218b2-652c-4267-b327-40ced89f4be9
+		summarizeBy: none
+		sourceColumn: SalesPalletsBudget
+
+		annotation SummarizationSetBy = Automatic
+
+	column RevenueDeadNetBudget
+		dataType: string
+		lineageTag: 5993c243-cacf-4204-b8ff-a3a718025b35
+		summarizeBy: none
+		sourceColumn: RevenueDeadNetBudget
+
+		annotation SummarizationSetBy = Automatic
+
+	column GPDeadNetBudget
+		dataType: string
+		lineageTag: 27253eba-0e88-4131-923d-6be3b1dcc89f
+		summarizeBy: none
+		sourceColumn: GPDeadNetBudget
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Sales Budget Monthly' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"MonthID", "PlantID", "MaterialID", "SalesCasesBudget", "SalesPalletsBudget", "RevenueDeadNetBudget", "GPDeadNetBudget"}, {})
+				in
+				    Source
+

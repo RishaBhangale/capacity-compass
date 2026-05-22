@@ -1,0 +1,116 @@
+table 'Dim Material'
+	lineageTag: 1e22f11f-7e65-418c-bb64-e3302e892531
+
+	measure 'SKU Category' = BLANK()
+		lineageTag: ad0b0af4-f612-43b7-a3e4-daeb105ff2d2
+
+	measure '# Active SKU''''s' = BLANK()
+		formatString: #,0
+		lineageTag: 937c9998-6f0e-4c7d-8177-68a94458fb60
+
+	measure '# of Material ID' = DISTINCTCOUNT('Dim Material'[MaterialID])
+		formatString: #,0
+		lineageTag: 508a053e-9495-4368-90c8-c98fe4e6e16c
+
+	column MaterialID
+		dataType: string
+		lineageTag: cf681e09-f485-4200-911f-90470529dbbb
+		sourceColumn: MaterialID
+
+	column 'Material Group'
+		dataType: string
+		lineageTag: 0b919fe1-146b-4756-bd7e-aa89bb00d051
+		sourceColumn: Material Group
+
+	column MarkForDeletion
+		dataType: string
+		lineageTag: 27c16eec-644a-4912-94ba-4e425d7f96f4
+		sourceColumn: MarkForDeletion
+
+	column 'Ownership Type'
+		dataType: string
+		lineageTag: c244f305-c879-4594-bba3-9db9c3543fdd
+		sourceColumn: Ownership Type
+
+	column 'Package Type'
+		dataType: string
+		lineageTag: fe553e86-aebe-4c0e-9114-64eb03003bf5
+		sourceColumn: Package Type
+
+	column BevType
+		dataType: string
+		lineageTag: 5ba9c454-58ad-42c6-9007-c627b76073ca
+		sourceColumn: BevType
+
+	column 'OwnershipType Grouping'
+		dataType: string
+		lineageTag: 5784b66f-ab12-4496-82b7-320496f6e3e3
+		sourceColumn: OwnershipType Grouping
+
+	column 'Trademark Cat' = IF(LEFT('Dim Material'[BevType], 3) = "CSD", "CSD", "All Others")
+		dataType: string
+		lineageTag: 2b3d67b8-028d-41cf-bb46-9c8b9552fa27
+
+	column 'Material Name'
+		dataType: string
+		lineageTag: ab485593-9b0e-44f2-9204-d7d1b7f7cba6
+		sourceColumn: Material Name
+
+	column MaterialType
+		dataType: string
+		lineageTag: 4c3dac20-52f5-4d66-8452-7445ab1e7450
+		sourceColumn: MaterialType
+
+	column 'Material Type Desc'
+		dataType: string
+		lineageTag: 9ff6bca8-97e0-4512-b193-d527b5c7185e
+		sourceColumn: Material Type Desc
+
+	column 'Consumer Pkg Desc'
+		dataType: string
+		lineageTag: cac952ca-adef-442b-9851-0fb335bf14ff
+		sourceColumn: Consumer Pkg Desc
+
+	column ProdHier
+		dataType: string
+		lineageTag: aa167882-c6ec-4f20-b8aa-b7fb228ff590
+		sourceColumn: ProdHier
+
+	column 'Package Config'
+		dataType: string
+		lineageTag: 5b0d5d12-1631-465e-ad16-0f383809a70a
+		sourceColumn: Package Config
+
+	column Flavor
+		dataType: string
+		lineageTag: 54e31bb9-4335-4102-aa3c-e48f40862afe
+		sourceColumn: Flavor
+
+	column Brand
+		dataType: string
+		lineageTag: 5fbd4b94-24f9-4327-bd39-04af015c345e
+		sourceColumn: Brand
+
+	column Trademark
+		dataType: string
+		lineageTag: a25ebae6-3070-45bc-805b-1079de7be2d4
+		sourceColumn: Trademark
+
+	column Franchisor
+		dataType: string
+		lineageTag: e33bedf7-78f0-4b82-a13b-11854fe6ebc6
+		sourceColumn: Franchisor
+
+	column 'Trademark Category'
+		dataType: string
+		lineageTag: 5fbac033-6509-4a05-8577-9a2c5052d29a
+		sourceColumn: Trademark Category
+
+	partition 'Dim Material' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"MaterialID", "Material Group", "MarkForDeletion", "Ownership Type", "Package Type", "BevType", "OwnershipType Grouping", "Material Name", "MaterialType", "Material Type Desc", "Consumer Pkg Desc", "ProdHier", "Package Config", "Flavor", "Brand", "Trademark", "Franchisor", "Trademark Category"}, {})
+				in
+				    Source
+

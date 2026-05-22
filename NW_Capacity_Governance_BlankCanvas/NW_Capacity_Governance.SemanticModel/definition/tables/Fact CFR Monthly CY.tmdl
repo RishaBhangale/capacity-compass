@@ -1,0 +1,105 @@
+table 'Fact CFR Monthly CY'
+	lineageTag: 698ec3cb-054d-4de9-b95d-68596a0ed990
+
+	measure 'CFR % Monthly CY' = BLANK()
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 3d1b73db-1969-4645-9b64-37c004cb2b55
+
+	measure 'Cases per Order Monthly CY' = BLANK()
+		formatString: 0
+		lineageTag: 3f53b451-5be0-4460-9a31-9ac6e84f04c0
+
+	measure '# Orders Monthly CY' = BLANK()
+		formatString: 0
+		lineageTag: 10e71f33-078e-4a9c-bd60-3aec3ed49891
+
+	measure 'Cases per Order Monthly Target' = 10
+		formatString: 0
+		lineageTag: c891b461-452d-44cd-acf4-44c22b5d6543
+
+	measure Target_test = ([Utilization Target] + [CFR Target] + [Revenue Target Monthly] + [GP Dead Net %] )
+		lineageTag: a2ac4b11-2b6b-450d-9e09-7d2277b0bf11
+
+	measure 'Previous Year' = ([CFR % Monthly PY] + 'Fact Utilization PY Monthly'[Utilization @Branch PY Monthly] + [Revenue PY Monthly] + [Gross Profit % Monthly])
+		lineageTag: 3acd594e-29f9-4d53-bbef-7ed76a0e7b61
+
+	measure 'CFR Ref Monthly' = IF([Ref 1] = "Target",[CFR Target],[CFR % Monthly PY])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d8a59768-1c59-4c24-bc61-89730223411b
+
+	measure 'CFR Ref Daily' = BLANK()
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 1364d521-f404-48c6-a235-08478d9e1919
+
+	column MonthID
+		dataType: string
+		lineageTag: 1d89fcde-f0c7-4767-8994-ff2ef2bee758
+		summarizeBy: none
+		sourceColumn: MonthID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: 0416a53a-243c-4de5-9f95-1beadbeb6c4a
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderedCases
+		dataType: string
+		lineageTag: 9c1689f4-cce3-4181-a6b7-0e3cd4379d70
+		summarizeBy: none
+		sourceColumn: OrderedCases
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveredCases
+		dataType: string
+		lineageTag: ece31b57-35fd-4df2-bd77-6d836f4e9eb6
+		summarizeBy: none
+		sourceColumn: DeliveredCases
+
+		annotation SummarizationSetBy = Automatic
+
+	column OntimeDeliveries
+		dataType: string
+		lineageTag: 5dedc4c6-d896-433c-97b4-4cbe470107a2
+		summarizeBy: none
+		sourceColumn: OntimeDeliveries
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deliveries
+		dataType: string
+		lineageTag: fbad0521-ee2b-4633-aa8e-fe8e3efc6877
+		summarizeBy: none
+		sourceColumn: Deliveries
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderCnt
+		dataType: string
+		lineageTag: a6314f74-ad92-47b4-a437-6b8f6f13bff4
+		summarizeBy: none
+		sourceColumn: OrderCnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerNumber
+		dataType: string
+		lineageTag: 35269dbe-1827-4713-90e3-541db1e387ad
+		summarizeBy: none
+		sourceColumn: CustomerNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact CFR Monthly CY' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"MonthID", "PlantID", "OrderedCases", "DeliveredCases", "OntimeDeliveries", "Deliveries", "OrderCnt", "CustomerNumber"}, {})
+				in
+				    Source
+

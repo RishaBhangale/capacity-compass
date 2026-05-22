@@ -1,0 +1,412 @@
+table 'Fact Inventory'
+	lineageTag: f60205c9-c7d7-45eb-94b3-49b8130ec923
+
+	measure '# Current Pallets' = BLANK()
+		formatString: #,0
+		lineageTag: d404f8be-e329-4478-9216-f56252eb58b1
+
+	measure 'Current Cases' = BLANK()
+		formatString: #,0.00
+		lineageTag: 720e0e33-5b51-4b7c-9ec0-98ef84b07d7e
+
+	measure 'Cases OOS' = BLANK()
+		lineageTag: c4ca1fc2-4f3f-466b-be20-09da4f56411f
+
+	measure 'Additional Space %' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 755c20cf-5c1c-4e52-b157-5c6479f6551c
+
+	measure 'Additional Space (Pallets)' = BLANK()
+		formatString: #,0
+		lineageTag: cf1a560b-c997-4ab4-a1ed-9faeb5e62206
+
+	measure 'DOH Pallets' = BLANK()
+		formatString: #,0.00
+		lineageTag: 3c10a083-f53b-43fc-a5fb-3f212ba593e9
+
+	measure 'DOH Cases' = BLANK()
+		lineageTag: dfa589e9-2d51-4427-acd1-18c27406c3ed
+
+	measure '# of SKU''''s' = BLANK()
+		formatString: #,0
+		lineageTag: d128165f-ec1d-4701-83ee-9e4f6880ddfb
+
+	measure 'Current Pallets' = BLANK()
+		lineageTag: 792fc753-0b52-45ef-b38d-ce3d21c5ab7f
+
+	measure 'Required Pallets' = BLANK()
+		lineageTag: 768b5a56-c974-461f-985a-fb366f9b4c7e
+
+	measure 'Required Casess' = BLANK()
+		formatString: #,0.00
+		lineageTag: 1f9e338d-53af-4518-a28a-29d4ca23e445
+
+	measure '# of Excess/Required SKU''''s' = BLANK()
+		formatString: #,0
+		lineageTag: d66d4a61-8fb7-4c8b-9185-a965e63ce764
+
+	measure 'Current Cases T' = BLANK()
+		formatString: #,0.00
+		lineageTag: d1292a80-69a9-4643-9461-48b5e0b49735
+
+	measure 'K-Max Delta cases M' = BLANK()
+		formatString: #,0.00
+		lineageTag: 76618a59-9028-4bf7-b57a-c45268881d62
+
+	measure 'K-Min Delta cases M' = BLANK()
+		formatString: #,0.00
+		lineageTag: b8d538c5-c812-49f1-b0f1-275268c7009e
+
+	measure 'Sum of Pallet Holding Capacity' = BLANK()
+		formatString: #,0.00
+		lineageTag: 1788e0d8-f15d-4798-a612-4082af7abfe4
+
+	measure 'Sum of Current Pallets' = BLANK()
+		formatString: #,0.00
+		lineageTag: ba02f230-83e7-4a34-8321-58088d459c2d
+
+	measure 'Color DOH' = BLANK()
+		lineageTag: 22998ae6-99d3-4cfe-bf4a-c613c2438831
+
+	measure Utilization = BLANK()
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 89f22d4e-6fed-4930-918f-692db140480e
+
+	measure 'Net/Ideal Pallets' = BLANK()
+		lineageTag: d3ce3e93-1d73-41b6-be92-411ec08a24a3
+
+	measure 'K-Max Delta Pallets M' = BLANK()
+		lineageTag: c8bf1490-508f-44f7-b85e-1e5dd0c70168
+
+	measure 'K-Min Delta Pallets M' = BLANK()
+		lineageTag: b7bab159-79b2-4218-a597-727acc6a2276
+
+	measure 'Delta Actual v/s Ideal' = BLANK()
+		lineageTag: 7701031f-4115-440b-ad81-184d19ce1cdb
+
+	measure 'Oppurunity to Free-up' = BLANK()
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8c6a58f3-6567-46ae-ba50-f508c2b691a0
+
+	measure 'Pallet Holding Capacity Inventory' = BLANK()
+		lineageTag: 5322ac90-7c51-4b8f-84c3-4aae25bed828
+
+	measure 'Additional Space (Pallets) M' = BLANK()
+		formatString: 0
+		lineageTag: 1f092b84-5e75-49db-a9d8-e554554c0fbb
+
+	measure '# of SKU''''s KPI' = BLANK()
+		formatString: #,0
+		lineageTag: 211be10f-3470-48d6-ba2d-6243d4afd674
+
+	measure 'Excess Pallets M' = BLANK()
+		lineageTag: 0d935cbc-6e8e-48c1-977b-aa31258f77ab
+
+	measure 'Optimal Pallets' = BLANK()
+		lineageTag: 6e847363-87f0-402b-99f4-50960f5b9198
+
+	measure 'K Min Pallets M' = BLANK()
+		lineageTag: 5acfbf92-9660-44fd-a83e-03821c851781
+
+	measure 'K Max Pallets M' = BLANK()
+		lineageTag: 99e976fe-d623-4cdf-8f1d-3b2bb739cccb
+
+	measure 'Color Optimal Pallets' = BLANK()
+		lineageTag: ad0a1559-096a-4fd7-bead-59159a679dbf
+
+	measure 'Color Current Pallets' = BLANK()
+		lineageTag: ab2793f8-768f-4994-9c77-d10752f99c5c
+
+	measure 'Delta Optimum Pallets' = BLANK()
+		lineageTag: aa419082-0e2b-4e3d-8829-bdf97e33cf66
+
+	measure 'DOH Cases 2' = BLANK()
+		lineageTag: e8806846-7923-4a8f-a41e-e503863633c5
+
+	measure 'Color DOH P' = BLANK()
+		lineageTag: 74fcc231-2d37-4290-aee0-a02f4c504fc8
+
+	measure '# SKUs Inventory' = BLANK()
+		formatString: 0
+		lineageTag: 8fd62e0e-a1a6-4970-9d99-7da2e6c4d61c
+
+	measure '# SKUs Inventory KPI' = BLANK()
+		formatString: #,0.00
+		lineageTag: 3aad083f-8cc4-475f-9457-5137c437ca91
+
+	measure 'Valuted Stock Sum' = SUM('Fact Inventory Period'[ValuatedUnrestrictedUseStock])
+		lineageTag: c081c704-5a2b-449f-a5e5-04e23a55074f
+
+	column 'Valuated Unrestricted Use Stock'
+		dataType: string
+		lineageTag: 59399497-2ea9-441f-a309-25ef426bac6f
+		summarizeBy: none
+		sourceColumn: Valuated Unrestricted Use Stock
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stock In Quality Inspection'
+		dataType: string
+		lineageTag: 898a8eff-a31e-4ca7-824e-6e554d90ea3b
+		summarizeBy: none
+		sourceColumn: Stock In Quality Inspection
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Stock Of All Restricted Batches'
+		dataType: string
+		lineageTag: 93740a9e-8d99-46d5-900d-6f4c1f3bfcb7
+		summarizeBy: none
+		sourceColumn: Total Stock Of All Restricted Batches
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Blocked Stock'
+		dataType: string
+		lineageTag: 834f9b4c-f09f-4850-a59b-ce8dcb38623a
+		summarizeBy: none
+		sourceColumn: Blocked Stock
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Blocked Stock Returns'
+		dataType: string
+		lineageTag: 13c9b3d4-d11d-48d7-9b18-5a9713bd3ba7
+		summarizeBy: none
+		sourceColumn: Blocked Stock Returns
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrentInventory = [Blocked Stock] + [Blocked Stock Returns] + [Stock In Quality Inspection] + [Total Stock Of All Restricted Batches] + [Valuated Unrestricted Use Stock]
+		dataType: string
+		formatString: #,0
+		lineageTag: e19379e4-8be6-4fb5-9bb4-825444352aa8
+
+	column 'Pallet Holding Capacity'
+		dataType: string
+		lineageTag: f6217847-4507-4577-8bff-b93551801fe4
+		summarizeBy: none
+		sourceColumn: Pallet Holding Capacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pallet Conversion Factor'
+		dataType: string
+		lineageTag: c268fccf-43a2-4d08-8e3b-6e6858860187
+		summarizeBy: none
+		sourceColumn: Pallet Conversion Factor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Inventory Cases'
+		dataType: string
+		lineageTag: 69248b4f-7e78-44d9-af1b-c17d076e1586
+		summarizeBy: none
+		sourceColumn: Total Inventory Cases
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrentPalletsX
+		dataType: string
+		lineageTag: 676ac308-1810-4c5e-b52d-13f67c3fc00f
+		summarizeBy: none
+		sourceColumn: CurrentPalletsX
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrentPallets
+		dataType: string
+		lineageTag: 6e29df48-c81a-4762-accc-0daf31b9afc6
+		summarizeBy: none
+		sourceColumn: CurrentPallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column KMinX
+		dataType: string
+		lineageTag: 02f1e1c2-ba0b-40f1-9489-b096845983de
+		summarizeBy: none
+		sourceColumn: KMinX
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'K-Min Pallets'
+		dataType: string
+		lineageTag: 0b601fd9-e012-40ea-8de9-40deeca619b0
+		summarizeBy: none
+		sourceColumn: K-Min Pallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column KMaxX
+		dataType: string
+		lineageTag: 2ad6a2e3-6023-4022-8ce6-93695fbea4d4
+		summarizeBy: none
+		sourceColumn: KMaxX
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'K-Max Pallets'
+		dataType: string
+		lineageTag: 536ed900-2e74-4fe3-a89c-81182dd51eed
+		summarizeBy: none
+		sourceColumn: K-Max Pallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'K-Min Cases'
+		dataType: string
+		lineageTag: 783c258b-941d-4bea-90a3-89d8654240f6
+		summarizeBy: none
+		sourceColumn: K-Min Cases
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'K-Max Cases'
+		dataType: string
+		lineageTag: ce028ad3-3b26-4eb5-b9b8-e63641cf4e9c
+		summarizeBy: none
+		sourceColumn: K-Max Cases
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory Status Cases'
+		dataType: string
+		lineageTag: b2409dac-feda-42a4-bfd2-87bdbd79b585
+		sourceColumn: Inventory Status Cases
+
+	column 'Inventory Status Pallets'
+		dataType: string
+		lineageTag: 41b6b671-6003-49d5-b61f-b99411b19c1c
+		sourceColumn: Inventory Status Pallets
+
+	column 'K-Min Delta Cases'
+		dataType: string
+		lineageTag: 15df2090-9cb9-4fb1-9c9e-2cd1615e852d
+		summarizeBy: none
+		sourceColumn: K-Min Delta Cases
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'K-Max Delta Cases'
+		dataType: string
+		lineageTag: 746245bf-f151-4a97-8d5f-e8ceb8637523
+		summarizeBy: none
+		sourceColumn: K-Max Delta Cases
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'K-Min Delta Pallets'
+		dataType: string
+		lineageTag: 1e2c565f-b43c-408c-83a4-393be6715167
+		summarizeBy: none
+		sourceColumn: K-Min Delta Pallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'K-Max Delta Pallets'
+		dataType: string
+		lineageTag: c0fbc310-66df-479a-9b0b-ea8c1e56fa5a
+		summarizeBy: none
+		sourceColumn: K-Max Delta Pallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'OOS Pallets' = IF('Fact Inventory'[CurrentPallets] < 4,"AOOS","In Stock")
+		dataType: string
+		lineageTag: f5c03b5d-6ace-4ddf-90d9-bfc25639b506
+
+	column MaterialDeleted
+		dataType: string
+		lineageTag: 9f553bff-156b-4470-bb02-a6899a7ae091
+		summarizeBy: none
+		sourceColumn: MaterialDeleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Excess Pallets'
+		dataType: string
+		lineageTag: 812b8210-83e4-4486-a1d0-4285e6c1d009
+		sourceColumn: Excess Pallets
+
+	column 'Excess/Required Pallets'
+		dataType: string
+		lineageTag: 1b968133-f980-4ac8-bf36-97e870ab543f
+		sourceColumn: Excess/Required Pallets
+
+	column 'Excess Cases' = IF('Fact Inventory'[Currentinventory] < 'Fact Inventory'[K-Max Cases],0, 'Fact Inventory'[Currentinventory] - 'Fact Inventory'[K-Max Cases])
+		dataType: string
+		lineageTag: 05187732-9c57-4154-bf9a-8cec2b8d6a2d
+
+	column 'Excess/Required Cases' = IF('Fact Inventory'[Excess Cases] = 0, "Required", "Excess")
+		dataType: string
+		lineageTag: 0b1cc3fc-24e5-419d-bde3-e79c721ccfca
+
+	column 'Gap to K-Min Cases' = 'Fact Inventory'[K-Min Delta Cases]
+		dataType: string
+		lineageTag: fb786870-00d7-486c-aef6-75c725696d6a
+
+	column 'Sum of Pallets (K-Min/K-Max Pallets)'
+		dataType: string
+		lineageTag: 4e89ff6d-ba93-4bf2-a3fc-ee6b719a3cb6
+		sourceColumn: Sum of Pallets (K-Min/K-Max Pallets)
+
+	column 'Optimal Pallets C'
+		dataType: string
+		lineageTag: e41e229c-4be7-4f0c-9dbb-6d2a305c9903
+		sourceColumn: Optimal Pallets C
+
+	column PlantID
+		dataType: string
+		lineageTag: 4fb36927-3ed6-4cb3-84e8-8235a4d83a29
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: f813b845-953a-48c4-ac50-fa020f9b8e18
+		sourceColumn: MaterialID
+
+	column MustCarry
+		dataType: string
+		lineageTag: 97e041ff-337f-4390-bb85-65bcc6a05833
+		sourceColumn: MustCarry
+
+	column MaterialStatus
+		dataType: string
+		lineageTag: 3ba654ec-ee7b-451e-b99b-0ebb2a2b25a1
+		sourceColumn: MaterialStatus
+
+	column MinDate
+		dataType: string
+		lineageTag: 9fb0d03a-e277-43a1-921f-dbd50695825e
+		summarizeBy: none
+		sourceColumn: MinDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column KMinBreachAge
+		dataType: string
+		lineageTag: 5254754e-447a-4911-8a10-c42a242d9437
+		sourceColumn: KMinBreachAge
+
+	column KMaxBreachAge
+		dataType: string
+		lineageTag: 0ab97574-48ce-4808-899f-2f25e84b3d67
+		sourceColumn: KMaxBreachAge
+
+	column LimitBreachAge
+		dataType: string
+		lineageTag: df52b0e7-402d-475e-934e-c80c03804f4f
+		sourceColumn: LimitBreachAge
+
+	partition 'Fact Inventory' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"Valuated Unrestricted Use Stock", "Stock In Quality Inspection", "Total Stock Of All Restricted Batches", "Blocked Stock", "Blocked Stock Returns", "Pallet Holding Capacity", "Pallet Conversion Factor", "Total Inventory Cases", "CurrentPalletsX", "CurrentPallets", "KMinX", "K-Min Pallets", "KMaxX", "K-Max Pallets", "K-Min Cases", "K-Max Cases", "Inventory Status Cases", "Inventory Status Pallets", "K-Min Delta Cases", "K-Max Delta Cases", "K-Min Delta Pallets", "K-Max Delta Pallets", "MaterialDeleted", "Excess Pallets", "Excess/Required Pallets", "Sum of Pallets (K-Min/K-Max Pallets)", "Optimal Pallets C", "PlantID", "MaterialID", "MustCarry", "MaterialStatus", "MinDate", "KMinBreachAge", "KMaxBreachAge", "LimitBreachAge"}, {})
+				in
+				    Source
+

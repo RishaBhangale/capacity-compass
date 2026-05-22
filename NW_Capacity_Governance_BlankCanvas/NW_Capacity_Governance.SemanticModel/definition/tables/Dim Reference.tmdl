@@ -1,0 +1,42 @@
+table 'Dim Reference'
+	lineageTag: 0562f37e-6405-4558-8d7b-a92d6cc986d9
+
+	measure 'Ref 1' = MAX('Dim Reference'[Reference Type])
+		lineageTag: 02c69b6d-9cb9-4bf9-99fb-7d843c0e2958
+
+	column 'Reference Type'
+		dataType: string
+		lineageTag: 0dbf3e70-f074-4917-9c69-c132c0a49e62
+		sourceColumn: Reference Type
+
+	column Sort
+		dataType: string
+		lineageTag: c12697b4-1143-4767-bc30-f6ed28ea3a75
+		summarizeBy: none
+		sourceColumn: Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comparison
+		dataType: string
+		lineageTag: d5f1c659-822e-4c7c-b8eb-3921db969d5b
+		sourceColumn: Comparison
+
+	column 'Comparison KPI'
+		dataType: string
+		lineageTag: 7ef2b4fd-b74f-44fd-b3bc-cc6cbe19faf2
+		sourceColumn: Comparison KPI
+
+	column 'Comparison 2'
+		dataType: string
+		lineageTag: e4d24ce6-d289-4e24-bbd0-401e2b0ff234
+		sourceColumn: Comparison 2
+
+	partition 'Dim Reference' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"Reference Type", "Sort", "Comparison", "Comparison KPI", "Comparison 2"}, {})
+				in
+				    Source
+

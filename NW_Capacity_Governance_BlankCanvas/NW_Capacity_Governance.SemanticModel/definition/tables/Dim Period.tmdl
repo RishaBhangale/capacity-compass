@@ -1,0 +1,58 @@
+table 'Dim Period'
+	lineageTag: eb1788da-da5c-43f1-a95f-3c0b268c8342
+
+	measure 'Selected Period' = BLANK()
+		formatString: 0
+		lineageTag: 96bffd12-bd72-4d29-ab0d-e51f7f6100e0
+
+	measure 'Max from date' = MAX('Dim Period'[FromDateID])
+		lineageTag: 85872b7b-407d-4dcb-840f-195b552efbd3
+
+	measure 'Max to date' = MAX('Dim Period'[ToDateID])
+		lineageTag: e48acddc-2cd4-4900-80ea-d5e06b43f3e7
+
+	column 'Time Period'
+		dataType: string
+		lineageTag: 5f88e26e-4878-4c61-8c23-17687b86180c
+		sourceColumn: Time Period
+
+	column Ordinal
+		dataType: string
+		lineageTag: cde0a8fd-0841-4efa-8330-35b6fd998643
+		summarizeBy: none
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column FromDateID
+		dataType: string
+		lineageTag: d8e3e2e3-7a85-4a6d-81ad-2bfadfff1fa0
+		summarizeBy: none
+		sourceColumn: FromDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ToDateID
+		dataType: string
+		lineageTag: 859b0647-0562-453a-ae2a-34622b872ec4
+		summarizeBy: none
+		sourceColumn: ToDateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Key
+		dataType: string
+		lineageTag: aa88c04f-99e2-4c96-99ec-ed2e53db07af
+		summarizeBy: none
+		sourceColumn: Key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Period' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"Time Period", "Ordinal", "FromDateID", "ToDateID", "Key"}, {})
+				in
+				    Source
+

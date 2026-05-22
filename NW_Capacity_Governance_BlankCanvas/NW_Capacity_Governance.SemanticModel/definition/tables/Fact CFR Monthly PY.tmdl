@@ -1,0 +1,78 @@
+table 'Fact CFR Monthly PY'
+	lineageTag: ecf73fc1-5a0b-4181-ab65-f8380384da19
+
+	measure 'CFR % Monthly PY' = BLANK()
+		lineageTag: 686bb676-c4bc-42d6-961f-597df3708926
+
+	column MonthID
+		dataType: string
+		lineageTag: 59111178-e2c0-4345-aeef-06ec5f603e5f
+		summarizeBy: none
+		sourceColumn: MonthID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: 918fd5db-ff3e-4bbf-8284-6b1f214c6b9c
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerNumber
+		dataType: string
+		lineageTag: a81d00c4-6c98-4e8e-b576-3c94cecfc4ce
+		summarizeBy: none
+		sourceColumn: CustomerNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderCnt
+		dataType: string
+		lineageTag: f3ad214e-37b1-4932-bceb-291fb95b4933
+		summarizeBy: none
+		sourceColumn: OrderCnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderedCases
+		dataType: string
+		lineageTag: 2f7f0849-9626-47b2-a4e8-282517c9bbee
+		summarizeBy: none
+		sourceColumn: OrderedCases
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveredCases
+		dataType: string
+		lineageTag: 8d2e6f79-ad6d-4f91-884c-b9edddd3c90f
+		summarizeBy: none
+		sourceColumn: DeliveredCases
+
+		annotation SummarizationSetBy = Automatic
+
+	column OntimeDeliveries
+		dataType: string
+		lineageTag: e94971b1-fbee-4c6e-a6a8-81b497900227
+		summarizeBy: none
+		sourceColumn: OntimeDeliveries
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deliveries
+		dataType: string
+		lineageTag: 85e89779-f1e1-412e-9216-3549de3f1e11
+		summarizeBy: none
+		sourceColumn: Deliveries
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact CFR Monthly PY' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"MonthID", "PlantID", "CustomerNumber", "OrderCnt", "OrderedCases", "DeliveredCases", "OntimeDeliveries", "Deliveries"}, {})
+				in
+				    Source
+

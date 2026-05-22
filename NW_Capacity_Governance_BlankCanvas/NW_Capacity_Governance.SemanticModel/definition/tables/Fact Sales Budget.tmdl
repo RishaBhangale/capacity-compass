@@ -1,0 +1,103 @@
+table 'Fact Sales Budget'
+	lineageTag: 498f5700-2232-499e-812c-c86661114632
+
+	measure 'GP Per Pallet Target' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: a23ae28b-5ada-48d6-8a15-b35f34941b5b
+
+	measure 'GP Per Case Target' = BLANK()
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		lineageTag: 2e9f210c-5a89-40f1-bbf4-ed7d4c935f32
+
+	measure 'Sales Cases Volume Target' = BLANK()
+		formatString: #,0.00
+		lineageTag: b0b4efb4-56cd-463c-af06-796a6ed0bbf7
+
+	measure 'GP Dead Net Budget M' = BLANK()
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 4fd9585b-85d4-4ae7-b426-8a2c79909261
+
+	measure 'Revenue Dead Net Budget M' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 0fcf21e7-73e0-45f9-aa88-0f8eb07750cd
+
+	measure 'GP Per Pallet Target X' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 900b3dab-aa29-48e0-bcd0-6aa9e3a8c611
+
+	measure 'GP Per Pallet Target X KPI' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: f88d2aee-c248-4697-a3eb-74baed2e6390
+
+	measure 'Measure 3' = SUM('Fact Sales Budget'[Sales Pallets Budget X])
+		lineageTag: 65c4284a-320b-4314-93e3-63dca9bf5e79
+
+	column PlantID
+		dataType: string
+		lineageTag: a9072352-fa45-454d-bc6b-1ffcb6e9f690
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: f1c40f2d-5905-4927-b2c4-43f288e337ce
+		sourceColumn: MaterialID
+
+	column SalesCasesBudget
+		dataType: string
+		lineageTag: 15f28901-343e-41c0-8907-389dce07d6b3
+		summarizeBy: none
+		sourceColumn: SalesCasesBudget
+
+		annotation SummarizationSetBy = Automatic
+
+	column RevenueDeadNetBudget
+		dataType: string
+		lineageTag: e6dddb49-4c27-4a9d-b0bd-4a86c52db54a
+		summarizeBy: none
+		sourceColumn: RevenueDeadNetBudget
+
+		annotation SummarizationSetBy = Automatic
+
+	column GPDeadNetBudget
+		dataType: string
+		lineageTag: 8891864b-3402-46a5-8a51-8ebb195e6d36
+		summarizeBy: none
+		sourceColumn: GPDeadNetBudget
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesPalletsBudget
+		dataType: string
+		lineageTag: f3478391-fca3-44e2-8635-ff7ecf6f81b1
+		summarizeBy: none
+		sourceColumn: SalesPalletsBudget
+
+		annotation SummarizationSetBy = Automatic
+
+	column PeriodID
+		dataType: string
+		lineageTag: 16cc4148-9de8-421d-85db-7d18fccb570d
+		summarizeBy: none
+		sourceColumn: PeriodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Pallets Budget X'
+		dataType: string
+		lineageTag: ef4df0d9-072e-4918-a904-1a8e07316ee2
+		summarizeBy: none
+		sourceColumn: Sales Pallets Budget X
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Sales Budget' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PlantID", "MaterialID", "SalesCasesBudget", "RevenueDeadNetBudget", "GPDeadNetBudget", "SalesPalletsBudget", "PeriodID", "Sales Pallets Budget X"}, {})
+				in
+				    Source
+

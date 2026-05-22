@@ -1,0 +1,142 @@
+table 'Fact Sales PY+Budget Daily'
+	lineageTag: 8f27d9e8-2b37-464e-af53-1878ebe178d5
+
+	measure 'Gross Profit % Att. Daily' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: e7ba0213-b618-45af-8812-235e19547ff5
+
+	measure 'Revenue % Att. Ref Daily' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 542a33d9-b61f-434d-a4dc-22ea54ddd1f7
+
+	measure 'Revenue % PY Daily' = BLANK()
+		lineageTag: 8d55b8f2-3a2e-4302-80bc-3495b94a575d
+
+	measure 'Revenue % Daily' = BLANK()
+		lineageTag: d167708a-8728-401b-a332-2e8f64e6bad7
+
+	measure 'Revenue Gap Ref Daily' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: e2bfdf49-4314-46a4-a05f-406564ca294a
+
+	measure 'Gross Profit % Daily' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: c1662668-bb31-4cfc-8c0e-fa428aca2330
+
+	measure 'Gross Profit % PY Daily' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: ac4fa720-c536-46f3-8a5e-86f903a507fc
+
+	measure 'Gross Profit Gap Ref Daily' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 1623440b-95e1-4e40-b589-230cfe399941
+
+	measure 'Volume % Daily' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 879a6d6e-c76e-49e8-bc63-dd1f50a48c24
+
+	measure 'Volume % PY Daily' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 2cf7ffbd-71f4-4cc4-84ee-4a902d03bf63
+
+	measure 'Volume % Att. Daily' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 15c65b87-1d91-45f5-bdb9-0ffedd7b400f
+
+	measure 'Volume Gap Ref Daily' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: fad0b2d9-e700-474c-81b9-15943448b84b
+
+	column PeriodID
+		dataType: string
+		lineageTag: 59afc759-02e2-4083-99ff-5efbc9a7782c
+		summarizeBy: none
+		sourceColumn: PeriodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: 14d9dc8e-1dd6-4ac8-b5b5-d2acdbf42217
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: dfe0755c-cf26-4d3b-9597-470d90406427
+		sourceColumn: MaterialID
+
+	column SalesCasesPY
+		dataType: string
+		lineageTag: 7fef4916-7df6-4ca8-acf1-28daf992dd3e
+		summarizeBy: none
+		sourceColumn: SalesCasesPY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesPalletsXPY
+		dataType: string
+		lineageTag: be9a8011-0886-4335-a527-1e101cf531ab
+		summarizeBy: none
+		sourceColumn: SalesPalletsXPY
+
+		annotation SummarizationSetBy = Automatic
+
+	column RevenueDeadNetPY
+		dataType: string
+		lineageTag: 28f069ad-661c-472a-89e3-00eaba7d0404
+		summarizeBy: none
+		sourceColumn: RevenueDeadNetPY
+
+		annotation SummarizationSetBy = Automatic
+
+	column GPDeadNetPY
+		dataType: string
+		lineageTag: fd68cf9d-33d5-4e83-9580-1d3b0f8d5b7e
+		summarizeBy: none
+		sourceColumn: GPDeadNetPY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesCasesBudget
+		dataType: string
+		lineageTag: 713e1701-312c-41f4-9a69-a84139371892
+		summarizeBy: none
+		sourceColumn: SalesCasesBudget
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesPalletsBudgetX
+		dataType: string
+		lineageTag: b594a440-b2cc-42ae-846e-b4c56c641c66
+		summarizeBy: none
+		sourceColumn: SalesPalletsBudgetX
+
+		annotation SummarizationSetBy = Automatic
+
+	column RevenueDeadNetBudget
+		dataType: string
+		lineageTag: d3d2c42b-f193-4b48-8914-4cef71c65ae6
+		summarizeBy: none
+		sourceColumn: RevenueDeadNetBudget
+
+		annotation SummarizationSetBy = Automatic
+
+	column GPDeadNetBudget
+		dataType: string
+		lineageTag: 0bfcd251-a985-46b1-9adc-bfef4a7a55d7
+		summarizeBy: none
+		sourceColumn: GPDeadNetBudget
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Sales PY+Budget Daily' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PeriodID", "PlantID", "MaterialID", "SalesCasesPY", "SalesPalletsXPY", "RevenueDeadNetPY", "GPDeadNetPY", "SalesCasesBudget", "SalesPalletsBudgetX", "RevenueDeadNetBudget", "GPDeadNetBudget"}, {})
+				in
+				    Source
+

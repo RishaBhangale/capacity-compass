@@ -1,0 +1,99 @@
+table 'Dim Branch'
+	lineageTag: 9d1037f0-1432-4635-bc4a-5651b27f37c2
+
+	measure 'Branch Count' = BLANK()
+		formatString: 0
+		lineageTag: 3386911e-d196-4bf5-9fb8-0a86c6d0cd15
+
+	column PlantID
+		dataType: string
+		lineageTag: ede30f88-226b-4f33-b4ac-4a0164a49a4d
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SO ID'
+		dataType: string
+		lineageTag: e3a8e65e-8ab4-46a2-8c0e-c7c19504ad6b
+		summarizeBy: none
+		sourceColumn: SO ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: a86ff9ea-3750-48b5-befc-35838c255e21
+		sourceColumn: Region
+
+	column CompanyCode
+		dataType: string
+		lineageTag: 19344b42-a85b-47a3-be73-d851d8607335
+		summarizeBy: none
+		sourceColumn: CompanyCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Postal Code'
+		dataType: string
+		lineageTag: 0e81c7e4-0a81-4bb8-b4a9-089c7d049bc5
+		sourceColumn: Postal Code
+
+	column City
+		dataType: string
+		lineageTag: 8e82799d-7174-4cfa-a744-854ce28dd99c
+		sourceColumn: City
+
+	column State
+		dataType: string
+		lineageTag: 0fcd9e83-fa79-4675-be6c-45aed12f8950
+		sourceColumn: State
+
+	column Country
+		dataType: string
+		lineageTag: da9ef31d-96cc-431f-bb5b-8633f66006f2
+		sourceColumn: Country
+
+	column SalesOffice
+		dataType: string
+		lineageTag: 6497ca17-1932-4a74-8d00-92a6dc47b8d2
+		sourceColumn: SalesOffice
+
+	column 'Postal Code - 1'
+		dataType: string
+		lineageTag: 32166be1-6b77-4699-bb6f-ed010d302356
+		sourceColumn: Postal Code - 1
+
+	column 'Postal Code - 2'
+		dataType: string
+		lineageTag: 81dcb588-d9b6-4334-bcfa-0fa6b7a15ca8
+		sourceColumn: Postal Code - 2
+
+	column Branch
+		dataType: string
+		lineageTag: 8392eaac-459b-4f0b-b5f1-ef636a42d58f
+		sourceColumn: Branch
+
+	column District
+		dataType: string
+		lineageTag: b9ed9913-22c4-4cc0-82aa-39a0a39cc101
+		sourceColumn: District
+
+	column BusinessDivision
+		dataType: string
+		lineageTag: 89d6ad73-861f-471c-a6d1-d383aa038322
+		sourceColumn: BusinessDivision
+
+	column BusinessUnit
+		dataType: string
+		lineageTag: 87f74cff-7d72-452a-a16f-f0d0f64c0021
+		sourceColumn: BusinessUnit
+
+	partition 'Dim Branch' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PlantID", "SO ID", "Region", "CompanyCode", "Postal Code", "City", "State", "Country", "SalesOffice", "Postal Code - 1", "Postal Code - 2", "Branch", "District", "BusinessDivision", "BusinessUnit"}, {})
+				in
+				    Source
+

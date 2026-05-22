@@ -1,0 +1,42 @@
+table 'Dim CFR Levels'
+	lineageTag: 003d977b-75dc-475f-ace2-92955d2e1787
+
+	column 'CFR Level'
+		dataType: string
+		lineageTag: 7545cd79-c53b-48d2-bf94-a210b0852cd9
+		sourceColumn: CFR Level
+
+	column Days
+		dataType: string
+		lineageTag: d51265c6-8f9c-482a-95e3-eaf2490cb1a4
+		sourceColumn: Days
+
+	column Limit
+		dataType: string
+		lineageTag: 6c4d36a0-8f0d-4bf6-99f6-d00967e97c1c
+		summarizeBy: none
+		sourceColumn: Limit
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: string
+		lineageTag: 207f6aa0-b6b6-4e58-9c9a-ff2d028284be
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legend
+		dataType: string
+		lineageTag: 81498470-6b24-4132-8fa4-25106053c9af
+		sourceColumn: Legend
+
+	partition 'Dim CFR Levels' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"CFR Level", "Days", "Limit", "Index", "Legend"}, {})
+				in
+				    Source
+

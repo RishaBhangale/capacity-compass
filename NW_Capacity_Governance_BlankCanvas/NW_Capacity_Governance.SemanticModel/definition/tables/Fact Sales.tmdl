@@ -1,0 +1,270 @@
+table 'Fact Sales'
+	lineageTag: 2b0feabd-6fb0-45a1-b824-b29338eee711
+
+	measure 'GP Per Pallet' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 4e296c8b-72fa-464a-a385-cb04d1fe89d4
+
+	measure 'GP Per Case' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 7e4334fa-9498-48e7-8927-d4a9d242d597
+
+	measure 'Average GP per Pallet' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 839a3bc8-5c9a-46fe-8f00-195828090ec2
+
+	measure 'Average Volume' = BLANK()
+		formatString: #,0.00
+		lineageTag: 66095e5b-2589-4e77-b258-133df01af585
+
+	measure 'GP Per Pallet Category' = BLANK()
+		lineageTag: 75df8081-a9b4-4861-936e-32e3c704ea07
+
+	measure 'Volume Category' = BLANK()
+		lineageTag: 1f6be1d3-af64-4455-ae2d-4ce946a91a36
+
+	measure 'Color GP Per Case' = BLANK()
+		lineageTag: 69749d98-5108-4257-bf7e-891219bd5078
+
+	measure 'Sales Cases Volume' = BLANK()
+		formatString: #,0.00
+		lineageTag: fd5215c4-07b2-4db5-8f32-45a115ebbc8c
+
+	measure 'Color Volume' = BLANK()
+		lineageTag: 5272eab2-3ba4-4cd8-af63-d5a04489b4e9
+
+	measure 'GP Dead Net M' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 40ba118c-5752-4bff-98fe-dfd6d16d4451
+
+	measure 'Color GP Per Net' = BLANK()
+		lineageTag: 2be1d2bc-8da0-45d7-90cf-216e846f9098
+
+	measure 'Revenue Dead Net M' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 5630ee13-483c-4f58-8752-dbd54db0ab4f
+
+	measure 'Sales Cases %' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 3ed3371d-4ed4-499a-9281-28529e9e09f7
+
+	measure 'Revenue %' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 5378484f-2c80-4327-8368-791f4aa4b6a8
+
+	measure 'GP Dead Net %' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 7d84cff9-a1a9-406f-8dae-118c20ddfaa2
+
+	measure 'GP Per Pallet %' = BLANK()
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5e69d43c-36a3-4da5-833e-d79e5008f0c1
+
+	measure 'Gross Profit' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d534e2a1-bd9b-4e34-8a88-1eb8ca433ec5
+
+	measure 'Color Volume KPI' = BLANK()
+		lineageTag: 1f46d4e3-9cca-4a1f-a29e-ae157176363f
+
+	measure 'Color Revenue KPI' = BLANK()
+		lineageTag: 464abaa7-fd96-4c2d-9ac6-1d5874ddf832
+
+	measure 'Color GP Per Pallet KPI' = BLANK()
+		lineageTag: d5370b98-2ac9-4dac-a0e5-923b651c3990
+
+	measure 'Color GP Per Net KPI' = BLANK()
+		lineageTag: 5bbcb4bf-3f33-4334-a24e-0d4d1a32c489
+
+	measure 'GP Per Pallet X' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 93fc6162-66cf-4cda-a343-af80bc4d4125
+
+	measure 'GP Per Pallet X KPI' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: c0b34d41-fc1f-452e-9f21-26d6ca402347
+
+	measure 'Color Revenue Abs' = BLANK()
+		lineageTag: 870ac482-943e-41b2-ad52-3dba0a24b53c
+
+	measure 'Color Volume Abs' = BLANK()
+		lineageTag: 21fc7ce4-f904-43c1-a1c6-721b7151ce3b
+
+	measure 'Color GP Per Pallet Abs' = BLANK()
+		lineageTag: 91395792-8f59-4560-b3c5-c9428c808bb6
+
+	measure 'Color Gross Profit Abs' = BLANK()
+		lineageTag: c118557a-b3ed-4a07-b58a-76026bec0256
+
+	measure 'Color Volume Abs Icon' = BLANK()
+		lineageTag: f6c5901a-303a-4456-95d6-ad99764f763c
+
+	measure 'Color Revenue Abs Icon' = BLANK()
+		lineageTag: 7c7b9586-ff9e-4004-ac5a-e8d37ff0a4cc
+
+	measure 'Color GP Per Pallet Abs Icon' = BLANK()
+		lineageTag: cf67a085-27c8-4154-a3ee-d88be9ca608c
+
+	measure 'Color Gross Profit Abs Icon' = BLANK()
+		lineageTag: de97d637-2c1f-406d-b796-6f600f996066
+
+	measure 'Color Revenue Monthly Abs' = BLANK()
+		lineageTag: 041b0064-1fa2-4225-81f7-18b0948f12b6
+
+	measure 'Color GP Per Pallet Monthly Abs' = BLANK()
+		lineageTag: 47e2f203-17a4-4c60-8bfe-14b6da4bf4e8
+
+	measure 'Color Volume Monthly Abs' = BLANK()
+		lineageTag: aaa65876-5a1b-4214-89ea-61dddde1e4ed
+
+	measure 'Sales Cases Volume KPI' = BLANK()
+		lineageTag: e3f479cf-7175-46a2-b0da-9f7c8e5ad244
+
+	measure 'GP Dead Net M KPI' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 39e31841-5164-4ccb-a585-1b68dacef644
+
+	measure 'Revenue Dead Net M KPI' = BLANK()
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 90cba9d6-d02b-44ce-8538-278087df99a6
+
+	column 'Sales Cases'
+		dataType: string
+		lineageTag: c8649e5e-e4b4-4091-972e-baf2423db829
+		summarizeBy: none
+		sourceColumn: Sales Cases
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Revenue Dead Net'
+		dataType: string
+		lineageTag: 1e0eeb57-a56b-4f5d-b9fa-3025f21defb7
+		summarizeBy: none
+		sourceColumn: Revenue Dead Net
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GP Dead Net'
+		dataType: string
+		lineageTag: b9826cb9-2d2c-4d47-800d-53f0ac641ff1
+		summarizeBy: none
+		sourceColumn: GP Dead Net
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Pallets'
+		dataType: string
+		lineageTag: b2a3fdb5-693c-4718-bb21-07b28b7f3571
+		summarizeBy: none
+		sourceColumn: Sales Pallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SKU Rationalization'
+		dataType: string
+		lineageTag: a361f35c-1587-4300-becb-ca0d5b296d87
+		sourceColumn: SKU Rationalization
+
+	column 'Top 30th Percentile Column'
+		dataType: string
+		lineageTag: fa0ca608-a3c1-44e5-92e2-46ac470be16e
+		sourceColumn: Top 30th Percentile Column
+
+	column 'Bottom 20th Percentile C'
+		dataType: string
+		lineageTag: b9390e43-ce20-42de-a770-c04463dc0d9e
+		sourceColumn: Bottom 20th Percentile C
+
+	column 'Avrg GP Per Pallet_C'
+		dataType: string
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 6a7e9fc5-d97d-43e5-9760-f528caf15bad
+		sourceColumn: Avrg GP Per Pallet_C
+
+	column 'Avrg Volume_C'
+		dataType: string
+		formatString: #,0.00
+		lineageTag: 05a22eea-2776-4709-94fc-b7a9683c9420
+		sourceColumn: Avrg Volume_C
+
+	column 'Volume Category_C'
+		dataType: string
+		lineageTag: b1e811fc-fa69-474c-91e4-566840edad0f
+		sourceColumn: Volume Category_C
+
+	column 'GP Per Pallet Category_C'
+		dataType: string
+		lineageTag: 98ce76fe-ec4d-4d52-b1f4-ff6adb444ab3
+		sourceColumn: GP Per Pallet Category_C
+
+	column 'Cases Volume %'
+		dataType: string
+		formatString: #,0.00
+		lineageTag: 223e38b4-5a5d-473c-a148-84d2cbd608c9
+		sourceColumn: Cases Volume %
+
+	column COGS
+		dataType: string
+		lineageTag: 93bdd5aa-206a-4545-8748-15ce8bb3cc3b
+		summarizeBy: none
+		sourceColumn: COGS
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: 19e0bb05-ae7e-48d1-8993-b73781e09761
+		sourceColumn: MaterialID
+
+	column 'GP Per Pallet C'
+		dataType: string
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: bb3a9e15-5396-4f4f-b29d-b932b6657c42
+		sourceColumn: GP Per Pallet C
+
+	column 'GP Per Case C'
+		dataType: string
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: a02af86f-7cdd-4e5c-abfa-ff508efe7a3a
+		sourceColumn: GP Per Case C
+
+	column PeriodID
+		dataType: string
+		lineageTag: baba6eae-0ed6-4032-8a66-d6a88680b4b0
+		summarizeBy: none
+		sourceColumn: PeriodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: f0582393-4d33-44bb-b1f7-30e1a3ac269a
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesPalletsX
+		dataType: string
+		lineageTag: 4e756b9f-5159-44a0-8b59-ed0192156fbe
+		summarizeBy: none
+		sourceColumn: SalesPalletsX
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerNumber
+		dataType: string
+		lineageTag: 10075b55-164d-4164-94d2-3af6ecef3e0a
+		summarizeBy: none
+		sourceColumn: CustomerNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Sales' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"Sales Cases", "Revenue Dead Net", "GP Dead Net", "Sales Pallets", "SKU Rationalization", "Top 30th Percentile Column", "Bottom 20th Percentile C", "Avrg GP Per Pallet_C", "Avrg Volume_C", "Volume Category_C", "GP Per Pallet Category_C", "Cases Volume %", "COGS", "MaterialID", "GP Per Pallet C", "GP Per Case C", "PeriodID", "PlantID", "SalesPalletsX", "CustomerNumber"}, {})
+				in
+				    Source
+

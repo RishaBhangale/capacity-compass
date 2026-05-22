@@ -1,0 +1,42 @@
+table 'Dim SKU Curr Status'
+	lineageTag: b73eb021-7728-4e7b-b3e4-c7cab65d15cf
+
+	column PlantID
+		dataType: string
+		lineageTag: 9d39533a-6b62-48d7-875d-0bd15e91d1cc
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: a682bf81-5cc2-48ba-98b5-6f3ac1a58fca
+		sourceColumn: MaterialID
+
+	column MaterialStatus
+		dataType: string
+		lineageTag: 79e895af-d498-41b1-a3a9-f217ec79a3da
+		sourceColumn: MaterialStatus
+
+	column MustCarry
+		dataType: string
+		lineageTag: 38f3f0e4-b8d3-4cb8-98ca-fb925e265688
+		sourceColumn: MustCarry
+
+	column IsInnovation
+		dataType: string
+		lineageTag: 4b462a9e-7ba9-42c4-8e44-a5744681893a
+		summarizeBy: none
+		sourceColumn: IsInnovation
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim SKU Curr Status' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PlantID", "MaterialID", "MaterialStatus", "MustCarry", "IsInnovation"}, {})
+				in
+				    Source
+

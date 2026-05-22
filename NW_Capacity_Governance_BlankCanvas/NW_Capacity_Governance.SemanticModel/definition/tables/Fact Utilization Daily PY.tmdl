@@ -1,0 +1,61 @@
+table 'Fact Utilization Daily PY'
+	lineageTag: 025d7835-266e-4215-b510-f65364a98233
+
+	measure 'Average Current Pallets PY' = BLANK()
+		lineageTag: 43d4f27d-9bae-4ecf-b941-c02700a9bea1
+
+	measure 'Average Pallet Holding Capacity PY' = BLANK()
+		lineageTag: c7be688f-4c2a-403c-a275-206520fae5de
+
+	measure '# of Days PY' = BLANK()
+		formatString: 0
+		lineageTag: f3eaa996-6305-4030-9394-80ab24e7db6b
+
+	measure 'Current Pallets PY' = BLANK()
+		lineageTag: 9df7fbd1-77f0-4c71-8119-d97e7c85ed9b
+
+	measure 'Pallet Holding Capacity PY' = BLANK()
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a37c3e8f-1ccd-4ad8-8703-64110e3f28be
+
+	measure 'Utilization @Branch PY' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 3d067201-26d1-428b-946a-30125d5eb164
+
+	column PlantID
+		dataType: string
+		lineageTag: e0c91f0d-0ca0-460c-942f-5700bb43d2c6
+		sourceColumn: PlantID
+
+	column CurrentPalletsPY
+		dataType: string
+		lineageTag: fb6b41c9-4dd8-4ec4-8971-9ec4b8151428
+		summarizeBy: none
+		sourceColumn: CurrentPalletsPY
+
+		annotation SummarizationSetBy = Automatic
+
+	column PalletHoldingCapacityPY
+		dataType: string
+		lineageTag: 8032066e-84bb-4001-af8a-d01cf4a3c4de
+		summarizeBy: none
+		sourceColumn: PalletHoldingCapacityPY
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateID
+		dataType: string
+		lineageTag: b5ac4b49-7e08-4767-a243-d83c958d7a57
+		summarizeBy: none
+		sourceColumn: DateID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Utilization Daily PY' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PlantID", "CurrentPalletsPY", "PalletHoldingCapacityPY", "DateID"}, {})
+				in
+				    Source
+

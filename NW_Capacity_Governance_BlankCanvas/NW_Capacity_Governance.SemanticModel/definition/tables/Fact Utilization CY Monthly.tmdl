@@ -1,0 +1,53 @@
+table 'Fact Utilization CY Monthly'
+	lineageTag: c9b51f40-d488-4c12-9691-4419a38b0225
+
+	measure 'Average Current Pallets CY Monthly' = BLANK()
+		lineageTag: 03e9a030-ed66-4a13-b943-b3ff1e15a006
+
+	measure 'Average Pallet Holding Capacity CY Monthly' = BLANK()
+		lineageTag: 8840e936-af06-4c2f-a4b4-a1b7cefe3b32
+
+	measure 'Utilization @Branch CY Monthly' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: f41fe7bb-9f05-4ef5-bc03-ebe193127ba8
+
+	column MonthID
+		dataType: string
+		lineageTag: 38b6eb5c-1cae-49e6-af05-821fc2c5af62
+		summarizeBy: none
+		sourceColumn: MonthID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: 8e68254e-d147-4fd6-9cb0-8a35c9d3955d
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrentPallets
+		dataType: string
+		lineageTag: 307948d4-ada9-4505-b108-73b3cc0b72ff
+		summarizeBy: none
+		sourceColumn: CurrentPallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column PalletHoldingCapacity
+		dataType: string
+		lineageTag: db7401a7-8e38-4ca3-8d08-3be161d5368b
+		summarizeBy: none
+		sourceColumn: PalletHoldingCapacity
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Utilization CY Monthly' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"MonthID", "PlantID", "CurrentPallets", "PalletHoldingCapacity"}, {})
+				in
+				    Source
+

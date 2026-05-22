@@ -1,0 +1,72 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBIDesktopVersion = 2.146.1254.0 (25.08)+791a7518fadc83da883d79322a2658aff57c8db3
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["Base Periods","Dim Branch","Dim CFR Levels","Dim Congestion Level","Dim Customer","Dim Date","Dim Material Hist @Branch","Dim Material","Dim National Chain","Dim Period","Dim Received Material","Dim Reference","Dim Sales Office Material","Dim SKU Curr Status","Dim Source Branch","Fact Cases Processed","Fact CFR Buckted","Fact CFR Customer Buckted","Fact CFR Monthly CY","Fact CFR Monthly PY","Fact CFR Period CY","Fact CFR Period PY","Fact Daily Demand","Fact Delivery Metrics Daily","Fact Inbound Missing Cases","Fact Inventory Period","Fact Inventory","Fact Labor Hours","Fact Lead Time","Fact Limit Breach Aging","Fact OOS","Fact Pick Accuracy","Fact Rolled Stops","Fact Sales Budget Monthly","Fact Sales Budget","Fact Sales Monthly","Fact Sales PY+Budget Daily","Fact Sales PY+Budget Monthly","Fact Sales","Fact SKU Rationalization","Fact Transport","Fact Utilization Bucketed","Fact Utilization CY Monthly","Fact Utilization Daily CY","Fact Utilization Daily PY","Fact Utilization PY Monthly","Time Intelligence","_Gov_FieldSummary","_Gov_ReportUsage","_Gov_Orphans","_Gov_Relationships","_Gov_PQSources","_Governance_Measures","FILE_PATH","REPORT_NAME","fnLoadSheet"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'Base Periods'
+ref table 'Dim Branch'
+ref table 'Dim CFR Levels'
+ref table 'Dim Congestion Level'
+ref table 'Dim Customer'
+ref table 'Dim Date'
+ref table 'Dim Material Hist @Branch'
+ref table 'Dim Material'
+ref table 'Dim National Chain'
+ref table 'Dim Period'
+ref table 'Dim Received Material'
+ref table 'Dim Reference'
+ref table 'Dim Sales Office Material'
+ref table 'Dim SKU Curr Status'
+ref table 'Dim Source Branch'
+ref table 'Fact Cases Processed'
+ref table 'Fact CFR Buckted'
+ref table 'Fact CFR Customer Buckted'
+ref table 'Fact CFR Monthly CY'
+ref table 'Fact CFR Monthly PY'
+ref table 'Fact CFR Period CY'
+ref table 'Fact CFR Period PY'
+ref table 'Fact Daily Demand'
+ref table 'Fact Delivery Metrics Daily'
+ref table 'Fact Inbound Missing Cases'
+ref table 'Fact Inventory Period'
+ref table 'Fact Inventory'
+ref table 'Fact Labor Hours'
+ref table 'Fact Lead Time'
+ref table 'Fact Limit Breach Aging'
+ref table 'Fact OOS'
+ref table 'Fact Pick Accuracy'
+ref table 'Fact Rolled Stops'
+ref table 'Fact Sales Budget Monthly'
+ref table 'Fact Sales Budget'
+ref table 'Fact Sales Monthly'
+ref table 'Fact Sales PY+Budget Daily'
+ref table 'Fact Sales PY+Budget Monthly'
+ref table 'Fact Sales'
+ref table 'Fact SKU Rationalization'
+ref table 'Fact Transport'
+ref table 'Fact Utilization Bucketed'
+ref table 'Fact Utilization CY Monthly'
+ref table 'Fact Utilization Daily CY'
+ref table 'Fact Utilization Daily PY'
+ref table 'Fact Utilization PY Monthly'
+ref table 'Time Intelligence'
+ref table _Gov_FieldSummary
+ref table _Gov_ReportUsage
+ref table _Gov_Orphans
+ref table _Gov_Relationships
+ref table _Gov_PQSources
+ref table _Governance_Measures
+
+ref cultureInfo en-US
+

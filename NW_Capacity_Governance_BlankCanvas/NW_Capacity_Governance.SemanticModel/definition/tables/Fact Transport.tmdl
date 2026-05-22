@@ -1,0 +1,134 @@
+table 'Fact Transport'
+	lineageTag: 9b0775dd-b934-4440-b209-82015b1765f8
+
+	measure '# Trucks' = BLANK()
+		formatString: #,0
+		lineageTag: 772aa8b0-afef-4750-b2ed-9a1b016f6e1f
+
+	measure '# Deliveries' = BLANK()
+		formatString: #,0.00
+		lineageTag: 1a503316-8cac-4e2b-9a75-09b363d5b33f
+
+	measure '# Stops/Route' = BLANK()
+		formatString: #,0.00
+		lineageTag: 73e0955b-c554-46e4-8b17-c6f27c6884ef
+
+	measure '# Routes' = BLANK()
+		formatString: #,0
+		lineageTag: 8211c640-9cf9-4000-9907-526836aa7d22
+
+	measure 'Stops Per Hour' = BLANK()
+		formatString: #,0.00
+		lineageTag: 6aaefac0-77a5-4e4d-8b98-0aca191173ca
+
+	measure 'Delivery CPH' = BLANK()
+		lineageTag: 060f9e4e-57ac-410c-81b2-ba7aa28ac58e
+
+	measure 'Delivery per Hour' = BLANK()
+		formatString: 0.00
+		lineageTag: 7744e40d-3f4a-4d01-953d-47ac94224f16
+
+	measure 'Delivery CPH KPI' = BLANK()
+		formatString: 0
+		lineageTag: 4490e805-7b4a-4ddc-811f-64fd51c7ce3a
+
+	measure 'Delivery per Hour KPI' = BLANK()
+		lineageTag: c45bc927-dd28-494d-9627-798316b3462a
+
+	measure 'Delivery CPH Target KPI' = BLANK()
+		lineageTag: 0998ae70-5443-4889-a7d8-455faaf292ca
+
+	measure 'Delivery CPH Target' = BLANK()
+		lineageTag: deae49c3-675f-42d8-9738-668868aed779
+
+	measure 'Color Delivery CPH KPI' = BLANK()
+		lineageTag: 134dc5a5-afc6-43ce-b78c-7301a3693e01
+
+	measure 'Color Delivery CPH KPI Icon' = BLANK()
+		lineageTag: 6dd07d35-616f-401a-8b19-f827c0fd5597
+
+	column PlantID
+		dataType: string
+		lineageTag: f6c508fa-48f8-4e0e-8998-4ce2848b059f
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryRoute
+		dataType: string
+		lineageTag: ecf98b5a-2836-4601-a896-e7a06643168e
+		summarizeBy: none
+		sourceColumn: DeliveryRoute
+
+		annotation SummarizationSetBy = Automatic
+
+	column TruckNumber
+		dataType: string
+		lineageTag: 399143b5-a7e4-4b1a-aa2d-d8e02465375d
+		sourceColumn: TruckNumber
+
+	column Deliveries
+		dataType: string
+		lineageTag: 1ae0fb5c-343a-4d30-bdfc-98fce91bc784
+		summarizeBy: none
+		sourceColumn: Deliveries
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlannedStops
+		dataType: string
+		lineageTag: 2886fefe-6042-4c3d-9fac-d85e29794d59
+		summarizeBy: none
+		sourceColumn: PlannedStops
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActualStops
+		dataType: string
+		lineageTag: 6bf82ebd-32bf-41b2-88e2-0c8c9718e3f8
+		summarizeBy: none
+		sourceColumn: ActualStops
+
+		annotation SummarizationSetBy = Automatic
+
+	column DistanceCovered
+		dataType: string
+		lineageTag: 929e3d23-47a3-4316-a141-fcc8f4457bb0
+		summarizeBy: none
+		sourceColumn: DistanceCovered
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalTime
+		dataType: string
+		lineageTag: f5203160-ccac-4245-89d3-6ad61f395ca5
+		summarizeBy: none
+		sourceColumn: TotalTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateID
+		dataType: string
+		lineageTag: c6b0097d-1338-4069-a467-4bae93a9ed15
+		summarizeBy: none
+		sourceColumn: DateID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchIDFromSrc
+		dataType: string
+		lineageTag: 8ec63d48-6566-4d17-a1bb-09814bd812f1
+		summarizeBy: none
+		sourceColumn: BranchIDFromSrc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Transport' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PlantID", "DeliveryRoute", "TruckNumber", "Deliveries", "PlannedStops", "ActualStops", "DistanceCovered", "TotalTime", "DateID", "BranchIDFromSrc"}, {})
+				in
+				    Source
+

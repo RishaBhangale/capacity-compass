@@ -1,0 +1,49 @@
+table _Gov_Orphans
+	lineageTag: fd6ae11c-889d-46d9-9dd4-05ebef447036
+
+	column Field
+		dataType: string
+		lineageTag: 98a9f9b2-3fb9-43af-a1fd-50e5ae51dacf
+		sourceColumn: Field
+
+	column FullName
+		dataType: string
+		lineageTag: 498612b5-239a-47f0-8daf-802ac341c51f
+		sourceColumn: FullName
+
+	column SeenInReport
+		dataType: string
+		lineageTag: ec8b4683-8170-463a-b7a6-9a1f7a8c9335
+		sourceColumn: SeenInReport
+
+	column SeenOnPage
+		dataType: string
+		lineageTag: 1e5b00ef-0f73-4ad7-96f2-217184163dc9
+		sourceColumn: SeenOnPage
+
+	column UsageContext
+		dataType: string
+		lineageTag: 15df3d20-da6b-461e-bc14-2f522cbc6b3f
+		sourceColumn: UsageContext
+
+	column Note
+		dataType: string
+		lineageTag: 6cd87c54-c04e-400f-b5d0-fe8df92ede91
+		sourceColumn: Note
+
+	column Table
+		dataType: string
+		lineageTag: 9f0bc7d9-d1bb-467f-9df9-cbeb20561a74
+		summarizeBy: none
+		sourceColumn: Table
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Gov_Orphans = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadSheet("Gap_Orphan_References")
+				in
+				    Source
+

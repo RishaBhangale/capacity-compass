@@ -1,0 +1,28 @@
+table 'Time Intelligence'
+	lineageTag: c835fdd6-004a-49b3-9ce1-c0e657fa804a
+
+	measure 'Max Ordinal' = BLANK()
+		formatString: 0
+		lineageTag: dd43dab4-5064-4baf-ae31-0df2882dd9c2
+
+	column 'Time Period'
+		dataType: string
+		lineageTag: 79878ce2-9403-4779-8ce2-82e35e3cf601
+		sourceColumn: Time Period
+
+	column Ordinal
+		dataType: string
+		lineageTag: 1b3be2cf-16c1-4e30-bd3d-75d25536b1a5
+		summarizeBy: none
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Time Intelligence' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"Time Period", "Ordinal"}, {})
+				in
+				    Source
+

@@ -1,0 +1,78 @@
+table 'Fact Pick Accuracy'
+	lineageTag: 6b4dc3ce-c6eb-4996-9445-cd8eabcf13d9
+
+	measure 'Pick Accuracy %' = BLANK()
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 61e47edb-48c8-4c5a-9ab4-e03144ae2eb7
+
+	measure 'Pick Accuracy % M' = BLANK()
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1e030f3b-3baf-4e14-83d6-0840c3713a57
+
+	measure 'Ordered Qty.' = SUM('Fact Pick Accuracy'[OrderQty])
+		lineageTag: c6840203-2ba3-4be4-92af-e31a27129539
+
+	measure 'Accurate Qty.' = SUM('Fact Pick Accuracy'[AccurateQty])
+		lineageTag: 6d7c0c93-31d0-4512-b9a1-57fe61d6ba7f
+
+	column PeriodID
+		dataType: string
+		lineageTag: 6823a14b-8ec6-488d-91b6-04fb432b7c79
+		summarizeBy: none
+		sourceColumn: PeriodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: a0c536dc-918d-4626-8b0c-61b52a7c6568
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: 925a12bd-247a-42d3-962a-8d13bd6e5aed
+		sourceColumn: MaterialID
+
+	column CustomerNumber
+		dataType: string
+		lineageTag: 440d3aa7-6cde-47cb-8d40-3bd9f75a1634
+		summarizeBy: none
+		sourceColumn: CustomerNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column BranchIDFromSrc
+		dataType: string
+		lineageTag: 325dc281-d5da-419a-bfdf-cb10a7a6d171
+		summarizeBy: none
+		sourceColumn: BranchIDFromSrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccurateQty
+		dataType: string
+		lineageTag: 19e81898-90a7-4a12-981f-ce0698231c3e
+		summarizeBy: none
+		sourceColumn: AccurateQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderQty
+		dataType: string
+		lineageTag: 81bbcfb8-88c1-4448-b312-dfa22b829710
+		summarizeBy: none
+		sourceColumn: OrderQty
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Pick Accuracy' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PeriodID", "PlantID", "MaterialID", "CustomerNumber", "BranchIDFromSrc", "AccurateQty", "OrderQty"}, {})
+				in
+				    Source
+

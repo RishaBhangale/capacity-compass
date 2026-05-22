@@ -1,0 +1,39 @@
+table 'Dim Congestion Level'
+	lineageTag: 899be6dd-aee9-49f6-ab14-41c60f8e28f0
+
+	column 'Congestion Level'
+		dataType: string
+		lineageTag: 7152ef01-8028-4a30-8378-d95d296432bd
+		sourceColumn: Congestion Level
+
+	column 'Condition In Days'
+		dataType: string
+		lineageTag: 4325ea4f-8736-4d18-94e7-2a7b90b58540
+		sourceColumn: Condition In Days
+
+	column Index
+		dataType: string
+		lineageTag: 1a6cd78d-1b42-414b-8b4d-eb8fae7315a9
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Utilization %'
+		dataType: string
+		lineageTag: 2102e644-f752-46cc-aa70-07746deb0d61
+		sourceColumn: Utilization %
+
+	column 'Utilization Legend'
+		dataType: string
+		lineageTag: ed6f59d7-a004-489d-a681-1e35636749e2
+		sourceColumn: Utilization Legend
+
+	partition 'Dim Congestion Level' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"Congestion Level", "Condition In Days", "Index", "Utilization %", "Utilization Legend"}, {})
+				in
+				    Source
+

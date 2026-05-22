@@ -1,0 +1,96 @@
+table _Gov_FieldSummary
+	lineageTag: e314d18e-55c8-4608-ba56-ea87b8f9d099
+
+	column Table
+		dataType: string
+		lineageTag: 5d35c8e8-480c-40c4-9561-e3119b97e1d7
+		sourceColumn: Table
+
+	column Field
+		dataType: string
+		lineageTag: fa35fa7f-9d7b-4508-8d5d-72e541ea61fa
+		sourceColumn: Field
+
+	column FullName
+		dataType: string
+		lineageTag: 58851e25-620f-41dd-88e0-1f87a6f53696
+		sourceColumn: FullName
+
+	column FieldType
+		dataType: string
+		lineageTag: fc5ea263-9e60-4bf0-9dca-0c8d6080ca6a
+		sourceColumn: FieldType
+
+	column IsHidden
+		dataType: string
+		lineageTag: b6ca59d1-c2cf-43a8-aa7d-a17ab537c432
+		sourceColumn: IsHidden
+
+	column DisplayFolder
+		dataType: string
+		lineageTag: 4e7afb3a-7faa-4e25-af03-6b172974f80b
+		sourceColumn: DisplayFolder
+
+	column Description
+		dataType: string
+		lineageTag: d0ea98cb-556d-4a1b-b6e2-c41f364979c9
+		sourceColumn: Description
+
+	column TotalReportRefs
+		dataType: string
+		lineageTag: 1eef0f1b-b65a-4ad0-9493-7d6ad8bb930d
+		summarizeBy: none
+		sourceColumn: TotalReportRefs
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalAllRefs
+		dataType: string
+		lineageTag: d4383aa7-1a14-4c09-91cf-579aa6e08e26
+		summarizeBy: none
+		sourceColumn: TotalAllRefs
+
+		annotation SummarizationSetBy = Automatic
+
+	column NeverUsed
+		dataType: string
+		lineageTag: d44e5036-e126-49b1-92f2-a2210f367c35
+		sourceColumn: NeverUsed
+
+	column UsedAnywhere
+		dataType: string
+		lineageTag: 78d11166-9169-4094-a855-42551f0c3176
+		sourceColumn: UsedAnywhere
+
+	column 'Network Visibility — Refs'
+		dataType: string
+		lineageTag: 66d91074-f64f-4c1d-a81d-314628cc331d
+		summarizeBy: none
+		sourceColumn: Network Visibility — Refs
+
+		annotation SummarizationSetBy = Automatic
+
+	column UsedInCalcDeps
+		dataType: string
+		lineageTag: 6b10b7ce-39f7-4b07-a504-8962a2268caf
+		summarizeBy: none
+		sourceColumn: UsedInCalcDeps
+
+		annotation SummarizationSetBy = Automatic
+
+	column UsageContexts
+		dataType: string
+		lineageTag: 85fd537d-c15c-4c73-b2fb-25bc48c03255
+		summarizeBy: none
+		sourceColumn: UsageContexts
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Gov_FieldSummary = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadSheet("Summary")
+				in
+				    Source
+

@@ -1,0 +1,68 @@
+table 'Fact Limit Breach Aging'
+	lineageTag: 0e1cafa1-78d0-4d4f-a840-2e2489d72265
+
+	measure 'K Max Age' = AVERAGE('Fact Limit Breach Aging'[KMaxAge])
+		lineageTag: 29bf2e2e-e416-431f-a980-76ae727b819a
+
+	measure 'K Min Age' = AVERAGE('Fact Limit Breach Aging'[KMinAge])
+		lineageTag: 26623b4f-2682-4f83-be78-9d2bb2829006
+
+	measure '# of SKU''''s 2' = BLANK()
+		formatString: 0
+		lineageTag: f916c20a-35ab-448a-913c-aa5ccc359328
+
+	measure 'K Max Age 2' = AVERAGE('Fact Limit Breach Aging'[KMaxAge])
+		lineageTag: 32f8497d-9c46-4376-aa42-6b6b000af366
+
+	column KMinAge
+		dataType: string
+		lineageTag: 4ff16cdf-2e10-4bfc-8d95-1078296bc6bc
+		summarizeBy: none
+		sourceColumn: KMinAge
+
+		annotation SummarizationSetBy = Automatic
+
+	column KMaxAge
+		dataType: string
+		lineageTag: ffd346e3-a243-4f67-84e8-58770243726b
+		summarizeBy: none
+		sourceColumn: KMaxAge
+
+		annotation SummarizationSetBy = Automatic
+
+	column KMinBreachAge
+		dataType: string
+		lineageTag: 7ade0469-5176-4539-ae1a-2a1c64b68684
+		sourceColumn: KMinBreachAge
+
+	column KMaxBreachAge
+		dataType: string
+		lineageTag: c9026ed8-3a42-4e9b-92b8-5e5815bc5b41
+		sourceColumn: KMaxBreachAge
+
+	column LimitBreachAge
+		dataType: string
+		lineageTag: a22b01b8-d549-40e8-bf5b-c8a70eb6556c
+		sourceColumn: LimitBreachAge
+
+	column PlantID
+		dataType: string
+		lineageTag: f4ed765d-7335-4e9a-b1c5-db8f7ed717fc
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaterialID
+		dataType: string
+		lineageTag: b0d9a622-6454-4cbd-9f13-9683be544186
+		sourceColumn: MaterialID
+
+	partition 'Fact Limit Breach Aging' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"KMinAge", "KMaxAge", "KMinBreachAge", "KMaxBreachAge", "LimitBreachAge", "PlantID", "MaterialID"}, {})
+				in
+				    Source
+

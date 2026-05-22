@@ -1,0 +1,21 @@
+table 'Dim Source Branch'
+	lineageTag: 5dc65e5b-c64a-428c-810e-11ecbd43d9ba
+
+	column 'Source Plant ID'
+		dataType: string
+		lineageTag: 30bccf55-33e7-4bbf-9af1-29b317483f22
+		sourceColumn: Source Plant ID
+
+	column 'Source Branch'
+		dataType: string
+		lineageTag: a7bffb5a-2e05-4df0-bb7f-932910fe3d04
+		sourceColumn: Source Branch
+
+	partition 'Dim Source Branch' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"Source Plant ID", "Source Branch"}, {})
+				in
+				    Source
+

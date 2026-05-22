@@ -1,0 +1,71 @@
+table 'Fact CFR Customer Buckted'
+	lineageTag: 74b778b5-d4bd-450b-852b-30460b79d544
+
+	measure '# Branches CFR Regional' = BLANK()
+		formatString: #,0
+		lineageTag: c9ec1fcd-273d-4e41-a16a-7155d3947431
+
+	measure 'TOP 5 CFR Customer' = BLANK()
+		lineageTag: 21bfea90-041c-490b-acb7-2d77f0d4c929
+
+	measure 'TOP 5 Customer CFR Level' = BLANK()
+		lineageTag: e598d875-947b-4865-b531-cce0bd325e04
+
+	measure 'Bottom 5 CFR  New' = BLANK()
+		lineageTag: 0fb2e742-e4a8-473e-ba84-f2bf2b8f1b04
+
+	measure 'Bottom 5 Customer CFR Level' = BLANK()
+		lineageTag: f760e8f9-1860-4a6a-a02a-c427515cdbda
+
+	measure 'Distinct Cust_ID' = DISTINCTCOUNT('Fact CFR Customer Buckted'[CustomerNumber])
+		formatString: 0
+		lineageTag: f427dc3f-0efd-4ef9-a050-bddb8ffb3e2d
+
+	measure 'Period Bucket Customer' = BLANK()
+		lineageTag: 4f0e8b7c-6e0f-46e2-a3ba-8bdfb908ab81
+
+	column Period
+		dataType: string
+		lineageTag: e7de8b2b-9ff8-4896-9b46-65808f8f5b9d
+		summarizeBy: none
+		sourceColumn: Period
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: e204e704-6154-41b8-9c0e-093e25f0b946
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PctGood
+		dataType: string
+		lineageTag: 3763755b-618f-4907-a321-7aa77c6dcac2
+		summarizeBy: none
+		sourceColumn: PctGood
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bucket
+		dataType: string
+		lineageTag: 6944ad4e-207c-42c9-ae71-fd314fadf046
+		sourceColumn: Bucket
+
+	column CustomerNumber
+		dataType: string
+		lineageTag: 2f1114a9-5c26-47c2-8b45-5f30de1750db
+		summarizeBy: none
+		sourceColumn: CustomerNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact CFR Customer Buckted' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"Period", "PlantID", "PctGood", "Bucket", "CustomerNumber"}, {})
+				in
+				    Source
+

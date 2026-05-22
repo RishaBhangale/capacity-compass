@@ -1,0 +1,85 @@
+table 'Dim Material Hist @Branch'
+	lineageTag: 935e8df0-f73b-4821-8f02-e7be38ed19fb
+
+	measure '#SKU''''s (Hist)' = BLANK()
+		formatString: #,0
+		lineageTag: 809ed5f8-c878-4772-b17c-91a87d7997bb
+
+	column PlantID
+		dataType: string
+		lineageTag: 9adf28db-c431-44e0-8010-41e4f86b6410
+		sourceColumn: PlantID
+
+	column MaterialID
+		dataType: string
+		lineageTag: d35dbb16-23ba-400e-bd4b-eb803667e7b1
+		sourceColumn: MaterialID
+
+	column MaterialStatus
+		dataType: string
+		lineageTag: 47be6665-b176-4833-9d08-b67449469f62
+		sourceColumn: MaterialStatus
+
+	column 'Material Status (groups)'
+		dataType: string
+		lineageTag: 250ef4f5-6dcf-4874-868f-e4a0562631b5
+		sourceColumn: Material Status (groups)
+
+	column Material_status
+		dataType: string
+		lineageTag: c69b59b0-50ef-425d-8c1a-8375a3833a73
+		sourceColumn: Material_status
+
+	column 'Current Material Status'
+		dataType: string
+		lineageTag: 81133753-8b5b-405f-b8f4-96f9ebeebd37
+		sourceColumn: Current Material Status
+
+	column PlantMaterialSK
+		dataType: string
+		lineageTag: ad0e4ede-5378-4018-8abb-b784f94c527a
+		summarizeBy: none
+		sourceColumn: PlantMaterialSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionalMustCarry
+		dataType: string
+		lineageTag: a77d066b-ee84-4ece-9c3b-9d42b2529de8
+		summarizeBy: none
+		sourceColumn: RegionalMustCarry
+
+		annotation SummarizationSetBy = Automatic
+
+	column NationalMustCarry
+		dataType: string
+		lineageTag: e91d203c-2a8a-49a8-b9f3-1a920a351963
+		summarizeBy: none
+		sourceColumn: NationalMustCarry
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanningTimeFence
+		dataType: string
+		lineageTag: b415eb19-2178-47eb-a183-bcbe6917e9cb
+		summarizeBy: none
+		sourceColumn: PlanningTimeFence
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanDeliveryTime
+		dataType: string
+		lineageTag: 578c77fb-0eeb-46a3-b665-4f8e8fd7cba1
+		summarizeBy: none
+		sourceColumn: PlanDeliveryTime
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Dim Material Hist @Branch' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PlantID", "MaterialID", "MaterialStatus", "Material Status (groups)", "Material_status", "Current Material Status", "PlantMaterialSK", "RegionalMustCarry", "NationalMustCarry", "PlanningTimeFence", "PlanDeliveryTime"}, {})
+				in
+				    Source
+

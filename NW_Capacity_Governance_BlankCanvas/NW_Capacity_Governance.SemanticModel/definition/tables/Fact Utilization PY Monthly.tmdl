@@ -1,0 +1,53 @@
+table 'Fact Utilization PY Monthly'
+	lineageTag: c48a22bf-7678-467b-ac3a-0dd6f5004fbe
+
+	measure 'Average Current Pallets PY Monthly' = BLANK()
+		lineageTag: a20ffa9b-6cd7-4256-968e-c7cf7f131388
+
+	measure 'Average Pallet Holding Capacity PY Monthly' = BLANK()
+		lineageTag: 03920fa7-9711-4639-9df4-b151eac4035c
+
+	measure 'Utilization @Branch PY Monthly' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 7e32edc0-452e-4548-820e-7bed3e709299
+
+	column PlantID
+		dataType: string
+		lineageTag: f430d091-de5c-4e56-a3d8-a2586ba42f73
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthID
+		dataType: string
+		lineageTag: 1b5efda5-cadd-4e73-ba11-c37b092d6f03
+		summarizeBy: none
+		sourceColumn: MonthID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrentPalletsPY
+		dataType: string
+		lineageTag: 1965911c-f87d-4db0-baf2-849b89f8d043
+		summarizeBy: none
+		sourceColumn: CurrentPalletsPY
+
+		annotation SummarizationSetBy = Automatic
+
+	column PalletHoldingCapacityPY
+		dataType: string
+		lineageTag: 9b7d5560-1778-4b9d-88a8-7ce87a600971
+		summarizeBy: none
+		sourceColumn: PalletHoldingCapacityPY
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Utilization PY Monthly' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PlantID", "MonthID", "CurrentPalletsPY", "PalletHoldingCapacityPY"}, {})
+				in
+				    Source
+

@@ -1,0 +1,126 @@
+table 'Fact Utilization Daily CY'
+	lineageTag: 3a58ca4b-d9a2-437c-b356-fdec2d60d519
+
+	measure 'Utilization @Branch CY' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: cdd249ac-e4fb-419a-b45e-9f014ad86776
+
+	measure 'Bottom 5 Branch Level' = BLANK()
+		lineageTag: c45d5429-29e3-451a-8f16-d0176434efa1
+
+	measure 'Top 5 Branch Level' = BLANK()
+		lineageTag: 5a90a6f0-dfc3-41b8-bfc6-88a262317a20
+
+	measure 'Bottom 5 Branch Region Level' = BLANK()
+		lineageTag: 1f2aa62a-f87e-4740-8d54-033fedfe1f77
+
+	measure 'Top 5 Branch Region Level' = BLANK()
+		lineageTag: c2676a6b-5560-42a5-8466-1b0c86cddb30
+
+	measure 'Top 5 Branches' = BLANK()
+		lineageTag: a097f5c4-62dc-4621-9be2-c46a8920ae6c
+
+	measure 'Bottom 5 Branches' = BLANK()
+		lineageTag: 7ffba0ac-1c2f-4380-bd33-df6d2455cb4a
+
+	measure 'Current Pallets M' = BLANK()
+		formatString: #,0.00
+		lineageTag: 4a8f028a-04e7-4e4b-86ef-139fd52e16d8
+
+	measure 'Pallet Holding Capacity M' = BLANK()
+		formatString: #,0.00
+		lineageTag: 560c1c9f-db5b-4ed7-a924-3f9960628d8b
+
+	measure 'Blank =' = BLANK()
+		lineageTag: 675794a7-326c-49a1-b754-fa6b638ef97a
+
+	measure 'Average Current Pallets CY' = BLANK()
+		formatString: #,0.00
+		lineageTag: c997c12a-89f3-4584-809e-cff2b0e2c6c9
+
+	measure 'Average Pallet Holding Capacity CY' = BLANK()
+		formatString: #,0.0
+		lineageTag: 51e04e86-37ea-491e-8f1d-4a5782943c78
+
+	measure '# of Days CY' = BLANK()
+		formatString: #,0
+		lineageTag: 3ec38952-bc3b-40ae-b25b-928f73588ff1
+
+	measure 'Color Utilization Measure' = BLANK()
+		lineageTag: 79aef561-b73f-48c8-833e-7c7e1ff29b8b
+
+	measure 'Utilization Target' = 0.85
+		formatString: 0%;-0%;0%
+		lineageTag: 933394ff-b36f-4c8e-acd4-d2d3b45f3f27
+
+	measure 'Utilization @Branch KPI CY' = BLANK()
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 521429bb-1749-46c8-b78b-ab268eeeb68a
+
+	measure 'Utilization Ref Monthly' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: 539b408c-485b-4525-aa28-fa7c293de959
+
+	measure 'Gap to Utilization Target' = BLANK()
+		lineageTag: cc751892-660f-4c6b-a52d-7a3c0fc80bfc
+
+	measure 'Utilization Ref Daily' = BLANK()
+		formatString: 0%;-0%;0%
+		lineageTag: a32c152d-4e29-4ae4-9d96-d32c2842f50a
+
+	column PlantID
+		dataType: string
+		lineageTag: 7eda4916-b9a2-4c08-9dbf-ffbfc48cf415
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Utilization = DIVIDE('Fact Utilization Daily CY'[Current Pallets],'Fact Utilization Daily CY'[Pallet Holding Capacity])
+		dataType: string
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: eadc6f1a-748d-46bd-b989-b7a3de9d927a
+
+	column 'Current Pallets'
+		dataType: string
+		lineageTag: 896bb17b-bad6-4110-b771-6467859f9011
+		summarizeBy: none
+		sourceColumn: Current Pallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pallet Holding Capacity'
+		dataType: string
+		lineageTag: 55038cb5-4af5-4419-b0ab-de3d1d010352
+		summarizeBy: none
+		sourceColumn: Pallet Holding Capacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Utilization Grouping' = IF('Fact Utilization Daily CY'[Utilization] > 0.8500 , 1 , 0)
+		dataType: string
+		formatString: 0
+		lineageTag: 336b24f8-774d-43e9-8085-d7ed510435d9
+
+	column 'Congested Branches'
+		dataType: string
+		formatString: 0
+		lineageTag: 6ab19dee-a13e-4a2a-9383-bf9ea3580aa4
+		sourceColumn: Congested Branches
+
+	column DateID
+		dataType: string
+		lineageTag: fc6546bc-087e-4da2-98e7-ce9d65b7b8de
+		summarizeBy: none
+		sourceColumn: DateID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fact Utilization Daily CY' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"PlantID", "Current Pallets", "Pallet Holding Capacity", "Congested Branches", "DateID"}, {})
+				in
+				    Source
+

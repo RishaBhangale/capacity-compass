@@ -1,0 +1,285 @@
+table _Governance_Measures
+	isHidden
+	lineageTag: 69a4c06f-a044-4677-85a0-e9cbd44a8d12
+
+	measure 'Total Model Tables' = COUNTROWS(_Gov_FieldSummary)
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: a4912af6-0e9a-4f6c-81cb-8389d0e127e9
+
+	measure 'Total Measures' = CALCULATE(COUNTROWS(_Gov_FieldSummary), _Gov_FieldSummary[FieldType] = "Measure")
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: 1d18f82a-e1f1-4c85-8895-51df490b68c7
+
+	measure 'Total Columns' = CALCULATE(COUNTROWS(_Gov_FieldSummary), _Gov_FieldSummary[FieldType] = "Column (data)")
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: 6a524d6d-9083-41c9-9844-dd56f1765876
+
+	measure 'Total Relationships' = COUNTROWS(_Gov_Relationships)
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: 40da2ba2-cef9-4058-af48-1fbc5350529f
+
+	measure 'Total Report Pages' = DISTINCTCOUNT(_Gov_ReportUsage[Page])
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: cbdf3a1a-de0b-4866-9f64-9fd605d327fe
+
+	measure 'Total Field References' = COUNTROWS(_Gov_ReportUsage)
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: 8328e71e-8faa-4e32-b47d-0149d95ca1c2
+
+	measure 'Unique Fields Used' = DISTINCTCOUNT(_Gov_ReportUsage[FullName])
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: 3048a9d1-457f-46f8-8e76-d5e1e2103c02
+
+	measure 'Never Used Fields' = CALCULATE(COUNTROWS(_Gov_FieldSummary), _Gov_FieldSummary[NeverUsed] = "Yes")
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: e5ebaef7-677d-4a34-928d-71c1fdcbeea7
+
+	measure 'Unused Fields %' = DIVIDE([Never Used Fields], COUNTROWS(_Gov_FieldSummary), 0)
+		formatString: 0.0%
+		displayFolder: 00 Governance KPIs
+		lineageTag: f3c056c0-b87e-4d0c-9da4-a8d74dcf86d0
+
+	measure 'Orphaned References' = COUNTROWS(_Gov_Orphans)
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: 2397bd62-942f-439e-a65f-f0b65b300aa9
+
+	measure 'High Risk Orphans' = CALCULATE(COUNTROWS(_Gov_Orphans), _Gov_Orphans[RiskLevel] = "High")
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: f5879c03-0921-4ce8-b5b7-9ab55782553b
+
+	measure 'Field Utilisation %' = DIVIDE([Unique Fields Used], COUNTROWS(_Gov_FieldSummary), 0)
+		formatString: 0.0%
+		displayFolder: 00 Governance KPIs
+		lineageTag: 1681f4ed-9aee-4547-b910-b45136be46d0
+
+	measure 'Visual Field Usage' = CALCULATE(COUNTROWS(_Gov_ReportUsage), _Gov_ReportUsage[UsageContext] = "Visual Field", _Gov_ReportUsage[IsHiddenVisual] = "No")
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: cc56e37b-4566-489f-a645-8f64642b456e
+
+	measure 'Slicer Usage Count' = CALCULATE(COUNTROWS(_Gov_ReportUsage), _Gov_ReportUsage[UsageContext] = "Slicer")
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: c55cd3ce-a89b-4cc5-9943-d0eccebf52c4
+
+	measure 'Model Health Score' = VAR TotalFields = COUNTROWS(_Gov_FieldSummary) VAR UnusedPct = DIVIDE([Never Used Fields], TotalFields, 0) VAR OrphanPenalty = MIN(DIVIDE([Orphaned References], 50, 0) * 30, 30) RETURN ROUND(MAX(0, 100 - UnusedPct * 40 - OrphanPenalty), 0)
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: 213bd77d-b0f2-4e5d-bea4-ce8fc7e22fd4
+
+	measure 'Many-to-Many Relationships' = CALCULATE(COUNTROWS(_Gov_Relationships), _Gov_Relationships[FromCardinality]="many", _Gov_Relationships[ToCardinality]="many")
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: ef2f86e0-125e-4897-b4e3-fcd7645d9a59
+
+	measure 'Snowflake Tables' = CALCULATE(COUNTROWS(_Gov_PQSources), _Gov_PQSources[Connector]="Snowflake")
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: 2db8df55-629a-4ef4-adf3-3cd9ff3a9a9d
+
+	measure 'CSV Tables' = CALCULATE(COUNTROWS(_Gov_PQSources), _Gov_PQSources[Connector]="CSV File")
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: 9beff3df-c842-4072-9ae8-3b07cd1a115a
+
+	measure 'SharePoint Tables' = CALCULATE(COUNTROWS(_Gov_PQSources), _Gov_PQSources[Connector]="SharePoint")
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: 7ad6ebde-2716-4746-a391-b18b8cb09406
+
+	measure 'Unknown Connector Tables' = CALCULATE(COUNTROWS(_Gov_PQSources), _Gov_PQSources[Connector]="Unknown")
+		formatString: #,0
+		displayFolder: 00 Governance KPIs
+		lineageTag: afe00f3b-e9d8-4b7b-b590-df048aa39c15
+
+	measure 'Fields Per Page' = DIVIDE(COUNTROWS(_Gov_ReportUsage), DISTINCTCOUNT(_Gov_ReportUsage[Page]), 0)
+		formatString: #,0.0
+		displayFolder: 00 Governance KPIs
+		lineageTag: 58f286cf-3f3c-43fe-9231-412c5bcd4a06
+
+	measure 'Selected Table' = SELECTEDVALUE(_Gov_FieldSummary[Table], "All Tables")
+		displayFolder: 00 Governance KPIs
+		lineageTag: 168c8a4f-f563-4c8b-b8d3-5b4b54f6e512
+
+	measure 'Health Color' = SWITCH(TRUE(), [Model Health Score] >= 75, "#217346", [Model Health Score] >= 50, "#E8701A", "#C00000")
+		displayFolder: 00 Governance KPIs
+		lineageTag: 71eb81ee-6a07-4277-a5b5-e46ff0366a04
+
+	measure 'Adoption Tier Summary' = VAR H = CALCULATE(COUNTROWS(_Gov_FieldSummary),_Gov_FieldSummary[AdoptionTier]="High") VAR M = CALCULATE(COUNTROWS(_Gov_FieldSummary),_Gov_FieldSummary[AdoptionTier]="Medium") VAR L = CALCULATE(COUNTROWS(_Gov_FieldSummary),_Gov_FieldSummary[AdoptionTier]="Low") VAR U = [Never Used Fields] RETURN "High: "&H&"  Med: "&M&"  Low: "&L&"  Unused: "&U
+		displayFolder: 00 Governance KPIs
+		lineageTag: 3bbe7bab-fbb9-4b08-b06b-ff833eedb1af
+
+	measure 'Active Fields' = CALCULATE(COUNTROWS(_Gov_FieldSummary), _Gov_FieldSummary[NeverUsed]="No")
+		formatString: #,0
+		displayFolder: 01 Executive
+		lineageTag: f3615b33-9515-4ff5-bf6b-3054830a55d2
+
+	measure 'Active Fields %' = DIVIDE([Active Fields], COUNTROWS(_Gov_FieldSummary), 0)
+		formatString: 0%
+		displayFolder: 01 Executive
+		lineageTag: f1a9929e-cb8a-4dae-9bce-1e3217b39025
+
+	measure 'Bookmark Usage Count' = CALCULATE(COUNTROWS(_Gov_ReportUsage), _Gov_ReportUsage[UsageContext]="Bookmark")
+		formatString: #,0
+		displayFolder: 01 Executive
+		lineageTag: 19491147-6e6c-4096-9480-09dbb22ed67a
+
+	measure 'Hidden Visual Fields' = CALCULATE(COUNTROWS(_Gov_ReportUsage), _Gov_ReportUsage[UsageContext]="Hidden Visual")
+		formatString: #,0
+		displayFolder: 01 Executive
+		lineageTag: 58a343e8-1746-4a02-9c16-789d75e84c5c
+
+	measure 'Conditional Format Usage' = CALCULATE(COUNTROWS(_Gov_ReportUsage), _Gov_ReportUsage[UsageContext]="Conditional Format")
+		formatString: #,0
+		displayFolder: 01 Executive
+		lineageTag: 3f38ccea-0110-4f8a-949a-63bcf9228536
+
+	measure 'Total PQ Tables' = COUNTROWS(_Gov_PQSources)
+		formatString: #,0
+		displayFolder: 01 Executive
+		lineageTag: 021ccb01-23c8-4e3d-8bf4-55efc555f7b4
+
+	measure 'CSV Source Tables' = [CSV Tables]
+		formatString: #,0
+		displayFolder: 01 Executive
+		lineageTag: fe5baaae-149d-40c2-9ef6-b31d2206248a
+
+	measure 'Governance Risk Score' = VAR OrphanRisk = MIN(DIVIDE([Orphaned References],198,0)*40,40) VAR UnusedRisk = MIN(DIVIDE([Never Used Fields],1039,0)*40,40) VAR M2M = [Many-to-Many Relationships]*5 RETURN ROUND(MIN(OrphanRisk+UnusedRisk+M2M,100),0)
+		formatString: #,0
+		displayFolder: 01 Executive
+		lineageTag: 2a1d6641-abdd-40e4-870f-0bdc190fb431
+
+	measure 'OneDirection Rels' = CALCULATE(COUNTROWS(_Gov_Relationships), _Gov_Relationships[CrossFilterDir]="oneDirection")
+		formatString: #,0
+		displayFolder: 02 Lineage
+		lineageTag: cb293112-1335-4f99-a8b8-49bbc560770a
+
+	measure 'BothDir Rels' = CALCULATE(COUNTROWS(_Gov_Relationships), _Gov_Relationships[CrossFilterDir]="bothDirections")
+		formatString: #,0
+		displayFolder: 02 Lineage
+		lineageTag: ae0df13a-bb95-4647-b286-146cf41ba387
+
+	measure 'Inactive Relationships' = CALCULATE(COUNTROWS(_Gov_Relationships), _Gov_Relationships[IsActive]="No")
+		formatString: #,0
+		displayFolder: 02 Lineage
+		lineageTag: d66c52fc-d557-45da-bc20-4b6438f09d1a
+
+	measure 'Tables With Usage' = DISTINCTCOUNT(_Gov_ReportUsage[GovTable])
+		formatString: #,0
+		displayFolder: 02 Lineage
+		lineageTag: de438a39-a42d-4aff-a4c1-02a1f6537504
+
+	measure 'Tables Without Usage' = [Total Model Tables] - [Tables With Usage]
+		formatString: #,0
+		displayFolder: 02 Lineage
+		lineageTag: 10375b65-aaf8-4ccd-8861-da8059e54bd3
+
+	measure 'Orphan High Count' = [High Risk Orphans]
+		formatString: #,0
+		displayFolder: 02 Lineage
+		lineageTag: 5527925b-9f0e-46d8-bb7d-b47deeae7caa
+
+	measure 'Orphan Medium Count' = CALCULATE(COUNTROWS(_Gov_Orphans), _Gov_Orphans[RiskLevel]="Medium")
+		formatString: #,0
+		displayFolder: 02 Lineage
+		lineageTag: 0773d26d-30b8-417e-8470-425c751b353c
+
+	measure 'Orphan Low Count' = CALCULATE(COUNTROWS(_Gov_Orphans), _Gov_Orphans[RiskLevel]="Low")
+		formatString: #,0
+		displayFolder: 02 Lineage
+		lineageTag: 1f06a6a7-da1b-4abd-821c-2b2d29bd1dd5
+
+	measure 'Unused Measures' = CALCULATE(COUNTROWS(_Gov_FieldSummary), _Gov_FieldSummary[FieldType]="Measure", _Gov_FieldSummary[NeverUsed]="Yes")
+		formatString: #,0
+		displayFolder: 02 Lineage
+		lineageTag: f8b56bbd-ac06-4460-9866-140ef6d698d2
+
+	measure 'Unused Columns' = CALCULATE(COUNTROWS(_Gov_FieldSummary), _Gov_FieldSummary[FieldType]="Column (data)", _Gov_FieldSummary[NeverUsed]="Yes")
+		formatString: #,0
+		displayFolder: 02 Lineage
+		lineageTag: aac5757c-ca29-4e26-83f0-d2ba7f026b2c
+
+	measure 'Visuals Count' = DISTINCTCOUNT(_Gov_ReportUsage[Visual])
+		formatString: #,0
+		displayFolder: 03 Usage
+		lineageTag: 7de4ad79-a674-46d2-b8e8-391cbcba91ac
+
+	measure 'Pages With Slicers' = CALCULATE(DISTINCTCOUNT(_Gov_ReportUsage[Page]), _Gov_ReportUsage[UsageContext]="Slicer")
+		formatString: #,0
+		displayFolder: 03 Usage
+		lineageTag: a3a0c0c5-c447-4854-b58e-1c23c24a988d
+
+	measure 'Avg Fields Per Page' = DIVIDE([Total Field References], [Total Report Pages], 0)
+		formatString: #,0.0
+		displayFolder: 03 Usage
+		lineageTag: 275406cd-78fe-4b46-957b-7438501a101a
+
+	measure 'Card Visual Count' = CALCULATE(COUNTROWS(_Gov_ReportUsage), _Gov_ReportUsage[VisualType]="card")
+		formatString: #,0
+		displayFolder: 03 Usage
+		lineageTag: 8e106e02-c679-4cbc-9e6a-69e40ccb223d
+
+	measure 'Matrix Visual Count' = CALCULATE(COUNTROWS(_Gov_ReportUsage), _Gov_ReportUsage[VisualType]="pivotTable")
+		formatString: #,0
+		displayFolder: 03 Usage
+		lineageTag: b2e47186-bbca-4228-84b5-3dcbe3e8c710
+
+	measure 'Table Visual Count' = CALCULATE(COUNTROWS(_Gov_ReportUsage), _Gov_ReportUsage[VisualType]="tableEx")
+		formatString: #,0
+		displayFolder: 03 Usage
+		lineageTag: 78022a88-de92-4631-9f29-15bf83f2f22f
+
+	measure 'Bar Chart Count' = CALCULATE(COUNTROWS(_Gov_ReportUsage), _Gov_ReportUsage[VisualType]="barChart")
+		formatString: #,0
+		displayFolder: 03 Usage
+		lineageTag: 5edc3a0e-55b3-47a2-ac2d-4f508dffa312
+
+	measure 'High Adoption Fields' = CALCULATE(COUNTROWS(_Gov_FieldSummary), _Gov_FieldSummary[AdoptionTier]="High")
+		formatString: #,0
+		displayFolder: 04 Mapping
+		lineageTag: 91a4e433-298c-481d-9d1b-112de3cd0f67
+
+	measure 'Medium Adoption Fields' = CALCULATE(COUNTROWS(_Gov_FieldSummary), _Gov_FieldSummary[AdoptionTier]="Medium")
+		formatString: #,0
+		displayFolder: 04 Mapping
+		lineageTag: 2eae6886-4b63-4938-90b7-5323b6be61da
+
+	measure 'Low Adoption Fields' = CALCULATE(COUNTROWS(_Gov_FieldSummary), _Gov_FieldSummary[AdoptionTier]="Low")
+		formatString: #,0
+		displayFolder: 04 Mapping
+		lineageTag: 9936e4d5-109a-45c3-88d0-927e7e5334db
+
+	measure 'Measures With Folder' = CALCULATE(COUNTROWS(_Gov_FieldSummary), _Gov_FieldSummary[FieldType]="Measure", _Gov_FieldSummary[DisplayFolder]<>"")
+		formatString: #,0
+		displayFolder: 04 Mapping
+		lineageTag: fd7f598f-7ba2-4eaa-a738-2e0dd44b2a7a
+
+	measure 'Fields Per Table Avg' = DIVIDE(COUNTROWS(_Gov_FieldSummary), DISTINCTCOUNT(_Gov_FieldSummary[Table]), 0)
+		formatString: #,0.0
+		displayFolder: 04 Mapping
+		lineageTag: e48b81c1-9a48-4741-bcff-c6969d862883
+
+	column _
+		dataType: string
+		isHidden
+		lineageTag: 1fda1635-3e18-416f-a454-ad791c774229
+		sourceColumn: _
+
+	partition _Governance_Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table({"_"}, {{{""}}})
+				in
+				    Source
+

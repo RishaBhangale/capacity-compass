@@ -1,0 +1,51 @@
+table 'Fact CFR Buckted'
+	lineageTag: f5850025-2dbf-4fee-bc97-ca8a497d8af1
+
+	measure '# Branches CFR Bucket' = BLANK()
+		formatString: #,0
+		lineageTag: 0d188113-6969-4fa1-afba-d533948b32d1
+
+	measure 'Period Bucket CFR' = BLANK()
+		lineageTag: 7fdf06f2-8f2b-4d4c-97a7-fcc09a001807
+
+	measure '# of CFR Branches' = DISTINCTCOUNT('Fact CFR Buckted'[PlantID])
+		formatString: 0
+		lineageTag: 3076335e-c0e8-4a87-b08a-57f32951bf83
+
+	column Period
+		dataType: string
+		lineageTag: 764cb42f-d03b-4ad1-a95c-5ad3384879a1
+		summarizeBy: none
+		sourceColumn: Period
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlantID
+		dataType: string
+		lineageTag: 437d20bd-91e2-4e02-9090-5eae9b10ea5b
+		summarizeBy: none
+		sourceColumn: PlantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PctGood
+		dataType: string
+		lineageTag: 86bb2c28-2bc1-4846-9394-a0625733b708
+		summarizeBy: none
+		sourceColumn: PctGood
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bucket
+		dataType: string
+		lineageTag: 3a8f0558-6b4b-469f-9328-627e8ea14ebc
+		sourceColumn: Bucket
+
+	partition 'Fact CFR Buckted' = m
+		mode: import
+		source =
+				let
+				    Source = #table({"Period", "PlantID", "PctGood", "Bucket"}, {})
+				in
+				    Source
+
